@@ -1,0 +1,116 @@
+/* Page */
+body {
+	background-color: #fCfCfC;
+}
+
+.page {
+	margin-top: 155px;
+}
+
+.container-navbar {
+	position: relative;
+}
+
+/* Custom Navbar */
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #000;
+    background-color: inherit;
+    font-weight: bold;
+}
+
+/* Coverflow */
+#coverflow {
+	height: 400px;
+	margin-top: 30px;
+}
+
+.book-cover {
+	background-color: #f8f8f8;
+	height: 350px;
+	border: 1px #CCC solid;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+/* Responsive Layout */
+@media (min-width: 992px){
+	/* Page */
+	.page {
+		margin-top: 155px;
+	}
+
+	/* Navbar */
+	.container-navbar {
+		position: relative;
+	}
+
+	.search-form {
+		position: absolute;
+		top: 10px;
+		right: 0px;
+	}
+
+
+
+}
+
+@media(min-width: 768px){
+	/* Page */
+	.page {
+		margin-top: 155px;
+	}
+
+	/* Navbar */
+	.container-navbar {
+		position: relative;
+	}
+
+	.search-form {
+		position: absolute;
+		top: 10px;
+		right: 0px;
+	}
+}
+
+@media(min-width: 530px) and (max-width: 768px){
+	/* Coverflow */
+	#coverflow {
+		min-height: 330px;
+	}
+
+}
+
+@media(max-width: 768px){
+	/* Page */
+	.page {
+		margin-top: 193px;
+	}
+
+	/* Navbar */
+	#campo-pesquisa {
+		width: 55%;
+		margin-right: 5%;
+		margin-left: 5%;
+		display: inline;
+	}
+
+	#botao-pesquisa {
+		width: 25%;
+		display: inline;
+	}
+
+	/* Coverflow */
+	#coverflow {
+		max-height: 220px;
+	}
+
+	#coverflow .cover {
+		width: 50%;
+	}
+
+	.book-cover {
+		height: 450px;
+	}
+}
