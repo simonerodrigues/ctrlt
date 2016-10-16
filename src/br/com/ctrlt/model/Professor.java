@@ -49,8 +49,6 @@ public class Professor {
 	private String nome;
 	
 	@Column(nullable = true)
-	@NotBlank(message = "{professor.emailFatec.vazio}")
-	@Email(message = "{professor.emailFatec.valido}")
 	private String emailFatec;
 	
 	@Column(nullable = false)
@@ -59,19 +57,9 @@ public class Professor {
 	private String emailAlternativo;
 	
 	@Column(length = 14, nullable = true)
-	@NotBlank(message = "{professor.telefone.vazio}")
-	@Size.List({
-		@Size(min = 14, message = "{professor.telefone.size}"),
-		@Size(max = 14, message = "{professor.telefone.size}")
-	})
 	private String telefone;
 	
 	@Column(length = 15, nullable = true)
-	@NotBlank(message = "{professor.celular.vazio}")
-	@Size.List({
-		@Size(min = 15, message = "{professor.celular.size}"),
-		@Size(max = 15, message = "{professor.celular.size}")
-	})
 	private String celular;
 	
 	@Column(nullable = false)

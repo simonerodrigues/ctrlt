@@ -77,7 +77,7 @@
 								</div>
 								<div class="col-lg-4">
 									<div class="form-group">
-										<label>E-mail Fatec: (*)</label> <input type="email" id="emailFatec"
+										<label>E-mail Fatec: </label> <input type="email" id="emailFatec"
 											name="emailFatec" class="form-control" autocomplete="off">
 									</div>
 								</div>
@@ -109,14 +109,14 @@
 							<div class="col-lg-12">
 								<div class="col-lg-4">
 									<div class="form-group">
-										<label>Telefone: (*)</label> <input type="text" id="telefone"
+										<label>Telefone:</label> <input type="text" id="telefone"
 											name="telefone" class="form-control" placeholder="(00) 0000-0000" />
 									</div>
 								</div>
 								
 								<div class="col-lg-4">
 									<div class="form-group">
-										<label>Celular: (*)</label> <input type="text" id="celular"
+										<label>Celular:</label> <input type="text" id="celular"
 											name="celular" class="form-control" placeholder="(00) 00000-0000" />
 									</div>
 								</div>
