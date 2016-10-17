@@ -10,8 +10,7 @@
 			</div>
 			<div class="modal-body">
 				<form>
-					<div class="form-group">
-						<pre id="texto-modal"></pre>
+					<div id="texto-modal" class="form-group">
 					</div>
 				</form>
 			</div>

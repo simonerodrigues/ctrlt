@@ -300,6 +300,38 @@
 		//Quando todos os dados estiverem validos, cadastra a linha de pesquisa
 		$.validator.setDefaults({
 			submitHandler : function() {
+				
+				//Array com 
+				var listaAlunos = []
+				
+				listaAlunos[1] = $("#aluno1").val();
+				listaAlunos[2] = $("#aluno2").val();
+				listaAlunos[3] = $("#aluno3").val();
+				listaAlunos[4] = $("#aluno4").val();
+				listaAlunos[5] = $("#aluno5").val();
+				
+				for(var i = 0; listaAlunos.length; i++){
+					if(listaAlunos[i] != ""){
+						for(var j = i + 1; listaAlunos.length; j++){
+							if(listaAlunos[j] != "" && listaAlunos[i] == listaAlunos[j]){
+								$("#botao-modal-nao").hide();
+								$("#botao-modal-sim").text("Ok");
+								$("#botao-modal-sim").unbind();
+								$("#botao-modal-sim").on("click", function(){
+									$("#modal").modal("hide");
+									$("body").removeClass("modal-open");
+									$(".modal-backdrop").fadeOut("slow");
+									$(".modal-backdrop").remove();
+								});
+								$("#texto-modal").html("Existem alunos repetidos para o mesmo trabalho de conclusão, por gentileza verique");
+								$("#modal").modal("show");
+								
+								return false;
+							}
+						}
+					}
+				}
+				
 				if($("#cadastrar").html() == "Cadastrar"){
 					manterEntidade(1,"trabalho_de_conclusao", {
 						"nome" : $("#nome").val()
@@ -333,7 +365,7 @@
 					$(".modal-backdrop").fadeOut("slow");
 					$(".modal-backdrop").remove();
 				});
-				$("#texto-modal").text("Erro ao tentar carregar os dados da linha de pesquisa para serem alterados. Por gentileza tente novamente!");
+				$("#texto-modal").html("Erro ao tentar carregar os dados da linha de pesquisa para serem alterados. Por gentileza tente novamente!");
 				$("#modal").modal("show");
 			});
 		}

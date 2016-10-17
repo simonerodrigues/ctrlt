@@ -79,13 +79,13 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validação dos dados: \n";
+				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validação dos dados: \n";
+				erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
-				erros += "\n" + erro.getDefaultMessage();
+				erros += "<br />" + erro.getDefaultMessage();
 			}
 
 			responseJson.setResult(erros);
@@ -118,13 +118,13 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validação dos dados: \n";
+				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validação dos dados: \n";
+				erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
-				erros += "\n" + erro.getDefaultMessage();
+				erros += "<br />" + erro.getDefaultMessage();
 			}
 
 			responseJson.setResult(erros);

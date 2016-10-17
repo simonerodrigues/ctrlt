@@ -69,13 +69,13 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validação dos dados: \n";
+				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validação dos dados: \n";
+				erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
-				erros += "\n" + erro.getDefaultMessage();
+				erros += "<br />" + erro.getDefaultMessage();
 			}
 
 			responseJson.setResult(erros);
@@ -108,13 +108,13 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validação dos dados: \n";
+				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validação dos dados: \n";
+				erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
-				erros += "\n" + erro.getDefaultMessage();
+				erros += "<br />" + erro.getDefaultMessage();
 			}
 
 			responseJson.setResult(erros);
@@ -160,10 +160,9 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 
 		if (listaProfessores.size() > 0) {
 			response.setStatus("FAIL");
-			response.setResult("Não é possível excluir a linha de pesquisa selecionada porque existe(m) \n"
-					+ "professor(es) associado(s) a esta linha de pesquisa. \n\n"
-					+ "Por gentileza realize as desassociações antes de excluir a linha de \n"
-					+ "pesquisa.");
+			response.setResult("Não é possível excluir a linha de pesquisa selecionada porque existe(m) "
+					+ "professor(es) associado(s) a esta linha de pesquisa. <br /><br />"
+					+ "Por gentileza realize as desassociações antes de excluir a linha de pesquisa.");
 		} else {
 
 			// Realiza a exclusão do linhaDePesquisa
@@ -204,10 +203,9 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 
 		if (listaProfessores.size() > 0) {
 			response.setStatus("FAIL");
-			response.setResult("Não é possível inativar essa linha de pesquisa selecionada porque existe(m) \n"
-					+ "professor(es) ativo(s) associado(s) a esta linha de pesquisa. \n\n"
-					+ "Por gentileza realize as desassociações antes de inativar a linha de \n"
-					+ "pesquisa.");
+			response.setResult("Não é possível inativar essa linha de pesquisa selecionada porque existe(m) "
+					+ "professor(es) ativo(s) associado(s) a esta linha de pesquisa. <br /><br />"
+					+ "Por gentileza realize as desassociações antes de inativar a linha de pesquisa.");
 		} else {
 
 			// Altera o status do linhaDePesquisa

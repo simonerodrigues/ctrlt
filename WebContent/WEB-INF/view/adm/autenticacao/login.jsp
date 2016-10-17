@@ -129,7 +129,7 @@
 							} else {
 								$("#botao-modal-nao").hide();
 								$("#botao-modal-sim").text("Ok");
-								$("#texto-modal").text(response.result);
+								$("#texto-modal").html(response.result);
 								$("#botao-modal-sim").unbind();
 								$("#botao-modal-sim").on("click", function(){
 									$("#modal").modal("hide");
@@ -150,7 +150,7 @@
 								$(".modal-backdrop").fadeOut("slow");
 								$(".modal-backdrop").remove();
 							});
-							$("#texto-modal").text("Erro ao tentar realizar o login, por gentileza tente novamente!");
+							$("#texto-modal").html("Erro ao tentar realizar o login, por gentileza tente novamente!");
 							$("#modal").modal("show");
 						});
 					}	

@@ -97,13 +97,13 @@ public class CursoController implements Control<Curso> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validação dos dados: \n";
+				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validação dos dados: \n";
+				erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
-				erros += "\n" + erro.getDefaultMessage();
+				erros += "<br />" + erro.getDefaultMessage();
 			}
 
 			responseJson.setResult(erros);
@@ -152,13 +152,13 @@ public class CursoController implements Control<Curso> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validação dos dados: \n";
+				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validação dos dados: \n";
+				erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
-				erros += "\n" + erro.getDefaultMessage();
+				erros += "<br />" + erro.getDefaultMessage();
 			}
 
 			responseJson.setResult(erros);
@@ -204,8 +204,8 @@ public class CursoController implements Control<Curso> {
 
 		if (listaAlunos.size() > 0) {
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("Não é possível excluir o curso selecionado porque existe(m) alunos(s)\n"
-					+ "associado(s) a este curso. \n\n"
+			responseJson.setResult("Não é possível excluir o curso selecionado porque existe(m) alunos(s) "
+					+ "associado(s) a este curso. <br /><br />"
 					+ "Por gentileza realize as desassociações antes de excluir o curso.");
 		} else {
 			// Realiza a exclusão do curso
@@ -246,8 +246,8 @@ public class CursoController implements Control<Curso> {
 
 		if (listaAlunos.size() > 0) {
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("Não é possível inativar este curso seleciono porque existe(m) \n"
-					+ "alunos(s) ativo(s) associado(s) a este curso. \n\n"
+			responseJson.setResult("Não é possível inativar este curso seleciono porque existe(m) "
+					+ "alunos(s) ativo(s) associado(s) a este curso. <br /><br />"
 					+ "Por gentileza realize as desassociações antes de inativar o curso.");
 		}else{
 			// Altera o status do curso

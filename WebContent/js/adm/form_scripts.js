@@ -68,6 +68,9 @@ $(document).ready(function() {
 			},
 			cursoPeriodo : {
 				required: true
+			},
+			monografia : {
+				required: true
 			}
 		},
 		messages : {
@@ -131,7 +134,12 @@ $(document).ready(function() {
 				minlength: "A descrição deve conter no mínimo 2 dígitos",
 				maxlength: "A descrição deve conter no máximo 2 dígitos"
 			},
-			cursoPeriodo : "Por gentileza, escolha um curso/período"
+			cursoPeriodo : {
+				required: "Por favor, digite o RA"
+			},
+			monografia : {
+				required: "Por favor, selecione o arquivo de monografia"
+			}
 		},
 		highlight : function(element) {
 			$(element).closest('.form-group').addClass('has-error');
@@ -392,7 +400,7 @@ function manterEntidade(acao,entidade, data) {
 			//Exibe mensagem de aluno cadastrado com sucesso
 			$("#botao-modal-nao").hide();
 			$("#botao-modal-sim").text("Ok");
-			$("#texto-modal").text(response.result);
+			$("#texto-modal").html(response.result);
 			$("#botao-modal-sim").unbind();
 			$("#botao-modal-sim").on("click", function(){
 				cancelar();
@@ -407,7 +415,7 @@ function manterEntidade(acao,entidade, data) {
 		} else {
 			$("#botao-modal-nao").hide();
 			$("#botao-modal-sim").text("Ok");
-			$("#texto-modal").text(response.result);
+			$("#texto-modal").html(response.result);
 			$("#botao-modal-sim").unbind();
 			$("#botao-modal-sim").on("click", function(){
 				$("#modal").modal("hide");
@@ -429,9 +437,9 @@ function manterEntidade(acao,entidade, data) {
 			$(".modal-backdrop").remove();
 		});
 		if(acao == 1){
-			$("#texto-modal").text("Erro ao cadastrar " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
+			$("#texto-modal").html("Erro ao cadastrar " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
 		}else{
-			$("#texto-modal").text("Erro ao alterar " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
+			$("#texto-modal").html("Erro ao alterar " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
 		}
 		$("#modal").modal("show");
 	});
@@ -456,7 +464,7 @@ function inativarEntidade(entidade, id) {
 				$(".modal-backdrop").remove();
 			});
 	
-			$("#texto-modal").text(response.result);
+			$("#texto-modal").html(response.result);
 			
 			$("#modal").modal("show");
 			
@@ -474,7 +482,7 @@ function inativarEntidade(entidade, id) {
 				$(".modal-backdrop").remove();
 			});
 			
-			$("#texto-modal").text(response.result);
+			$("#texto-modal").html(response.result);
 			$("#modal").modal("show");
 		}
 	}).fail(function(e) {
@@ -489,7 +497,7 @@ function inativarEntidade(entidade, id) {
 			$(".modal-backdrop").remove();
 		});
 		
-		$("#texto-modal").text("Erro ao ativar/inativar " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
+		$("#texto-modal").html("Erro ao ativar/inativar " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
 		$("#modal").modal("show");
 	});
 }
@@ -513,7 +521,7 @@ function excluirEntidade(entidade, id) {
 				$(".modal-backdrop").remove();
 			});
 	
-			$("#texto-modal").text(response.result);
+			$("#texto-modal").html(response.result);
 			
 			$("#modal").modal("show");
 			
@@ -531,7 +539,7 @@ function excluirEntidade(entidade, id) {
 				$(".modal-backdrop").remove();
 			});
 			
-			$("#texto-modal").text(response.result);
+			$("#texto-modal").html(response.result);
 			$("#modal").modal("show");
 		}
 	}).fail(function(e) {
@@ -546,7 +554,7 @@ function excluirEntidade(entidade, id) {
 			$(".modal-backdrop").remove();
 		});
 		
-		$("#texto-modal").text("Erro ao excluir o(a) " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
+		$("#texto-modal").html("Erro ao excluir o(a) " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
 		$("#modal").modal("show");
 	});
 }
@@ -562,7 +570,7 @@ function valorProduto(){
 		$(".se-pre-con-dark").fadeOut("slow");
 		$("#botao-modal-nao").hide();
 		$("#botao-modal-sim").text("Ok");
-		$("#texto-modal").text("Erro ao tentar carregar preço do serviço. Por gentileza tente novamente!");
+		$("#texto-modal").html("Erro ao tentar carregar preço do serviço. Por gentileza tente novamente!");
 		$("#modal").modal("show");
 	});
 }

@@ -73,13 +73,13 @@ public class PeriodoController implements Control<Periodo> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validação dos dados: \n";
+				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validação dos dados: \n";
+				erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
-				erros += "\n" + erro.getDefaultMessage();
+				erros += "<br />" + erro.getDefaultMessage();
 			}
 
 			responseJson.setResult(erros);
@@ -112,13 +112,13 @@ public class PeriodoController implements Control<Periodo> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validação dos dados: \n";
+				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validação dos dados: \n";
+				erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
-				erros += "\n" + erro.getDefaultMessage();
+				erros += "<br />" + erro.getDefaultMessage();
 			}
 
 			responseJson.setResult(erros);
@@ -164,8 +164,8 @@ public class PeriodoController implements Control<Periodo> {
 
 		if (listaCursos.size() > 0) {
 			response.setStatus("FAIL");
-			response.setResult("Não é possível excluir o período selecionado porque existe(m) cursos(s) \n"
-					+ "associado(s) a este período. \n\n"
+			response.setResult("Não é possível excluir o período selecionado porque existe(m) cursos(s) "
+					+ "associado(s) a este período. <br /><br />"
 					+ "Por gentileza realize as desassociações antes de excluir o período.");
 		} else {
 			// Realiza a exclusão do periodo
@@ -206,8 +206,8 @@ public class PeriodoController implements Control<Periodo> {
 
 		if (listaCursos.size() > 0) {
 			response.setStatus("FAIL");
-			response.setResult("Não é possível inativar este período selecionada porque existe(m) \n"
-					+ "curso(s) ativo(s) associado(s) a este período. \n\n"
+			response.setResult("Não é possível inativar este período selecionada porque existe(m) "
+					+ "curso(s) ativo(s) associado(s) a este período. <br /><br />"
 					+ "Por gentileza realize as desassociações antes de inativar o período.");
 		}else{
 			// Altera o status do periodo

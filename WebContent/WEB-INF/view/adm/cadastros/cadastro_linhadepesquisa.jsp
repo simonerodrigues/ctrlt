@@ -212,7 +212,7 @@
 					$(".modal-backdrop").fadeOut("slow");
 					$(".modal-backdrop").remove();
 				});
-				$("#texto-modal").text("Erro ao tentar carregar os dados da linha de pesquisa para serem alterados. Por gentileza tente novamente!");
+				$("#texto-modal").html("Erro ao tentar carregar os dados da linha de pesquisa para serem alterados. Por gentileza tente novamente!");
 				$("#modal").modal("show");
 			});
 		}
