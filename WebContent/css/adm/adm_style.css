@@ -47,9 +47,22 @@ body {
 	padding: 0 15px;
 }
 
+@media ( max-width :768px) {
+	.top-nav {
+		padding: 0px;
+	}
+}
+
 .top-nav>li {
 	display: inline-block;
-	float: left;
+}
+
+@media ( max-width :768px) {
+	.top-nav>li {
+		margin: 0px;
+    	text-align: center;
+    	display: inline;
+	}
 }
 
 .top-nav>li>a {
@@ -260,6 +273,13 @@ ul.alert-dropdown {
 .top-nav>li>a:hover, .top-nav>li>a:focus, .top-nav>.open>a, .top-nav>.open>a:hover,
 	.top-nav>.open>a:focus {
 	background-color: #0B62A4;
+}
+
+@media ( max-width :768px) {
+	.top-nav>li>a:hover, .top-nav>li>a:focus, .top-nav>.open>a, .top-nav>.open>a:hover,
+		.top-nav>.open>a:focus {
+		background-color: #000;
+	}
 }
 
 /* Modal centralizado */
