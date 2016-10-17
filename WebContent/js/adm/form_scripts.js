@@ -16,6 +16,10 @@ $(document).ready(function() {
 				required: true,
 				minlength: 3
 			},
+			titulo :  {
+				required: true,
+				minlength: 3
+			},
 			login :  {
 				required: true,
 				minlength: 4
@@ -73,6 +77,10 @@ $(document).ready(function() {
 			nome : {
 				required: "Por favor, digite o nome",
 				minlength: "O nome deve conter no mínimo 3 dígitos"
+			},
+			titulo : {
+				required: "Por favor, digite o titulo",
+				minlength: "O titulo deve conter no mínimo 3 dígitos"
 			},
 			login : {
 				required: "Por favor, digite o login",

@@ -216,7 +216,8 @@
 							<th>Inativar</th>
 							<th>Excluir</th>
 							<th>Alterar</th>
-							<th>Nome</th>
+							<th>Título</th>
+							<th>Data de Publicação</th>
 							<th class="status">Status</th>
 						</tr>
 					</thead>
@@ -254,16 +255,16 @@
 			
 			dataTable(
 					"#dataTable",
-					"/rest/lista/linha_de_pesquisa",
+					"/rest/lista/trabalho_de_conclusao",
 					[
 							{
 								"data" : function(o) {
 									if(o.ativo){
-										return '<center><button onclick="inativar(\'linha_de_pesquisa\', '
+										return '<center><button onclick="inativar(\'trabalho_de_conclusao\', '
 											+ o.id
 											+ ')" class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button></center>';
 									}else{
-										return '<center><button onclick="inativar(\'linha_de_pesquisa\', '
+										return '<center><button onclick="inativar(\'trabalho_de_conclusao\', '
 											+ o.id
 											+ ')" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button></center>';
 									}
@@ -271,7 +272,7 @@
 							},
 							{
 								"data" : function(o) {
-									return '<center><button onclick="excluir(\'linha_de_pesquisa\', '
+									return '<center><button onclick="excluir(\'trabalho_de_conclusao\', '
 											+ o.id
 											+ ')" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true"></i></button></center>';
 								}
@@ -283,7 +284,11 @@
 											+ ')" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button></center>';
 								}
 							}, {
-								"data" : "nome"
+								"data" : "titulo"
+							}, {
+								"data" : function(o) {
+									return moment(new Date(o.dataPublicao)).lang("pt-br").format('LT');
+								}
 							}, {
 								"data" : "ativo"
 							} ]
@@ -296,11 +301,11 @@
 		$.validator.setDefaults({
 			submitHandler : function() {
 				if($("#cadastrar").html() == "Cadastrar"){
-					manterEntidade(1,"linha_de_pesquisa", {
+					manterEntidade(1,"trabalho_de_conclusao", {
 						"nome" : $("#nome").val()
 					});
 				}else{
-					manterEntidade(2,"linha_de_pesquisa", {
+					manterEntidade(2,"trabalho_de_conclusao", {
 						"id" : $("#id").val(),
 						"nome" : $("#nome").val()						
 					});
