@@ -74,8 +74,8 @@
 							<div class="col-lg-12">
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label>Descrição:</label> <textarea id="descricao"
-											name="descricao" class="form-control"></textarea>
+										<label>Resumo:</label> <textarea id="resumo"
+											name="resumo" class="form-control"></textarea>
 									</div>
 								</div>
 							</div>
@@ -366,15 +366,33 @@
 					
 					return false;
 				}
-				
+
 				if($("#cadastrar").html() == "Cadastrar"){
 					manterEntidade(1,"trabalho_de_conclusao", {
-						"nome" : $("#nome").val()
+						"titulo" : $("#titulo").val(),
+						"resumo" : $("#resumo").val(),
+						"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
+						"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
+						"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
+						"listaAlunos[3].id" : $("#aluno4").val() == "" ? 0 : $("#aluno4").val(),
+						"listaAlunos[4].id" : $("#aluno5").val() == "" ? 0 : $("#aluno5").val(),
+						"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
+						"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
+						"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()
 					});
 				}else{
 					manterEntidade(2,"trabalho_de_conclusao", {
 						"id" : $("#id").val(),
-						"nome" : $("#nome").val()						
+						"titulo" : $("#titulo").val(),
+						"resumo" : $("#resumo").val(),
+						"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
+						"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
+						"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
+						"listaAlunos[3].id" : $("#aluno4").val() == "" ? 0 : $("#aluno4").val(),
+						"listaAlunos[4].id" : $("#aluno5").val() == "" ? 0 : $("#aluno5").val(),
+						"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
+						"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
+						"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()					
 					});
 				}
 			}

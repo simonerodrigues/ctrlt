@@ -1,5 +1,6 @@
 package br.com.ctrlt.controller;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,27 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	public ResponseJson cadastrar(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
 
+		//Seta a data de publicação
+		entidade.setDataPublicao(Calendar.getInstance());
+		
+		//Atualiza a lista de alunos
+		for(int i = 0; i < entidade.getListaAlunos().size(); i++){
+			if (entidade.getListaAlunos().get(i).getId() == 0){
+				entidade.getListaAlunos().remove(i);
+			}else{
+				entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
+			}
+		}
+		
+		//Atualiza a lista de Professores
+		for(int i = 0; i < entidade.getListaProfessores().size(); i++){
+			if (entidade.getListaProfessores().get(i).getId() == 0){
+				entidade.getListaProfessores().remove(i);
+			}else{
+				entidade.getListaProfessores().set(i, professorDAO.pesquisarPorId(entidade.getListaProfessores().get(i).getId()));
+			}
+		}
+		
 		if (!result.hasErrors()) {
 			entidade.setAtivo(true);
 

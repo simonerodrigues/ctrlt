@@ -1,5 +1,6 @@
 package br.com.ctrlt.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -44,10 +45,9 @@ public class TrabalhoDeConclusao {
 	@DateTimeFormat(pattern = "dd/MM/yyy HH:mm")
 	@Column(nullable = false)
 	@NotBlank(message = "{trabalhoDeConclusao.dataPublicao.vazio}")
-	private Date dataPublicao;
+	private Calendar dataPublicao;
 	
 	@OneToMany(mappedBy = "trabalhoDeConclusao")
-	@NotBlank(message = "{trabalhoDeConclusao.listaAlunos.vazio}")
 	private List<Aluno> listaAlunos;
 	
 	@ManyToMany
@@ -55,7 +55,6 @@ public class TrabalhoDeConclusao {
 		joinColumns = @JoinColumn(name = "id_trabalhoDeConclusao"),
 		inverseJoinColumns = @JoinColumn(name = "id_professor")
 	)
-	@NotBlank(message = "{trabalhoDeConclusao.listaProfessores.vazio}")
 	private List<Professor> listaProfessores;
 	
 	@OneToMany(mappedBy = "trabalhoDeConclusao")
@@ -93,11 +92,11 @@ public class TrabalhoDeConclusao {
 		this.resumo = resumo;
 	}
 
-	public Date getDataPublicao() {
+	public Calendar getDataPublicao() {
 		return dataPublicao;
 	}
 
-	public void setDataPublicao(Date dataPublicao) {
+	public void setDataPublicao(Calendar dataPublicao) {
 		this.dataPublicao = dataPublicao;
 	}
 
