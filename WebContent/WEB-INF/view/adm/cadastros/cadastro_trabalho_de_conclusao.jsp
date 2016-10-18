@@ -301,35 +301,70 @@
 		$.validator.setDefaults({
 			submitHandler : function() {
 				
-				//Array com 
-				var listaAlunos = []
+				//Mensagem que irá conter a mensagem de erro
+				var mensagemAluno = "";
+				var mensagemProfessor = "";
 				
-				listaAlunos[1] = $("#aluno1").val();
-				listaAlunos[2] = $("#aluno2").val();
-				listaAlunos[3] = $("#aluno3").val();
-				listaAlunos[4] = $("#aluno4").val();
-				listaAlunos[5] = $("#aluno5").val();
+				//Array que irá conter os campos de alunos e professores
+				var listaAlunos = [];
+				var listaProfessores = [];
 				
-				for(var i = 0; listaAlunos.length; i++){
-					if(listaAlunos[i] != ""){
-						for(var j = i + 1; listaAlunos.length; j++){
-							if(listaAlunos[j] != "" && listaAlunos[i] == listaAlunos[j]){
-								$("#botao-modal-nao").hide();
-								$("#botao-modal-sim").text("Ok");
-								$("#botao-modal-sim").unbind();
-								$("#botao-modal-sim").on("click", function(){
-									$("#modal").modal("hide");
-									$("body").removeClass("modal-open");
-									$(".modal-backdrop").fadeOut("slow");
-									$(".modal-backdrop").remove();
-								});
-								$("#texto-modal").html("Existem alunos repetidos para o mesmo trabalho de conclusão, por gentileza verique");
-								$("#modal").modal("show");
+				listaAlunos[1] = $("#aluno1");
+				listaAlunos[2] = $("#aluno2");
+				listaAlunos[3] = $("#aluno3");
+				listaAlunos[4] = $("#aluno4");
+				listaAlunos[5] = $("#aluno5");
+				
+				for(var i = 0; i < listaAlunos.length; i++){
+					if($(listaAlunos[i]).val() != ""){
+						for(var j = i + 1; j < listaAlunos.length; j++){
+							if($(listaAlunos[j]).val() != "" && $(listaAlunos[i]).val() == $(listaAlunos[j]).val()){
+								if(mensagemAluno == ""){
+									mensagemAluno = "Existem alunos repetidos para o mesmo trabalho de conclusão. Os repetidos foram removidos, por gentileza revise os dados.";
+								}
 								
-								return false;
+								$(listaAlunos[j]).val("");
 							}
 						}
 					}
+				}
+				
+				listaProfessores[1] = $("#professor1");
+				listaProfessores[2] = $("#professor2");
+				listaProfessores[3] = $("#professor3");
+
+				for(var i = 0; i < listaProfessores.length; i++){
+					if($(listaProfessores[i]).val() != ""){
+						for(var j = i + 1; j < listaProfessores.length; j++){
+							if($(listaProfessores[j]).val() != "" && $(listaProfessores[i]).val() == $(listaProfessores[j]).val()){
+								if(mensagemProfessor == ""){
+									if(mensagemAluno != ""){
+										mensagemProfessor = "<br /><br />"
+									}
+									
+									mensagemProfessor += "Existem professores repetidos para o mesmo trabalho de conclusão. Os repetidos foram removidos, por gentileza revise os dados.";
+								}
+								
+								$(listaProfessores[j]).val("");
+							}
+						}
+					}
+				}
+				
+				if( (mensagemAluno + mensagemProfessor) != ""){
+					$("#botao-modal-nao").hide();
+					$("#botao-modal-sim").text("Ok");
+					$("#botao-modal-sim").unbind();
+					$("#botao-modal-sim").on("click", function(){
+						$("#modal").modal("hide");
+						$("body").removeClass("modal-open");
+						$(".modal-backdrop").fadeOut("slow");
+						$(".modal-backdrop").remove();
+					});
+					$("#texto-modal").html(mensagemAluno + mensagemProfessor);
+					$("#modal").modal("show");
+					
+					return false;
 				}
 				
 				if($("#cadastrar").html() == "Cadastrar"){
