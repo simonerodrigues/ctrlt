@@ -18,7 +18,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
@@ -59,29 +61,38 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	}
 
 	@Override
+	public ResponseJson cadastrar(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
+		return null;
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "rest/cadastra/trabalho_de_conclusao", method = RequestMethod.POST)
-	public ResponseJson cadastrar(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
+	public ResponseJson cadastrar(@Valid TrabalhoDeConclusao entidade, BindingResult result, 
+			@RequestParam(value="monografia",required = false) MultipartFile monografia) {
 		ResponseJson responseJson = new ResponseJson();
 
 		//Seta a data de publicação
 		entidade.setDataPublicao(Calendar.getInstance());
 		
-		//Atualiza a lista de alunos
-		for(int i = 0; i < entidade.getListaAlunos().size(); i++){
-			if (entidade.getListaAlunos().get(i).getId() == 0){
-				entidade.getListaAlunos().remove(i);
-			}else{
-				entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
+		if(entidade.getListaAlunos() != null){
+			//Atualiza a lista de alunos
+			for(int i = 0; i < entidade.getListaAlunos().size(); i++){
+				if (entidade.getListaAlunos().get(i).getId() == 0){
+					entidade.getListaAlunos().remove(i);
+				}else{
+					entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
+				}
 			}
 		}
 		
-		//Atualiza a lista de Professores
-		for(int i = 0; i < entidade.getListaProfessores().size(); i++){
-			if (entidade.getListaProfessores().get(i).getId() == 0){
-				entidade.getListaProfessores().remove(i);
-			}else{
-				entidade.getListaProfessores().set(i, professorDAO.pesquisarPorId(entidade.getListaProfessores().get(i).getId()));
+		if(entidade.getListaProfessores() != null){
+			//Atualiza a lista de Professores
+			for(int i = 0; i < entidade.getListaProfessores().size(); i++){
+				if (entidade.getListaProfessores().get(i).getId() == 0){
+					entidade.getListaProfessores().remove(i);
+				}else{
+					entidade.getListaProfessores().set(i, professorDAO.pesquisarPorId(entidade.getListaProfessores().get(i).getId()));
+				}
 			}
 		}
 		

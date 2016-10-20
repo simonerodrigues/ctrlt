@@ -368,7 +368,7 @@
 				}
 
 				if($("#cadastrar").html() == "Cadastrar"){
-					manterEntidade(1,"trabalho_de_conclusao", {
+					/*manterEntidade(1,"trabalho_de_conclusao", {
 						"titulo" : $("#titulo").val(),
 						"resumo" : $("#resumo").val(),
 						"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
@@ -379,7 +379,41 @@
 						"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
 						"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
 						"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()
-					});
+					});*/
+					
+					var formData = new FormData();
+					formData.append("monografia", $("#monografia")[0].files[0]);
+					formData.append("titulo", $("#titulo").val());
+					formData.append("resumo", $("#resumo").val());
+					formData.append("listaAlunos[0].id", $("#aluno1").val() == "" ? 0 : $("#aluno1").val());
+					formData.append("listaAlunos[1].id", $("#aluno2").val() == "" ? 0 : $("#aluno2").val());
+					formData.append("listaAlunos[2].id", $("#aluno3").val() == "" ? 0 : $("#aluno3").val());
+					formData.append("listaAlunos[3].id", $("#aluno4").val() == "" ? 0 : $("#aluno4").val());
+					formData.append("listaAlunos[4].id", $("#aluno5").val() == "" ? 0 : $("#aluno5").val());
+					formData.append("listaProfessores[0].id", $("#professor1").val() == "" ? 0 : $("#professor1").val());
+					formData.append("listaProfessores[1].id", $("#professor2").val() == "" ? 0 : $("#professor2").val());
+					formData.append("listaProfessores[2].id", $("#professor3").val() == "" ? 0 : $("#professor3").val());
+					
+					$.ajax({
+				        url: "/rest/cadastra/trabalho_de_conclusao",
+				        type: 'POST',
+				        data: formData,
+				        success: function (data) {
+				            alert(data);
+				        },
+				        cache: false,
+				        contentType: false,
+				        processData: false,
+				        xhr: function() {  // Custom XMLHttpRequest
+				            var myXhr = $.ajaxSettings.xhr();
+				            if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+				                myXhr.upload.addEventListener('progress', function () {
+				                    /* faz alguma coisa durante o progresso do upload */
+				                }, false);
+				            }
+				        return myXhr;
+				        }
+				    });
 				}else{
 					manterEntidade(2,"trabalho_de_conclusao", {
 						"id" : $("#id").val(),
