@@ -445,6 +445,98 @@ function manterEntidade(acao,entidade, data) {
 	});
 }
 
+//Função para cadastrar a entidade
+function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadData) {
+	
+	$(".se-pre-con-dark").fadeIn("slow");
+	
+	/*
+	 * acao = 1 (Inclusão)
+	 * acao = 1 (Alteração)
+	 */
+	
+	if(acao == 1){
+		var operacao = "/rest/cadastra/";
+	}else if(acao == 2){
+		var operacao = "/rest/altera/"
+	}
+
+	$.post(operacao + entidade, data).done(function(response) {
+		$(".se-pre-con-dark").hide();
+		
+		if (response.status == "SUCCESS") {
+			$.ajax({
+		        url: operacao + "upload_" +entidade + "_" + entidadeUpload,
+		        type: 'POST',
+		        data: uploadData,
+		        success: function(response2) {
+		        	//Exibe mensagem de aluno cadastrado com sucesso
+					$("#botao-modal-nao").hide();
+					$("#botao-modal-sim").text("Ok");
+					$("#texto-modal").html(response2.result);
+					$("#botao-modal-sim").unbind();
+					$("#botao-modal-sim").on("click", function(){
+						cancelar();
+						$("#modal").modal("hide");
+						$("body").removeClass("modal-open");
+						$(".modal-backdrop").fadeOut("slow");
+						$(".modal-backdrop").remove();
+					});
+					$("#modal").modal("show");
+					
+					dataTable("#dataTable");
+		        },
+		        fail: function(response2) {
+		        	$("#botao-modal-nao").hide();
+					$("#botao-modal-sim").text("Ok");
+					$("#texto-modal").html(response2.result);
+					$("#botao-modal-sim").unbind();
+					$("#botao-modal-sim").on("click", function(){
+						cancelar();
+						$("#modal").modal("hide");
+						$("body").removeClass("modal-open");
+						$(".modal-backdrop").fadeOut("slow");
+						$(".modal-backdrop").remove();
+					});
+					$("#modal").modal("show");
+		        },
+		        cache: false,
+		        contentType: false,
+		        processData: false
+		    });
+		} else {
+			$("#botao-modal-nao").hide();
+			$("#botao-modal-sim").text("Ok");
+			$("#texto-modal").html(response.result);
+			$("#botao-modal-sim").unbind();
+			$("#botao-modal-sim").on("click", function(){
+				$("#modal").modal("hide");
+				$("body").removeClass("modal-open");
+				$(".modal-backdrop").fadeOut("slow");
+				$(".modal-backdrop").remove();
+			});
+			$("#modal").modal("show");
+		}
+	}).fail(function(e) {
+		$(".se-pre-con-dark").fadeOut("slow");
+		$("#botao-modal-nao").hide();
+		$("#botao-modal-sim").text("Ok");
+		$("#botao-modal-sim").unbind();
+		$("#botao-modal-sim").on("click", function(){
+			$("#modal").modal("hide");
+			$("body").removeClass("modal-open");
+			$(".modal-backdrop").fadeOut("slow");
+			$(".modal-backdrop").remove();
+		});
+		if(acao == 1){
+			$("#texto-modal").html("Erro ao cadastrar " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
+		}else{
+			$("#texto-modal").html("Erro ao alterar " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
+		}
+		$("#modal").modal("show");
+	});
+}
+
 //Função para inativar a entidade
 function inativarEntidade(entidade, id) {
 	

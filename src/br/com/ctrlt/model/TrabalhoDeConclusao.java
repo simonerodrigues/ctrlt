@@ -1,7 +1,6 @@
 package br.com.ctrlt.model;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -21,6 +20,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -44,13 +45,14 @@ public class TrabalhoDeConclusao {
 	@Temporal(TemporalType.TIMESTAMP)	// Data e Hora
 	@DateTimeFormat(pattern = "dd/MM/yyy HH:mm")
 	@Column(nullable = false)
-	@NotBlank(message = "{trabalhoDeConclusao.dataPublicao.vazio}")
 	private Calendar dataPublicao;
 	
 	@OneToMany(mappedBy = "trabalhoDeConclusao")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Aluno> listaAlunos;
 	
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name = "trabalhoDeConclusao_professor",
 		joinColumns = @JoinColumn(name = "id_trabalhoDeConclusao"),
 		inverseJoinColumns = @JoinColumn(name = "id_professor")
@@ -58,11 +60,11 @@ public class TrabalhoDeConclusao {
 	private List<Professor> listaProfessores;
 	
 	@OneToMany(mappedBy = "trabalhoDeConclusao")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Anexo> listaAnexos;
 
 	@OneToOne(fetch = FetchType.EAGER) // faz select na permissao quando fizer em admConteudo
-	@JoinColumn(name = "id_monografia")
-	@NotBlank(message = "{trabalhoDeConclusao.monografia.vazio}")
+	@JoinColumn(name = "id_monografia", nullable = true)
 	private Monografia monografia;
 	
 	@Column(nullable = false)

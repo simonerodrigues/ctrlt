@@ -28,6 +28,7 @@ import br.com.ctrlt.dao.AlunoDAO;
 import br.com.ctrlt.dao.ProfessorDAO;
 import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
 import br.com.ctrlt.json.ResponseJson;
+import br.com.ctrlt.json.ResponseJsonWithId;
 import br.com.ctrlt.json.TableResponseJson;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -67,9 +68,8 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	
 	@ResponseBody
 	@RequestMapping(value = "rest/cadastra/trabalho_de_conclusao", method = RequestMethod.POST)
-	public ResponseJson cadastrar(@Valid TrabalhoDeConclusao entidade, BindingResult result, 
-			@RequestParam(value="monografia",required = false) MultipartFile monografia) {
-		ResponseJson responseJson = new ResponseJson();
+	public ResponseJsonWithId cadastrarComRetornoDeId(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
+		ResponseJsonWithId responseJsonWithId = new ResponseJsonWithId();
 
 		//Seta a data de publicação
 		entidade.setDataPublicao(Calendar.getInstance());
@@ -79,6 +79,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			for(int i = 0; i < entidade.getListaAlunos().size(); i++){
 				if (entidade.getListaAlunos().get(i).getId() == 0){
 					entidade.getListaAlunos().remove(i);
+					i = 0;
 				}else{
 					entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
 				}
@@ -90,6 +91,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			for(int i = 0; i < entidade.getListaProfessores().size(); i++){
 				if (entidade.getListaProfessores().get(i).getId() == 0){
 					entidade.getListaProfessores().remove(i);
+					i = 0;
 				}else{
 					entidade.getListaProfessores().set(i, professorDAO.pesquisarPorId(entidade.getListaProfessores().get(i).getId()));
 				}
@@ -100,14 +102,16 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			entidade.setAtivo(true);
 
 			if (trabalhoDeConclusaoDAO.cadastrar(entidade)) {
-				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Trabalho de conclusão com sucesso.");
+				responseJsonWithId.setStatus("SUCCESS");
+				responseJsonWithId.setResult("Trabalho de conclusão com sucesso.");
+				responseJsonWithId.setId(entidade.getId());
 			} else {
-				responseJson.setStatus("FAIL");
-				responseJson.setResult("Erro ao cadastrar o trabalho de conclusão. Por gentileza contate o administrador do sistema.");
+				responseJsonWithId.setStatus("FAIL");
+				responseJsonWithId.setResult("Erro ao cadastrar o trabalho de conclusão. Por gentileza contate o administrador do sistema.");
+				responseJsonWithId.setId(0l);
 			}
 		} else {
-			responseJson.setStatus("FAIL");
+			responseJsonWithId.setStatus("FAIL");
 
 			String erros = "";
 
@@ -121,9 +125,19 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				erros += "<br />" + erro.getDefaultMessage();
 			}
 
-			responseJson.setResult(erros);
+			responseJsonWithId.setResult(erros);
 		}
 
+		return responseJsonWithId;
+	}
+	
+	@RequestMapping(value = "rest/cadastra/upload_monografia", method = RequestMethod.POST)
+	public ResponseJson uploadMonografia(@RequestParam("monografia") MultipartFile monografia){
+		ResponseJson responseJson = new ResponseJson();
+		
+		responseJson.setStatus("SUCCESS");
+		responseJson.setResult("Trabalho de conclusão com sucesso.");
+		
 		return responseJson;
 	}
 
