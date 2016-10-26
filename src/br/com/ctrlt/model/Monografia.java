@@ -1,5 +1,6 @@
 	package br.com.ctrlt.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -36,7 +37,7 @@ public class Monografia {
 	@Temporal(TemporalType.TIMESTAMP) //Data e Hora
 	@DateTimeFormat(pattern = "dd/MM/yyy HH:mm")
 	@Column(nullable = false)
-	private Date dataUpload;
+	private Calendar dataUpload;
 	
 	@Column(nullable = false)
 	private int numeroDownload;
@@ -84,11 +85,11 @@ public class Monografia {
 		this.tamanho = tamanho;
 	}
 
-	public Date getDataUpload() {
+	public Calendar getDataUpload() {
 		return dataUpload;
 	}
 
-	public void setDataUpload(Date dataUpload) {
+	public void setDataUpload(Calendar dataUpload) {
 		this.dataUpload = dataUpload;
 	}
 

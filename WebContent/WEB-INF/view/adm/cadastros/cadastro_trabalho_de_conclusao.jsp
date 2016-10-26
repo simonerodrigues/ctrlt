@@ -383,7 +383,7 @@
 						"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
 						"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
 						"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()
-					}, monografia, formData);
+					}, "monografia", formData);
 				}else{
 					manterEntidade(2,"trabalho_de_conclusao", {
 						"id" : $("#id").val(),

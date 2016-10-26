@@ -465,8 +465,11 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 		$(".se-pre-con-dark").hide();
 		
 		if (response.status == "SUCCESS") {
+			
+			uploadData.append("id", response.id)
+			
 			$.ajax({
-		        url: operacao + "upload_" +entidade + "_" + entidadeUpload,
+		        url: operacao + "upload_" + entidadeUpload,
 		        type: 'POST',
 		        data: uploadData,
 		        success: function(response2) {

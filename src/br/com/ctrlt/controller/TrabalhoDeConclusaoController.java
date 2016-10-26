@@ -1,5 +1,7 @@
 package br.com.ctrlt.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +32,7 @@ import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
 import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.ResponseJsonWithId;
 import br.com.ctrlt.json.TableResponseJson;
+import br.com.ctrlt.model.Monografia;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -131,12 +134,59 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		return responseJsonWithId;
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "rest/cadastra/upload_monografia", method = RequestMethod.POST)
-	public ResponseJson uploadMonografia(@RequestParam("monografia") MultipartFile monografia){
+	public ResponseJson uploadMonografia(@RequestParam("monografia") MultipartFile arquivo, @RequestParam("id") Long idTcc){
 		ResponseJson responseJson = new ResponseJson();
 		
-		responseJson.setStatus("SUCCESS");
-		responseJson.setResult("Trabalho de conclusão com sucesso.");
+		if(! arquivo.isEmpty()){
+			//Caminho absoluto do caminho até a pasta da monografia
+			String path = servletContext.getRealPath("/monografias/" + String.valueOf(idTcc) + "/");
+			
+			File file = new File(path);
+			
+			//Cria o diretório caso não exista
+			if(! file.exists()){
+				file.mkdirs();
+			}
+			
+			try {			
+				arquivo.transferTo(new File(path + arquivo.getOriginalFilename()));
+				
+				Monografia monografia = new Monografia();
+				
+				monografia.setCaminho(path + arquivo.getOriginalFilename());
+				monografia.setTamanho(arquivo.getSize());
+				monografia.setNome(arquivo.getOriginalFilename());
+				monografia.setDataUpload(Calendar.getInstance());
+				monografia.setNumeroDownload(0);
+				monografia.setExtensao(arquivo.getContentType());
+				monografia.setAtivo(true);
+				
+				TrabalhoDeConclusao tcc = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
+				tcc.setMonografia(monografia);
+				
+				if(trabalhoDeConclusaoDAO.alterar(tcc)){
+					responseJson.setStatus("SUCCESS");
+					responseJson.setResult("Trabalho de conclusão de curso cadastrado com sucesso!");
+				}else{
+					responseJson.setStatus("FAIL");
+					responseJson.setResult("A monografia foi carregada, porém ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+							+ " de conclusão e tente realizar o upload novamente.");
+				}
+				
+				
+				
+			} catch (IOException e) {
+				responseJson.setStatus("FAIL");
+				responseJson.setResult("A monografia foi carregada, porém ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+						+ " de conclusão e tente realizar o upload novamente.");
+			}
+		}else{
+			responseJson.setStatus("FAIL");
+			responseJson.setResult("A monografia foi carregada, porém ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+					+ " de conclusão e tente realizar o upload novamente.");
+		}
 		
 		return responseJson;
 	}
