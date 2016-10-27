@@ -468,13 +468,32 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 			
 			uploadData.append("id", response.id)
 			
+			$("#botao-modal-nao").hide();
+			$("#botao-modal-sim").hide();
+			$("#texto-modal").html(' '+ 
+					'<div class="progress">' +
+						'<div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar' +
+					          ' aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:100%">' +
+							'0% Completado' +
+						'</div>' + 
+					'</div>');
+			$("#modal").modal("show");
+			
 			$.ajax({
 		        url: operacao + "upload_" + entidadeUpload,
 		        type: 'POST',
 		        data: uploadData,
+		        xhr: function() {
+	                var myXhr = $.ajaxSettings.xhr();
+	                if(myXhr.upload){
+	                    myXhr.upload.addEventListener('progress',progress, false);
+	                }
+	                return myXhr;
+		        },
 		        success: function(response2) {
 		        	//Exibe mensagem de aluno cadastrado com sucesso
 					$("#botao-modal-nao").hide();
+					$("#botao-modal-sim").show();
 					$("#botao-modal-sim").text("Ok");
 					$("#texto-modal").html(response2.result);
 					$("#botao-modal-sim").unbind();
@@ -491,6 +510,7 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 		        },
 		        fail: function(response2) {
 		        	$("#botao-modal-nao").hide();
+		        	$("#botao-modal-sim").show();
 					$("#botao-modal-sim").text("Ok");
 					$("#texto-modal").html(response2.result);
 					$("#botao-modal-sim").unbind();
@@ -509,6 +529,7 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 		    });
 		} else {
 			$("#botao-modal-nao").hide();
+			$("#botao-modal-sim").show();
 			$("#botao-modal-sim").text("Ok");
 			$("#texto-modal").html(response.result);
 			$("#botao-modal-sim").unbind();
@@ -523,6 +544,7 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 	}).fail(function(e) {
 		$(".se-pre-con-dark").fadeOut("slow");
 		$("#botao-modal-nao").hide();
+		$("#botao-modal-sim").show();
 		$("#botao-modal-sim").text("Ok");
 		$("#botao-modal-sim").unbind();
 		$("#botao-modal-sim").on("click", function(){
@@ -539,6 +561,19 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 		$("#modal").modal("show");
 	});
 }
+
+function progress(e){
+
+    if(e.lengthComputable){
+        var max = e.total;
+        var current = e.loaded;
+
+        var percentVal = (current * 100)/max + '%';
+
+        $("#progressBar").width(percentVal);
+        $("#progressBar").html(percentVal + ' Completado');
+    }  
+ }
 
 //Função para inativar a entidade
 function inativarEntidade(entidade, id) {
