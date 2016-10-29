@@ -70,11 +70,12 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10000000" />
-	</bean>
-
 	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
+	
+	<!-- Gerenciamento de upload por arquivos pelo Spring -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000000000" />
+	</bean>
 
 </beans>
 

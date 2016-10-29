@@ -68,9 +68,6 @@ $(document).ready(function() {
 			},
 			cursoPeriodo : {
 				required: true
-			},
-			monografia : {
-				required: true
 			}
 		},
 		messages : {
@@ -136,9 +133,6 @@ $(document).ready(function() {
 			},
 			cursoPeriodo : {
 				required: "Por favor, digite o RA"
-			},
-			monografia : {
-				required: "Por favor, selecione o arquivo de monografia"
 			}
 		},
 		highlight : function(element) {
@@ -486,7 +480,7 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 		        xhr: function() {
 	                var myXhr = $.ajaxSettings.xhr();
 	                if(myXhr.upload){
-	                    myXhr.upload.addEventListener('progress',progress, false);
+	                    myXhr.upload.addEventListener('progress',carregarProgresso, false);
 	                }
 	                return myXhr;
 		        },
@@ -562,16 +556,16 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 	});
 }
 
-function progress(e){
+function carregarProgresso(e){
 
     if(e.lengthComputable){
         var max = e.total;
         var current = e.loaded;
 
-        var percentVal = (current * 100)/max + '%';
+        var percentVal = ((current * 100)/max).toFixed(2) + '%';
 
         $("#progressBar").width(percentVal);
-        $("#progressBar").html(percentVal + ' Completado');
+        $("#progressBar").html(percentVal);
     }  
  }
 
@@ -752,6 +746,8 @@ function entidadeMensagem(entidade){
 		nomeEntidadeMensagem = "trabalho de conclusão de curso";
 	}else if(entidade == "periodo"){
 		nomeEntidadeMensagem = "período";
+	}else if(entidade == "trabalho_de_conclusao"){
+		nomeEntidadeMensagem = "trabalho de conclusão";
 	}else{
 		nomeEntidadeMensagem = entidade;
 	}

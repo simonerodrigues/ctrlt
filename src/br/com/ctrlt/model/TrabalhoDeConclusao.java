@@ -26,6 +26,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "trabalhoDeConclusao")
 public class TrabalhoDeConclusao {
@@ -48,7 +50,7 @@ public class TrabalhoDeConclusao {
 	@Column(nullable = false)
 	private Calendar dataPublicao;
 	
-	@OneToMany(mappedBy = "trabalhoDeConclusao")
+	@OneToMany(mappedBy = "trabalhoDeConclusao", cascade = CascadeType.MERGE)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Aluno> listaAlunos;
 	
@@ -62,6 +64,7 @@ public class TrabalhoDeConclusao {
 	
 	@OneToMany(mappedBy = "trabalhoDeConclusao")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonManagedReference
 	private List<Anexo> listaAnexos;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // faz select na permissao quando fizer em admConteudo

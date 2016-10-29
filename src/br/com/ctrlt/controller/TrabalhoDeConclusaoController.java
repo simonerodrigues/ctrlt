@@ -2,6 +2,7 @@ package br.com.ctrlt.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -32,7 +34,9 @@ import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
 import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.ResponseJsonWithId;
 import br.com.ctrlt.json.TableResponseJson;
+import br.com.ctrlt.model.Aluno;
 import br.com.ctrlt.model.Monografia;
+import br.com.ctrlt.model.Professor;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -58,7 +62,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	@Override
 	@RequestMapping(value = "adm/cadastro/trabalho_de_conclusao", method = RequestMethod.GET)
 	public String carregarPagina(Model model) {
-		model.addAttribute("alunos", alunoDAO.listar(" WHERE a.trabalhoDeConclusao = null AND a.ativo = true"));
+		model.addAttribute("alunos", alunoDAO.listar(" WHERE a.ativo = true"));
 		model.addAttribute("professores", professorDAO.listar(" WHERE p.ativo = true"));
 		
 		return "adm/cadastros/cadastro_trabalho_de_conclusao";
@@ -77,18 +81,6 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		//Seta a data de publicação
 		entidade.setDataPublicao(Calendar.getInstance());
 		
-		if(entidade.getListaAlunos() != null){
-			//Atualiza a lista de alunos
-			for(int i = 0; i < entidade.getListaAlunos().size(); i++){
-				if (entidade.getListaAlunos().get(i).getId() == 0){
-					entidade.getListaAlunos().remove(i);
-					i = 0;
-				}else{
-					entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
-				}
-			}
-		}
-		
 		if(entidade.getListaProfessores() != null){
 			//Atualiza a lista de Professores
 			for(int i = 0; i < entidade.getListaProfessores().size(); i++){
@@ -105,8 +97,24 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			entidade.setAtivo(true);
 
 			if (trabalhoDeConclusaoDAO.cadastrar(entidade)) {
+				
+				if(entidade.getListaAlunos() != null){
+					//Atualiza a lista de alunos
+					for(int i = 0; i < entidade.getListaAlunos().size(); i++){
+						if (entidade.getListaAlunos().get(i).getId() == 0){
+							entidade.getListaAlunos().remove(i);
+							i = 0;
+						}else{
+							entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
+							entidade.getListaAlunos().get(i).setTrabalhoDeConclusao(entidade);
+						}
+					}
+				}
+				
+				trabalhoDeConclusaoDAO.alterar(entidade);
+				
 				responseJsonWithId.setStatus("SUCCESS");
-				responseJsonWithId.setResult("Trabalho de conclusão com sucesso.");
+				responseJsonWithId.setResult("Trabalho de conclusão cadastrado com sucesso.");
 				responseJsonWithId.setId(entidade.getId());
 			} else {
 				responseJsonWithId.setStatus("FAIL");
@@ -139,7 +147,20 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	public ResponseJson uploadMonografia(@RequestParam("monografia") MultipartFile arquivo, @RequestParam("id") Long idTcc){
 		ResponseJson responseJson = new ResponseJson();
 		
+		TrabalhoDeConclusao trabalhoDeConclusaoBanco = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
+		
 		if(! arquivo.isEmpty()){
+			if(trabalhoDeConclusaoBanco.getMonografia() != null){
+				//Exclui o arquivo de monografia ao excluir o Trabalho de Conclusão
+				File monografia = new File(trabalhoDeConclusaoBanco.getMonografia().getCaminho());
+				try {
+					FileUtils.deleteDirectory(monografia);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 			//Caminho absoluto do caminho até a pasta da monografia
 			String path = servletContext.getRealPath("/monografias/" + String.valueOf(idTcc) + "/");
 			
@@ -155,7 +176,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				
 				Monografia monografia = new Monografia();
 				
-				monografia.setCaminho(path + arquivo.getOriginalFilename());
+				monografia.setCaminho(path);
 				monografia.setTamanho(arquivo.getSize());
 				monografia.setNome(arquivo.getOriginalFilename());
 				monografia.setDataUpload(Calendar.getInstance());
@@ -193,24 +214,63 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "rest/altera/trabalho_de_conclusao", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
-		ResponseJson responseJson = new ResponseJson();
-
+		return null;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "rest/altera/trabalho_de_conclusao", method = RequestMethod.POST)
+	public ResponseJsonWithId alteraComRetornoDeId(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
+		ResponseJsonWithId responseJsonWithId = new ResponseJsonWithId();
+		
+		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(entidade.getId());
+		
+		entidade.setDataPublicao(trabalhoDeConclusao.getDataPublicao());
+		entidade.setMonografia(trabalhoDeConclusao.getMonografia());
+		entidade.setListaAnexos(trabalhoDeConclusao.getListaAnexos());
+		
+		if(entidade.getListaProfessores() != null){
+			//Atualiza a lista de Professores
+			for(int i = 0; i < entidade.getListaProfessores().size(); i++){
+				if (entidade.getListaProfessores().get(i).getId() == 0){
+					entidade.getListaProfessores().remove(i);
+					i = 0;
+				}else{
+					entidade.getListaProfessores().set(i, professorDAO.pesquisarPorId(entidade.getListaProfessores().get(i).getId()));
+				}
+			}
+		}
+		
+		if(entidade.getListaAlunos() != null){
+			//Atualiza a lista de alunos
+			for(int i = 0; i < entidade.getListaAlunos().size(); i++){
+				if (entidade.getListaAlunos().get(i).getId() == 0){
+					entidade.getListaAlunos().remove(i);
+					i = 0;
+				}else{
+					entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
+					entidade.getListaAlunos().get(i).setTrabalhoDeConclusao(entidade);
+				}
+			}
+		}
+		
 		if (!result.hasErrors()) {
-			TrabalhoDeConclusao linhaDePesquisaBanco = trabalhoDeConclusaoDAO.pesquisarPorId(entidade.getId());
-
-			entidade.setAtivo(linhaDePesquisaBanco.isAtivo());
+			entidade.setAtivo(true);
 
 			if (trabalhoDeConclusaoDAO.alterar(entidade)) {
-				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Trabalho de conclusão alterado com sucesso.");
+				
+				trabalhoDeConclusaoDAO.alterar(entidade);
+				
+				responseJsonWithId.setStatus("SUCCESS");
+				responseJsonWithId.setResult("Trabalho de conclusão alterado com sucesso.");
+				responseJsonWithId.setId(entidade.getId());
 			} else {
-				responseJson.setStatus("FAIL");
-				responseJson.setResult("Erro ao alterar o trabalho de conclusão. Por gentileza contate o administrador do sistema.");
+				responseJsonWithId.setStatus("FAIL");
+				responseJsonWithId.setResult("Erro ao cadastrar o trabalho de conclusão. Por gentileza contate o administrador do sistema.");
+				responseJsonWithId.setId(0l);
 			}
 		} else {
-			responseJson.setStatus("FAIL");
+			responseJsonWithId.setStatus("FAIL");
 
 			String erros = "";
 
@@ -224,10 +284,10 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				erros += "<br />" + erro.getDefaultMessage();
 			}
 
-			responseJson.setResult(erros);
+			responseJsonWithId.setResult(erros);
 		}
 
-		return responseJson;
+		return responseJsonWithId;
 	}
 
 	@Override
@@ -237,9 +297,9 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		// Cria objeto de retorno do JSON
 		TableResponseJson res = new TableResponseJson();
 
-		List<TrabalhoDeConclusao> listaTrabalhoDeConclusaos = trabalhoDeConclusaoDAO.listar("");
+		List<TrabalhoDeConclusao> listaTrabalhoDeConclusao = trabalhoDeConclusaoDAO.listar("");
 
-		res.setData(listaTrabalhoDeConclusaos);
+		res.setData(listaTrabalhoDeConclusao);
 
 		return res;
 	}
@@ -255,15 +315,36 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para pesquisar no banco
-		TrabalhoDeConclusao linhaDePesquisa = trabalhoDeConclusaoDAO.pesquisarPorId(Integer.parseInt(id));
+		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(Integer.parseInt(id));
 
-		// Realiza a exclusão do linhaDePesquisa
-		if (trabalhoDeConclusaoDAO.excluir(linhaDePesquisa)) {
-			response.setStatus("SUCCESS");
-			response.setResult("Trabalho de conclusão excluída com sucesso.");
-		} else {
+		for(int i = 0; i < trabalhoDeConclusao.getListaAlunos().size(); i++){
+			trabalhoDeConclusao.getListaAlunos().get(i).setTrabalhoDeConclusao(null);
+		}
+		
+		if(trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusao)){
+			// Realiza a exclusão do linhaDePesquisa
+			if (trabalhoDeConclusaoDAO.excluir(trabalhoDeConclusao)) {
+				
+				if(trabalhoDeConclusao.getMonografia() != null){
+					//Exclui o arquivo de monografia ao excluir o Trabalho de Conclusão
+					File monografia = new File(trabalhoDeConclusao.getMonografia().getCaminho());
+					try {
+						FileUtils.deleteDirectory(monografia);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				response.setStatus("SUCCESS");
+				response.setResult("Trabalho de conclusão excluído com sucesso.");
+			} else {
+				response.setStatus("FAIL");
+				response.setResult("Erro ao excluir o trabalho de conclusão. Por gentileza contate o administrador do sistema.");
+			}
+		}else{
 			response.setStatus("FAIL");
-			response.setResult("Erro ao excluir a trabalho de conclusão. Por gentileza contate o administrador do sistema.");
+			response.setResult("Erro ao excluir o trabalho de conclusão. Por gentileza contate o administrador do sistema.");
 		}
 		
 		return response;
@@ -280,20 +361,20 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para alterar o status
-		TrabalhoDeConclusao linhaDePesquisa = trabalhoDeConclusaoDAO.pesquisarPorId(Integer.parseInt(id));
+		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(Integer.parseInt(id));
 
 		// Altera o status do linhaDePesquisa
-		if (linhaDePesquisa.isAtivo()) {
-			linhaDePesquisa.setAtivo(false);
+		if (trabalhoDeConclusao.isAtivo()) {
+			trabalhoDeConclusao.setAtivo(false);
 		} else {
-			linhaDePesquisa.setAtivo(true);
+			trabalhoDeConclusao.setAtivo(true);
 		}
 
 		// Grava as alterações realizadas com o linhaDePesquisa
-		if (trabalhoDeConclusaoDAO.alterar(linhaDePesquisa)) {
+		if (trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusao)) {
 			response.setStatus("SUCCESS");
 
-			if (linhaDePesquisa.isAtivo()) {
+			if (trabalhoDeConclusao.isAtivo()) {
 				response.setResult("Trabalho de conclusão ativada com sucesso.");
 			} else {
 				response.setResult("Trabalho de conclusão inativada com sucesso.");
@@ -314,9 +395,9 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para alterar o status
-		TrabalhoDeConclusao linhaDePesquisa = trabalhoDeConclusaoDAO.pesquisarPorId(Integer.parseInt(id));
+		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(Integer.parseInt(id));
 
-		return linhaDePesquisa;
+		return trabalhoDeConclusao;
 	}
 
 	@RequestMapping(value = "adm/relatorio/pdf/trabalho_de_conclusao", method = RequestMethod.GET)

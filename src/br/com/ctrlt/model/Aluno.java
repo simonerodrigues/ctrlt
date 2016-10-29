@@ -1,5 +1,7 @@
 package br.com.ctrlt.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,9 +17,14 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "aluno")
-public class Aluno {
+public class Aluno implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -72,6 +79,7 @@ public class Aluno {
 
 	@ManyToOne
 	@JoinColumn(name = "id_trabalhoDeConclusao")
+	@JsonBackReference
 	private TrabalhoDeConclusao trabalhoDeConclusao;
 
 	public long getId() {

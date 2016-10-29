@@ -144,7 +144,7 @@
 								
 								<div class="col-lg-4">
 									<div class="form-group">
-										<label>Monografia: (*)</label> <input type="file" id="monografia"
+										<label>Monografia: </label> <input type="file" id="monografia"
 											name="monografia" class="form-control" autocomplete="off">
 									</div>
 								</div>
@@ -368,36 +368,71 @@
 				if($("#cadastrar").html() == "Cadastrar"){
 					moment.locale('pt-BR');
 					
-					var formData = new FormData();
-					formData.append("monografia", $("#monografia")[0].files[0]);
-					
-					manterEntidadeComUpload(1,"trabalho_de_conclusao", {
-						"titulo" : $("#titulo").val(),
-						"resumo" : $("#resumo").val(),
-						"dataPublicao" : moment().format("L") + " " + moment().format("LT"),
-						"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
-						"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
-						"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
-						"listaAlunos[3].id" : $("#aluno4").val() == "" ? 0 : $("#aluno4").val(),
-						"listaAlunos[4].id" : $("#aluno5").val() == "" ? 0 : $("#aluno5").val(),
-						"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
-						"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
-						"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()
-					}, "monografia", formData);
+					if($("#monografia").val() == ""){
+						manterEntidade(1,"trabalho_de_conclusao", {
+							"titulo" : $("#titulo").val(),
+							"resumo" : $("#resumo").val(),
+							"dataPublicao" : moment().format("L") + " " + moment().format("LT"),
+							"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
+							"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
+							"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
+							"listaAlunos[3].id" : $("#aluno4").val() == "" ? 0 : $("#aluno4").val(),
+							"listaAlunos[4].id" : $("#aluno5").val() == "" ? 0 : $("#aluno5").val(),
+							"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
+							"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
+							"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()
+						});
+					}else{
+						var formData = new FormData();
+						formData.append("monografia", $("#monografia")[0].files[0]);
+						
+						manterEntidadeComUpload(1,"trabalho_de_conclusao", {
+							"titulo" : $("#titulo").val(),
+							"resumo" : $("#resumo").val(),
+							"dataPublicao" : moment().format("L") + " " + moment().format("LT"),
+							"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
+							"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
+							"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
+							"listaAlunos[3].id" : $("#aluno4").val() == "" ? 0 : $("#aluno4").val(),
+							"listaAlunos[4].id" : $("#aluno5").val() == "" ? 0 : $("#aluno5").val(),
+							"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
+							"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
+							"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()
+						}, "monografia", formData);
+					}
 				}else{
-					manterEntidade(2,"trabalho_de_conclusao", {
-						"id" : $("#id").val(),
-						"titulo" : $("#titulo").val(),
-						"resumo" : $("#resumo").val(),
-						"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
-						"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
-						"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
-						"listaAlunos[3].id" : $("#aluno4").val() == "" ? 0 : $("#aluno4").val(),
-						"listaAlunos[4].id" : $("#aluno5").val() == "" ? 0 : $("#aluno5").val(),
-						"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
-						"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
-						"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()					
-					});
+					if($("#monografia").val() == ""){
+						manterEntidade(2,"trabalho_de_conclusao", {
+							"id" : $("#id").val(),
+							"titulo" : $("#titulo").val(),
+							"resumo" : $("#resumo").val(),
+							"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
+							"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
+							"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
+							"listaAlunos[3].id" : $("#aluno4").val() == "" ? 0 : $("#aluno4").val(),
+							"listaAlunos[4].id" : $("#aluno5").val() == "" ? 0 : $("#aluno5").val(),
+							"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
+							"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
+							"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()
+						});
+					}else{
+						var formData = new FormData();
+						formData.append("monografia", $("#monografia")[0].files[0]);
+						
+						manterEntidadeComUpload(2,"trabalho_de_conclusao", {
+							"id" : $("#id").val(),
+							"titulo" : $("#titulo").val(),
+							"resumo" : $("#resumo").val(),
+							"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
+							"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
+							"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
+							"listaAlunos[3].id" : $("#aluno4").val() == "" ? 0 : $("#aluno4").val(),
+							"listaAlunos[4].id" : $("#aluno5").val() == "" ? 0 : $("#aluno5").val(),
+							"listaProfessores[0].id" : $("#professor1").val() == "" ? 0 : $("#professor1").val(),
+							"listaProfessores[1].id" : $("#professor2").val() == "" ? 0 : $("#professor2").val(),
+							"listaProfessores[2].id" : $("#professor3").val() == "" ? 0 : $("#professor3").val()
+						}, "monografia", formData);
+					}
 				}
 			}
 		});
@@ -406,11 +441,40 @@
 			//Função que habilita os campos
 			alterar();
 			
-			$.post("/rest/json/linha_de_pesquisa", {"id" : id}).done(function(response) {
+			$.post("/rest/json/trabalho_de_conclusao", {"id" : id}).done(function(response) {
 				$(".se-pre-con-dark").hide()
 				
 				$("#id").val(response.id);
-				$("#nome").val(response.nome);
+				$("#titulo").val(response.titulo);
+				$("#resumo").val(response.resumo);
+				$("#aluno1").val(response.listaAlunos[0].id);
+				
+				if(response.listaAlunos[1] != null){
+					$("#aluno2").val(response.listaAlunos[1].id);	
+				}
+				
+				if(response.listaAlunos[2] != null){
+					$("#aluno3").val(response.listaAlunos[2].id);
+				}
+				
+				if(response.listaAlunos[3] != null){
+					$("#aluno4").val(response.listaAlunos[3].id);
+				}
+				
+				if(response.listaAlunos[4] != null){
+					$("#aluno5").val(response.listaAlunos[4].id);
+				}
+				
+				$("#professor1").val(response.listaProfessores[0].id);
+				
+				if(response.listaAlunos[1] != null){
+					$("#professor2").val(response.listaProfessores[1].id);
+				}
+				
+				if(response.listaAlunos[2] != null){
+					$("#professor3").val(response.listaProfessores[2].id);
+				}
+				
 			}).fail(function(e) {
 				$(".se-pre-con-dark").fadeOut("slow");
 				$("#botao-modal-nao").hide();
