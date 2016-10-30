@@ -28,7 +28,7 @@ public class Monografia {
 	@Column(nullable = false)
 	private String caminho;
 	
-	@Column(length = 50, nullable = false)
+	@Column(length = 20, nullable = false)
 	private String extensao;
 	
 	@Column(nullable = false)

@@ -278,6 +278,8 @@ function cancelar() {
 		$($helps[i]).text("");
 	}
 	
+	$("#panel-information").hide();
+	
 	$('#modal').modal('hide')
 }
 
@@ -473,54 +475,7 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 					'</div>');
 			$("#modal").modal("show");
 			
-			$.ajax({
-		        url: operacao + "upload_" + entidadeUpload,
-		        type: 'POST',
-		        data: uploadData,
-		        xhr: function() {
-	                var myXhr = $.ajaxSettings.xhr();
-	                if(myXhr.upload){
-	                    myXhr.upload.addEventListener('progress',carregarProgresso, false);
-	                }
-	                return myXhr;
-		        },
-		        success: function(response2) {
-		        	//Exibe mensagem de aluno cadastrado com sucesso
-					$("#botao-modal-nao").hide();
-					$("#botao-modal-sim").show();
-					$("#botao-modal-sim").text("Ok");
-					$("#texto-modal").html(response2.result);
-					$("#botao-modal-sim").unbind();
-					$("#botao-modal-sim").on("click", function(){
-						cancelar();
-						$("#modal").modal("hide");
-						$("body").removeClass("modal-open");
-						$(".modal-backdrop").fadeOut("slow");
-						$(".modal-backdrop").remove();
-					});
-					$("#modal").modal("show");
-					
-					dataTable("#dataTable");
-		        },
-		        fail: function(response2) {
-		        	$("#botao-modal-nao").hide();
-		        	$("#botao-modal-sim").show();
-					$("#botao-modal-sim").text("Ok");
-					$("#texto-modal").html(response2.result);
-					$("#botao-modal-sim").unbind();
-					$("#botao-modal-sim").on("click", function(){
-						cancelar();
-						$("#modal").modal("hide");
-						$("body").removeClass("modal-open");
-						$(".modal-backdrop").fadeOut("slow");
-						$(".modal-backdrop").remove();
-					});
-					$("#modal").modal("show");
-		        },
-		        cache: false,
-		        contentType: false,
-		        processData: false
-		    });
+			uploadArquivos(entidadeUpload, uploadData);
 		} else {
 			$("#botao-modal-nao").hide();
 			$("#botao-modal-sim").show();
@@ -556,6 +511,59 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 	});
 }
 
+//Função que realiza o upload do(s) arquivo(s)	
+function uploadArquivos(entidadeUpload, uploadData){
+	$.ajax({
+        url: "/rest/cadastra/upload_" + entidadeUpload,
+        type: 'POST',
+        data: uploadData,
+        xhr: function() {
+            var myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){
+                myXhr.upload.addEventListener('progress',carregarProgresso, false);
+            }
+            return myXhr;
+        },
+        success: function(response2) {
+        	//Exibe mensagem de aluno cadastrado com sucesso
+			$("#botao-modal-nao").hide();
+			$("#botao-modal-sim").show();
+			$("#botao-modal-sim").text("Ok");
+			$("#texto-modal").html(response2.result);
+			$("#botao-modal-sim").unbind();
+			$("#botao-modal-sim").on("click", function(){
+				cancelar();
+				$("#modal").modal("hide");
+				$("body").removeClass("modal-open");
+				$(".modal-backdrop").fadeOut("slow");
+				$(".modal-backdrop").remove();
+			});
+			$("#modal").modal("show");
+			
+			dataTable("#dataTable");
+        },
+        fail: function(response2) {
+        	$("#botao-modal-nao").hide();
+        	$("#botao-modal-sim").show();
+			$("#botao-modal-sim").text("Ok");
+			$("#texto-modal").html(response2.result);
+			$("#botao-modal-sim").unbind();
+			$("#botao-modal-sim").on("click", function(){
+				cancelar();
+				$("#modal").modal("hide");
+				$("body").removeClass("modal-open");
+				$(".modal-backdrop").fadeOut("slow");
+				$(".modal-backdrop").remove();
+			});
+			$("#modal").modal("show");
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+}
+
+//Função que exibe a porcentagem do upload do(s) arquivo(s)
 function carregarProgresso(e){
 
     if(e.lengthComputable){

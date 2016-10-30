@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -93,8 +94,31 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			}
 		}
 		
+		String validacaoAlunos = "";
+		
+		if(entidade.getListaAlunos() != null){
+			//Atualiza a lista de alunos
+			for(int i = 0; i < entidade.getListaAlunos().size(); i++){
+				if (entidade.getListaAlunos().get(i).getId() != 0){
+					entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
+					
+					if(entidade.getListaAlunos().get(i).getTrabalhoDeConclusao() != null){
+						validacaoAlunos += "<br />Aluno " + entidade.getListaAlunos().get(i).getNome() + " já está associado a outro trabalho de conclusão";
+					}
+				}
+			}
+		}
+		
+		if(! validacaoAlunos.isEmpty()){
+			responseJsonWithId.setStatus("FAIL");
+			responseJsonWithId.setResult("O seguinte erro foi apresentado durante a validação dos dados: <br />" + validacaoAlunos);
+			responseJsonWithId.setId(0l);
+			
+			return responseJsonWithId;
+		}
+		
 		if (!result.hasErrors()) {
-			entidade.setAtivo(true);
+			entidade.setAtivo(false);
 
 			if (trabalhoDeConclusaoDAO.cadastrar(entidade)) {
 				
@@ -108,6 +132,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 							entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
 							entidade.getListaAlunos().get(i).setTrabalhoDeConclusao(entidade);
 						}
+						entidade.getListaAlunos().get(i).setTrabalhoDeConclusao(entidade);
 					}
 				}
 				
@@ -172,22 +197,27 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			}
 			
 			try {			
-				arquivo.transferTo(new File(path + arquivo.getOriginalFilename()));
+				File arquivoMonografia = new File(path + arquivo.getOriginalFilename());
 				
-				Monografia monografia = new Monografia();
+				arquivo.transferTo(arquivoMonografia);
+				
+				Monografia monografia = trabalhoDeConclusaoBanco.getMonografia();
+				
+				if(trabalhoDeConclusaoBanco.getMonografia() == null){
+					monografia = new Monografia();
+				}
 				
 				monografia.setCaminho(path);
-				monografia.setTamanho(arquivo.getSize());
-				monografia.setNome(arquivo.getOriginalFilename());
+				monografia.setTamanho(arquivoMonografia.getTotalSpace());
+				monografia.setNome(arquivoMonografia.getName());
 				monografia.setDataUpload(Calendar.getInstance());
 				monografia.setNumeroDownload(0);
-				monografia.setExtensao(arquivo.getContentType());
+				monografia.setExtensao(FilenameUtils.getExtension(arquivoMonografia.getName()));
 				monografia.setAtivo(true);
 				
-				TrabalhoDeConclusao tcc = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
-				tcc.setMonografia(monografia);
+				trabalhoDeConclusaoBanco.setMonografia(monografia);
 				
-				if(trabalhoDeConclusaoDAO.alterar(tcc)){
+				if(trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusaoBanco)){
 					responseJson.setStatus("SUCCESS");
 					responseJson.setResult("Trabalho de conclusão de curso cadastrado com sucesso!");
 				}else{
@@ -223,11 +253,20 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	public ResponseJsonWithId alteraComRetornoDeId(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
 		ResponseJsonWithId responseJsonWithId = new ResponseJsonWithId();
 		
-		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(entidade.getId());
+		TrabalhoDeConclusao trabalhoDeConclusaoBanco = trabalhoDeConclusaoDAO.pesquisarPorId(entidade.getId());
+
+		//Remove as associações dos Alunos já associados ao trabalho de conclusão
+		if(trabalhoDeConclusaoBanco.getListaAlunos() != null){
+			for(int i = 0; i < trabalhoDeConclusaoBanco.getListaAlunos().size(); i++){
+				trabalhoDeConclusaoBanco.getListaAlunos().get(i).setTrabalhoDeConclusao(null);
+			}
+		}
 		
-		entidade.setDataPublicao(trabalhoDeConclusao.getDataPublicao());
-		entidade.setMonografia(trabalhoDeConclusao.getMonografia());
-		entidade.setListaAnexos(trabalhoDeConclusao.getListaAnexos());
+		trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusaoBanco);
+		
+		entidade.setDataPublicao(trabalhoDeConclusaoBanco.getDataPublicao());
+		entidade.setMonografia(trabalhoDeConclusaoBanco.getMonografia());
+		entidade.setListaAnexos(trabalhoDeConclusaoBanco.getListaAnexos());
 		
 		if(entidade.getListaProfessores() != null){
 			//Atualiza a lista de Professores
@@ -242,7 +281,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		}
 		
 		if(entidade.getListaAlunos() != null){
-			//Atualiza a lista de alunos
+			//Atualiza a lista de Alunos
 			for(int i = 0; i < entidade.getListaAlunos().size(); i++){
 				if (entidade.getListaAlunos().get(i).getId() == 0){
 					entidade.getListaAlunos().remove(i);
@@ -255,12 +294,9 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		}
 		
 		if (!result.hasErrors()) {
-			entidade.setAtivo(true);
-
-			if (trabalhoDeConclusaoDAO.alterar(entidade)) {
-				
-				trabalhoDeConclusaoDAO.alterar(entidade);
-				
+			entidade.setAtivo(trabalhoDeConclusaoBanco.isAtivo());
+			
+			if (trabalhoDeConclusaoDAO.alterar(entidade)) {				
 				responseJsonWithId.setStatus("SUCCESS");
 				responseJsonWithId.setResult("Trabalho de conclusão alterado com sucesso.");
 				responseJsonWithId.setId(entidade.getId());
@@ -362,6 +398,14 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 
 		// Pega o objeto de linhaDePesquisa para alterar o status
 		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(Integer.parseInt(id));
+		
+		if(trabalhoDeConclusao.getMonografia() == null){
+			response.setStatus("FAIL");
+			response.setResult("Não é possível ativar o trabalho de conclusão para visualização. Não existe arquivo de monografia associado para exibição. "
+					+ "Por gentileza associe um arquivo de monografia para ativar a visualização.");
+			
+			return response;
+		}
 
 		// Altera o status do linhaDePesquisa
 		if (trabalhoDeConclusao.isAtivo()) {

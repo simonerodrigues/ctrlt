@@ -144,8 +144,7 @@
 								
 								<div class="col-lg-4">
 									<div class="form-group">
-										<label>Monografia: </label> <input type="file" id="monografia"
-											name="monografia" class="form-control" autocomplete="off">
+										<label>Monografia: </label> <input type="file" id="monografia" name="monografia" class="form-control" accept="application/pdf">
 									</div>
 								</div>
 							</div>
@@ -188,6 +187,15 @@
 							</div>
 							
 						</fieldset>
+						
+						<div id="panel-information" class="col-lg-12">
+							<div class="col-lg-12">
+								<div class="panel panel-success">
+									<div id="panel-message" class="panel-heading"></div>
+								</div>
+							</div>
+						</div>
+						
 
 						<div class="col-lg-6">
 							<p class="help-block">Todos os campos com (*) são de
@@ -217,7 +225,16 @@
 							<th>Excluir</th>
 							<th>Alterar</th>
 							<th>Título</th>
+							<th>Aluno 1</th>
+							<th>Aluno 2</th>
+							<th>Aluno 3</th>
+							<th>Aluno 4</th>
+							<th>Aluno 5</th>
+							<th>Professor 1</th>
+							<th>Professor 2</th>
+							<th>Professor 3</th>
 							<th>Data de Publicação</th>
+							<th>Monografia</th>
 							<th class="status">Status</th>
 						</tr>
 					</thead>
@@ -285,7 +302,83 @@
 								"data" : "titulo"
 							}, {
 								"data" : function(o) {
+									if(o.listaAlunos[0] != null){
+										return o.listaAlunos[0].nome;
+									}else{
+										return "";
+									}
+								}
+							}, {
+								"data" : function(o) {
+									if(o.listaAlunos[1] != null){
+										return o.listaAlunos[1].nome;
+									}else{
+										return "";
+									}
+								}
+							}, {
+								"data" : function(o) {
+									if(o.listaAlunos[2] != null){
+										return o.listaAlunos[2].nome;
+									}else{
+										return "";
+									}
+								}
+							}, {
+								"data" : function(o) {
+									if(o.listaAlunos[3] != null){
+										return o.listaAlunos[3].nome;
+									}else{
+										return "";
+									}
+								}
+							}, {
+								"data" : function(o) {
+									if(o.listaAlunos[4] != null){
+										return o.listaAlunos[4].nome;
+									}else{
+										return "";
+									}
+								}
+							}, {
+								"data" : function(o) {
+									if(o.listaProfessores[0] != null){
+										return o.listaProfessores[0].nome;
+									}else{
+										return "";
+									}
+								}
+							}, {
+								"data" : function(o) {
+									if(o.listaProfessores[1] != null){
+										return o.listaProfessores[2].nome;
+									}else{
+										return "";
+									}
+								}
+							}, {
+								"data" : function(o) {
+									if(o.listaProfessores[2] != null){
+										return o.listaProfessores[2].nome;
+									}else{
+										return "";
+									}
+								}
+							}, {
+								"data" : function(o) {
 									return moment(new Date(o.dataPublicao)).lang("pt-br").format('L') + " " + moment(new Date(o.dataPublicao)).lang("pt-br").format('LTS');
+								}
+							},{
+								"data" : function(o) {
+									if(o.monografia != null){
+										return '<center>'
+											+'<a target="_blank" href="/monografias/' + o.id + "/" + o.monografia.nome + '">'
+												+'<button class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>'
+											+'</a>'
+										+'</center>';
+									}else{
+										return "";
+									}
 								}
 							}, {
 								"data" : "ativo"
@@ -473,6 +566,15 @@
 				
 				if(response.listaAlunos[2] != null){
 					$("#professor3").val(response.listaProfessores[2].id);
+				}
+				
+				$("#panel-information").show();
+				
+				if(response.monografia != null){
+					$("#panel-message").html('O trabalho de conclusão em alteração possui o arquivo <a target="_blank" href="/monografias/'+response.id+'/'+response.monografia.nome+'">'+response.monografia.nome+'</a> associado. '
+							+ 'Caso não inclua um novo arquivo na alteração, o arquivo será mantido. Caso um novo arquivo seja associado, o atual será sobreposto.' );
+				}else{
+					$("#panel-message").html('O trabalho de conclusão em alteração não possui uma monografia associada.');
 				}
 				
 			}).fail(function(e) {

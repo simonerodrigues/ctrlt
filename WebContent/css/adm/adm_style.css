@@ -376,3 +376,8 @@ pre#texto-modal {
     background-color: #FFF;
     border: none;
 }
+
+/* Panel informaition */
+#panel-information {
+	display: none;
+}
