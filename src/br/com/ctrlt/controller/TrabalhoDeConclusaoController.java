@@ -254,6 +254,31 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		ResponseJsonWithId responseJsonWithId = new ResponseJsonWithId();
 		
 		TrabalhoDeConclusao trabalhoDeConclusaoBanco = trabalhoDeConclusaoDAO.pesquisarPorId(entidade.getId());
+		
+		String validacaoAlunos = "";
+		
+		if(entidade.getListaAlunos() != null){
+			//Atualiza a lista de alunos
+			for(int i = 0; i < entidade.getListaAlunos().size(); i++){
+				if (entidade.getListaAlunos().get(i).getId() != 0){
+					entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
+					
+					if(entidade.getListaAlunos().get(i).getTrabalhoDeConclusao() != null){
+						if(entidade.getListaAlunos().get(i).getTrabalhoDeConclusao().getId() != trabalhoDeConclusaoBanco.getId()){
+							validacaoAlunos += "<br />Aluno " + entidade.getListaAlunos().get(i).getNome() + " já está associado a outro trabalho de conclusão";
+						}
+					}
+				}
+			}
+		}
+		
+		if(! validacaoAlunos.isEmpty()){
+			responseJsonWithId.setStatus("FAIL");
+			responseJsonWithId.setResult("O seguinte erro foi apresentado durante a validação dos dados: <br />" + validacaoAlunos);
+			responseJsonWithId.setId(0l);
+			
+			return responseJsonWithId;
+		}
 
 		//Remove as associações dos Alunos já associados ao trabalho de conclusão
 		if(trabalhoDeConclusaoBanco.getListaAlunos() != null){
