@@ -233,8 +233,9 @@
 							<th>Professor 1</th>
 							<th>Professor 2</th>
 							<th>Professor 3</th>
-							<th>Data de Publicação</th>
+							<th>Anexos</th>
 							<th>Monografia</th>
+							<th>Data de Publicação</th>
 							<th class="status">Status</th>
 						</tr>
 					</thead>
@@ -252,6 +253,9 @@
 	<!-- Modal Include -->
 	<c:url value="../includes/modal.jsp" var="modal"></c:url>
 	<c:import url="${modal}"></c:import>
+	
+	<c:url value="../includes/modal_anexo.jsp" var="modal_anexo"></c:url>
+	<c:import url="${modal_anexo}"></c:import>
 
 	<!-- JavaScript Include -->
 	<c:url value="../includes/javascript.jsp" var="javascript"></c:url>
@@ -366,7 +370,9 @@
 								}
 							}, {
 								"data" : function(o) {
-									return moment(new Date(o.dataPublicao)).lang("pt-br").format('L') + " " + moment(new Date(o.dataPublicao)).lang("pt-br").format('LTS');
+									return '<center>'
+												+'<button onclick="carregarAnexo(' + o.id + ')" class="btn btn-primary"><i class="fa fa-paperclip" aria-hidden="true"></i></button>'
+											+'</center>'
 								}
 							},{
 								"data" : function(o) {
@@ -379,6 +385,10 @@
 									}else{
 										return "";
 									}
+								}
+							}, {
+								"data" : function(o) {
+									return moment(new Date(o.dataPublicao)).lang("pt-br").format('L') + " " + moment(new Date(o.dataPublicao)).lang("pt-br").format('LTS');
 								}
 							}, {
 								"data" : "ativo"
@@ -591,6 +601,11 @@
 				$("#texto-modal").html("Erro ao tentar carregar os dados da linha de pesquisa para serem alterados. Por gentileza tente novamente!");
 				$("#modal").modal("show");
 			});
+		}
+		
+		function carregarAnexo(id){
+			$("#modal-anexo").modal("show");
+			$("#anexo-page").html(id);
 		}
 	</script>
 
