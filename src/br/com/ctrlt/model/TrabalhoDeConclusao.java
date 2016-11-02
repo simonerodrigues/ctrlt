@@ -64,7 +64,6 @@ public class TrabalhoDeConclusao {
 	
 	@OneToMany(mappedBy = "trabalhoDeConclusao")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JsonManagedReference
 	private List<Anexo> listaAnexos;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // faz select na permissao quando fizer em admConteudo

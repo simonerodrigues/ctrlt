@@ -331,6 +331,7 @@ function dataTable(id, url, data) {
 	}else{
 		var table = $(id).DataTable({
 			"processing": true,
+			"responsive": true,
 	        "serverSide": false,
 	        "ajax": {
 	            "url": url,
@@ -360,6 +361,56 @@ function dataTable(id, url, data) {
 				"sWidth": "30px"
 			}],
 			"order": [[3, "asc" ]]
+		});
+	
+		$(id + ' tbody').on('click', 'tr', function() {
+			if ($(this).hasClass('info')) {
+				$(this).removeClass('info');
+			} else {
+				table.$('tr.info').removeClass('info');
+				$(this).addClass('info');
+			}
+		});
+	}
+}
+
+//Inicia a tabela de acordo com o Id passado por parâmetro, ou realiza a atualização da tabela
+function dataTableTCC(id, url, data) {		
+	if($.fn.dataTable.isDataTable(id)){
+		$(id).DataTable().ajax.reload();
+	}else{
+		var table = $(id).DataTable({
+			"processing": true,
+			"responsive": true,
+	        "serverSide": false,
+	        "ajax": {
+	            "url": url,
+	            "type": "POST"
+	        },
+	        "columns": data,
+			"scrollX": true,
+			"language" : {
+				"url" : "/json/Portuguese-Brasil.json"
+			},
+			"aoColumnDefs": [ {
+				"aTargets": [0,1,2,3,4],
+				"sWidth": "50px",
+				"bSortable" : false
+			},{
+			   "aTargets": ['status'],
+			   "sWidth": "30px",
+			   "mRender": function (data) {
+				    if(data == true){
+				    	return "Ativo";	 
+				    }else{
+				    	return "Inativo";
+				    }
+			  	}
+			},{
+				"aTargets": ['Sigla'],
+				"sWidth": "30px"
+			}],
+			"order": [[5, "asc" ]]
 		});
 	
 		$(id + ' tbody').on('click', 'tr', function() {

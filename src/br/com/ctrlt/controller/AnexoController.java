@@ -105,16 +105,8 @@ public class AnexoController implements Control<Anexo> {
 
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "rest/lista/anexo", method = RequestMethod.POST)
 	public TableResponseJson listar(HttpServletRequest req) {
-		// Cria objeto de retorno do JSON
-		TableResponseJson res = new TableResponseJson();
-
-		List<Anexo> listaAnexos = anexoDAO.listar("");
-
-		res.setData(listaAnexos);
-
-		return res;
+		return null;
 	}
 
 	@Override

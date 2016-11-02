@@ -224,6 +224,8 @@
 							<th>Inativar</th>
 							<th>Excluir</th>
 							<th>Alterar</th>
+							<th>Anexos</th>
+							<th>Monografia</th>
 							<th>Título</th>
 							<th>Aluno 1</th>
 							<th>Aluno 2</th>
@@ -233,8 +235,6 @@
 							<th>Professor 1</th>
 							<th>Professor 2</th>
 							<th>Professor 3</th>
-							<th>Anexos</th>
-							<th>Monografia</th>
 							<th>Data de Publicação</th>
 							<th class="status">Status</th>
 						</tr>
@@ -249,13 +249,6 @@
 
 	</div>
 	<!-- /#wrapper -->
-	
-	<!-- Modal Include -->
-	<c:url value="../includes/modal.jsp" var="modal"></c:url>
-	<c:import url="${modal}"></c:import>
-	
-	<c:url value="../includes/modal_anexo.jsp" var="modal_anexo"></c:url>
-	<c:import url="${modal_anexo}"></c:import>
 
 	<!-- JavaScript Include -->
 	<c:url value="../includes/javascript.jsp" var="javascript"></c:url>
@@ -265,16 +258,24 @@
 	<c:url value="../includes/javascript_form.jsp" var="javascript_form"></c:url>
 	<c:import url="${javascript_form}"></c:import>
 	
+	<!-- Modal-Anexo Include -->
+	<c:url value="../includes/modal_anexo.jsp" var="modal_anexo"></c:url>
+	<c:import url="${modal_anexo}"></c:import>
+	
+	<!-- Modal Include -->
+	<c:url value="../includes/modal.jsp" var="modal"></c:url>
+	<c:import url="${modal}"></c:import>
+	
 	<!-- DataTable Include -->
 	<c:url value="../includes/javascript_datatables.jsp" var="javascript_datatables"></c:url>
 	<c:import url="${javascript_datatables}"></c:import>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			//Marca no menu a opção correta sobre a página
 			marcaMenu("#cadastros", "#cadastroTrabalhoDeConclusao");
 			
-			dataTable(
+			dataTableTCC(
 					"#dataTable",
 					"/rest/lista/trabalho_de_conclusao",
 					[
@@ -301,6 +302,24 @@
 									return '<center><button onclick="carregarAlteracao('
 											+ o.id
 											+ ')" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button></center>';
+								}
+							},{
+								"data" : function(o) {
+									return '<center>'
+												+'<button onclick="carregarAnexo(' + o.id + ')" class="btn btn-primary"><i class="fa fa-paperclip" aria-hidden="true"></i></button>'
+											+'</center>'
+								}
+							},{
+								"data" : function(o) {
+									if(o.monografia != null){
+										return '<center>'
+											+'<a target="_blank" href="/monografias/' + o.id + "/" + o.monografia.nome + '">'
+												+'<button class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>'
+											+'</a>'
+										+'</center>';
+									}else{
+										return "";
+									}
 								}
 							}, {
 								"data" : "titulo"
@@ -364,24 +383,6 @@
 								"data" : function(o) {
 									if(o.listaProfessores[2] != null){
 										return o.listaProfessores[2].nome;
-									}else{
-										return "";
-									}
-								}
-							}, {
-								"data" : function(o) {
-									return '<center>'
-												+'<button onclick="carregarAnexo(' + o.id + ')" class="btn btn-primary"><i class="fa fa-paperclip" aria-hidden="true"></i></button>'
-											+'</center>'
-								}
-							},{
-								"data" : function(o) {
-									if(o.monografia != null){
-										return '<center>'
-											+'<a target="_blank" href="/monografias/' + o.id + "/" + o.monografia.nome + '">'
-												+'<button class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>'
-											+'</a>'
-										+'</center>';
 									}else{
 										return "";
 									}
@@ -604,10 +605,26 @@
 		}
 		
 		function carregarAnexo(id){
+			abrirModalAnexo(id);
+			
 			$("#modal-anexo").modal("show");
-			$("#anexo-page").html(id);
 		}
+		
+		$('#modal-anexo').on('shown.bs.modal', function (e) {
+			//Ajusta a coluna da DataTable
+		    $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+			
+			//Caso exista, a mensagem "Nenhum registro encontrad" ficará com o espaçamento de 6 colunas
+		    $("#dataTableAnexo td.dataTables_empty").attr("colspan",6);
+		});
+		
+		$('#modal-anexo').on('hide.bs.modal', function (e) {
+			//Destroy a DataTable
+			$('#dataTableAnexo').DataTable().destroy();
+		});
 	</script>
+	
+	
 
 </body>
 

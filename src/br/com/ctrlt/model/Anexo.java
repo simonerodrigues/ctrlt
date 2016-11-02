@@ -1,5 +1,6 @@
 package br.com.ctrlt.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "anexo")
@@ -38,7 +41,7 @@ public class Anexo {
 	@Temporal(TemporalType.TIMESTAMP)	// Data e Hora
 	@DateTimeFormat(pattern = "dd/MM/yyy HH:mm")
 	@Column(nullable = false)
-	private Date dataUpload;
+	private Calendar dataUpload;
 	
 	@Column(nullable = false)
 	private int numeroDownload;
@@ -48,6 +51,7 @@ public class Anexo {
 	
 	@ManyToOne
 	@JoinColumn(name="id_trabalhoDeConclusao")
+	@JsonBackReference
 	private TrabalhoDeConclusao trabalhoDeConclusao;
 	
 	@Column(nullable = false)
@@ -93,11 +97,11 @@ public class Anexo {
 		this.tamanho = tamanho;
 	}
 
-	public Date getDataUpload() {
+	public Calendar getDataUpload() {
 		return dataUpload;
 	}
 
-	public void setDataUpload(Date dataUpload) {
+	public void setDataUpload(Calendar dataUpload) {
 		this.dataUpload = dataUpload;
 	}
 

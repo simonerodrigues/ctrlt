@@ -2,7 +2,6 @@ package br.com.ctrlt.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,9 +35,8 @@ import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
 import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.ResponseJsonWithId;
 import br.com.ctrlt.json.TableResponseJson;
-import br.com.ctrlt.model.Aluno;
+import br.com.ctrlt.model.Anexo;
 import br.com.ctrlt.model.Monografia;
-import br.com.ctrlt.model.Professor;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -361,6 +360,25 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		List<TrabalhoDeConclusao> listaTrabalhoDeConclusao = trabalhoDeConclusaoDAO.listar("");
 
 		res.setData(listaTrabalhoDeConclusao);
+
+		return res;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "rest/lista/anexo/{id_tcc}", method = RequestMethod.POST)
+	public TableResponseJson listarAnexo(HttpServletRequest req, @PathVariable("id_tcc") Long idTCC) {
+		// Cria objeto de retorno do JSON
+		TableResponseJson res = new TableResponseJson();
+		
+		String filtro = "";
+		
+		if(idTCC != 0){
+			filtro = " WHERE t.id = " + idTCC;
+		}
+
+		List<Anexo> listaAnexos = trabalhoDeConclusaoDAO.listar(filtro).get(0).getListaAnexos();
+
+		res.setData(listaAnexos);
 
 		return res;
 	}
