@@ -513,18 +513,9 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 		
 		if (response.status == "SUCCESS") {
 			
-			uploadData.append("id", response.id)
+			uploadData.append("id", response.id);
 			
-			$("#botao-modal-nao").hide();
-			$("#botao-modal-sim").hide();
-			$("#texto-modal").html(' '+ 
-					'<div class="progress">' +
-						'<div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar' +
-					          ' aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:100%">' +
-							'0% Completado' +
-						'</div>' + 
-					'</div>');
-			$("#modal").modal("show");
+			mostrarBarraDeProgresso();
 			
 			uploadArquivos(entidadeUpload, uploadData);
 		} else {
@@ -612,6 +603,20 @@ function uploadArquivos(entidadeUpload, uploadData){
         contentType: false,
         processData: false
     });
+}
+
+//Função que exibe a barra de progresso
+function mostrarBarraDeProgresso(){
+	$("#botao-modal-nao").hide();
+	$("#botao-modal-sim").hide();
+	$("#texto-modal").html(' '+ 
+			'<div class="progress">' +
+				'<div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar' +
+			          ' aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:100%">' +
+					'0% Completado' +
+				'</div>' + 
+			'</div>');
+	$("#modal").modal("show");
 }
 
 //Função que exibe a porcentagem do upload do(s) arquivo(s)

@@ -1,10 +1,16 @@
 package br.com.ctrlt.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,19 +18,30 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.ctrlt.dao.AnexoDAO;
+import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
 import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.TableResponseJson;
 import br.com.ctrlt.model.Anexo;
+import br.com.ctrlt.model.Monografia;
+import br.com.ctrlt.model.TrabalhoDeConclusao;
 
 @Controller
 public class AnexoController implements Control<Anexo> {
 
 	@Autowired
+    private ServletContext servletContext; 
+	
+	@Autowired
 	private AnexoDAO anexoDAO;
+	
+	@Autowired
+	private TrabalhoDeConclusaoDAO trabalhoDeConclusaoDAO;
 	
 	@Override
 	public String carregarPagina(Model model) {
@@ -65,6 +82,75 @@ public class AnexoController implements Control<Anexo> {
 			responseJson.setResult(erros);
 		}
 
+		return responseJson;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "rest/cadastra/upload_anexo", method = RequestMethod.POST)
+	public ResponseJson uploadAnexo(@RequestParam("anexo") List<MultipartFile> arquivos, @RequestParam("id") Long idTcc){
+		ResponseJson responseJson = new ResponseJson();
+		
+		TrabalhoDeConclusao trabalhoDeConclusaoBanco = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
+		
+		//Caminho absoluto do caminho até a pasta da monografia
+		String path = servletContext.getRealPath("/anexos/" + String.valueOf(idTcc) + "/");
+		
+		if(! arquivos.isEmpty()){
+			
+			for(int i = 0; i < arquivos.size(); i++){
+			
+				File file = new File(path);
+				
+				//Cria o diretório caso não exista
+				if(! file.exists()){
+					file.mkdirs();
+				}
+				
+				File arquivoMonografia = new File(path + arquivos.get(i).getOriginalFilename());
+				
+				try {								
+					arquivos.get(i).transferTo(arquivoMonografia);
+					
+					Anexo anexo = new Anexo();
+									
+					anexo.setCaminho(path);
+					anexo.setTamanho(arquivoMonografia.getTotalSpace());
+					anexo.setNome(arquivoMonografia.getName());
+					anexo.setDataUpload(Calendar.getInstance());
+					anexo.setNumeroDownload(0);
+					anexo.setExtensao(FilenameUtils.getExtension(arquivoMonografia.getName()));
+					anexo.setAtivo(true);
+					
+					trabalhoDeConclusaoBanco.getListaAnexos().add(anexo);							
+				} catch (IOException e) {
+					responseJson.setStatus("FAIL");
+					responseJson.setResult("O anexo " + arquivoMonografia.getName() + " foi carregado, porém ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+							+ " de conclusão e tente realizar o upload novamente.");
+				}
+			}
+			
+			if(trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusaoBanco)){
+				responseJson.setStatus("SUCCESS");
+				if(arquivos.size() > 0){
+					responseJson.setResult("Anexo(s) cadastrado(s) com sucesso!");
+				}else{
+					responseJson.setResult("Anexo cadastrado com sucesso!");
+				}
+			}else{
+				responseJson.setStatus("FAIL");
+				if(arquivos.size() > 0){
+					responseJson.setResult("O anexo foi carregado, porém ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+							+ " de conclusão e tente realizar o upload novamente.");
+				}else{
+					responseJson.setResult("Os anexos foram carregados, porém ocorreu um erro ao realizar o upload dos arquivos. Por gentileza altere o registro do trabalho"
+							+ " de conclusão e tente realizar o upload novamente.");
+				}
+			}
+		}else{
+			responseJson.setStatus("FAIL");
+			responseJson.setResult("Não existem anexos a serem enviados para o servidor");
+		}
+		
 		return responseJson;
 	}
 

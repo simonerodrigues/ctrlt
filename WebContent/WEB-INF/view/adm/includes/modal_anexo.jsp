@@ -19,7 +19,7 @@
 						<div class="col-lg-6">
 						</div>
 						<div class="col-lg-6">
-							<div class="form-group clearfix">
+							<div id="botoes-anexo" class="form-group clearfix">
 								<button id="cadastrar-anexo" type="submit" class="btn btn-primary right" disabled="disabled">Cadastrar</button>
 								<button id="adicionar-anexo" type="button" class="btn btn-default right" disabled="disabled">Adicionar</button>
 								<button id="novo-anexo" type="button" class="btn btn-default right">Novo</button>
@@ -77,6 +77,7 @@
 		
 		$("#fieldset-anexo").attr('disabled', true);
 		$("#cadastrar-anexo").attr('disabled', true);
+		$("#cadastrar-anexo").attr('onclick', "cadastrarAnexo("+id+")");
 		$("#novo-anexo").attr('disabled', false);
 		$("#adicionar-anexo").attr('disabled', true);
 		
@@ -117,6 +118,25 @@
 						"data" : "ativo"
 					} ]
 		);
+		
+	}
+	
+	//Função que realiza o cadastro dos anexos
+	function cadastrarAnexo(id){
+		var anexos = $(".anexo");
+		
+		var formData = new FormData();
+		
+		//Carrega os anexos
+		for(var i = 0; i < $(".anexo").length; i++){
+			formData.append("anexo["+i+"]", $(".anexo")[i].files[0]);	
+		}
+		
+		formData.append("id", id);
+		
+		mostrarBarraDeProgresso();
+		
+		uploadArquivos("anexo", formData);
 	}
 	
 	//Função com ação de novo cadastro
