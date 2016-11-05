@@ -2,6 +2,7 @@ package br.com.ctrlt.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.List;
 
@@ -109,10 +110,10 @@ public class AnexoController implements Control<Anexo> {
 					Anexo anexo = new Anexo();
 									
 					anexo.setCaminho(path);
-					anexo.setTamanho(arquivos.get(i).getSize());
+					anexo.setTamanho(new BigInteger(String.valueOf(arquivos.get(i).getSize())));
 					anexo.setNome(arquivos.get(i).getOriginalFilename());
 					anexo.setDataUpload(Calendar.getInstance());
-					anexo.setNumeroDownload(0);
+					anexo.setNumeroDownloads(0l);
 					anexo.setExtensao(FilenameUtils.getExtension(arquivos.get(i).getOriginalFilename()));
 					anexo.setVisivel(permissao.get(i));
 					anexo.setAtivo(true);

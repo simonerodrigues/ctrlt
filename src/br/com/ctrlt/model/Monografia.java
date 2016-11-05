@@ -1,5 +1,6 @@
 	package br.com.ctrlt.model;
 
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -32,7 +33,7 @@ public class Monografia {
 	private String extensao;
 	
 	@Column(nullable = false)
-	private double tamanho;
+	private BigInteger tamanho;
 	
 	@Temporal(TemporalType.TIMESTAMP) //Data e Hora
 	@DateTimeFormat(pattern = "dd/MM/yyy HH:mm")
@@ -40,7 +41,7 @@ public class Monografia {
 	private Calendar dataUpload;
 	
 	@Column(nullable = false)
-	private int numeroDownload;
+	private long numeroDownloads;
 	
 	@Column(nullable = false)
 	private boolean ativo;
@@ -77,11 +78,11 @@ public class Monografia {
 		this.extensao = extensao;
 	}
 
-	public double getTamanho() {
+	public BigInteger getTamanho() {
 		return tamanho;
 	}
 
-	public void setTamanho(double tamanho) {
+	public void setTamanho(BigInteger tamanho) {
 		this.tamanho = tamanho;
 	}
 
@@ -93,12 +94,12 @@ public class Monografia {
 		this.dataUpload = dataUpload;
 	}
 
-	public int getNumeroDownload() {
-		return numeroDownload;
+	public long getNumeroDownloads() {
+		return numeroDownloads;
 	}
 
-	public void setNumeroDownload(int numeroDownload) {
-		this.numeroDownload = numeroDownload;
+	public void setNumeroDownloads(long numeroDownloads) {
+		this.numeroDownloads = numeroDownloads;
 	}
 
 	public boolean isAtivo() {

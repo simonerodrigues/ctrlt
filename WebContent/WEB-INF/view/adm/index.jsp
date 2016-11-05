@@ -47,8 +47,62 @@
 					</div>
 				</div>
 				<!-- /.row -->
+				
+				
 
 				<div class="row">
+					<div class="col-lg-12">
+						<h3>Usuários do Sistema:</h3><br />
+					</div>
+		
+					<div class="col-lg-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-user fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div class="huge" id="numADM">0</div>
+										<div>Número de Administradores</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						
+					<div class="col-lg-4">
+						<div class="panel panel-green">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-user fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div class="huge" id="numProfessores">0</div>
+										<div>Número de Professores</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4">
+						<div class="panel panel-red">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-user fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div class="huge" id="numAlunos">0</div>
+										<div>Número de Alunos</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
 					<div class="col-lg-12">
 						<h3>Trabalhos de Conclusão:</h3><br />
 					</div>
@@ -61,8 +115,8 @@
 										<i class="fa fa-book fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="numTCC">26</div>
-										<div>Trabalhos de Conclusão</div>
+										<div class="huge" id="numTCC">0</div>
+										<div>Número de Trabalhos de Conclusão</div>
 									</div>
 								</div>
 							</div>
@@ -74,11 +128,11 @@
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-xs-3">
-										<i class="fa fa-book fa-5x"></i>
+										<i class="fa fa-file-pdf-o fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="numMonografias">26</div>
-										<div>Monografias</div>
+										<div class="huge" id="numMonografias">0</div>
+										<div>Número de Monografias</div>
 									</div>
 								</div>
 							</div>
@@ -93,30 +147,28 @@
 										<i class="fa fa-paperclip fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="numAnexos">2</div>
-										<div>Anexos</div>
+										<div class="huge" id="numAnexos">0</div>
+										<div>Número de Anexos</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
-				<!-- /.row -->
-				
-				<div class="col-lg-12">
-					<h3>Usuários do Sistema:</h3><br />
-				</div>
-		
-				<div class="col-lg-4">
+					
+					<div class="col-lg-12">
+						<h3>Informações de Arquivos:</h3><br />
+					</div>
+					
+					<div class="col-lg-4">
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-xs-3">
-										<i class="fa fa-user fa-5x"></i>
+										<i class="fa fa-file fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="numADM">26</div>
-										<div>Administradores</div>
+										<div class="huge" id="numArquivos">0</div>
+										<div>Número de Arquivos</div>
 									</div>
 								</div>
 							</div>
@@ -128,11 +180,11 @@
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-xs-3">
-										<i class="fa fa-user fa-5x"></i>
+										<i class="fa fa-hdd-o fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="numProfessores">26</div>
-										<div>Professores</div>
+										<div class="huge" id="numTamanhoArquivos">0</div>
+										<div>Tamanho dos Arquivos</div>
 									</div>
 								</div>
 							</div>
@@ -144,11 +196,11 @@
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-xs-3">
-										<i class="fa fa-user fa-5x"></i>
+										<i class="fa fa-cloud-download fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="numAlunos">2</div>
-										<div>Alunos</div>
+										<div class="huge" id="numDownloads">0</div>
+										<div>Número de Downloads</div>
 									</div>
 								</div>
 							</div>
@@ -182,6 +234,9 @@
 				$("#numADM").html(response.numeroAdministradoresDeConteudo);
 				$("#numProfessores").html(response.numeroProfessores);
 				$("#numAlunos").html(response.numeroAlunos);
+				$("#numArquivos").html(response.numeroMonografias + response.numeroAnexos);
+				$("#numTamanhoArquivos").html(response.tamanhoArquivos);
+				$("#numDownloads").html(response.numeroDownloads);
 			}).fail(function(e) {
 				$(".se-pre-con-dark").fadeOut("slow");
 				$("#botao-modal-nao").hide();

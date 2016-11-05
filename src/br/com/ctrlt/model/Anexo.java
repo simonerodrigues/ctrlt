@@ -1,5 +1,6 @@
 package br.com.ctrlt.model;
 
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,7 +37,7 @@ public class Anexo {
 	private String extensao;
 	
 	@Column(nullable = false)
-	private double tamanho;
+	private BigInteger tamanho;
 	
 	@Temporal(TemporalType.TIMESTAMP)	// Data e Hora
 	@DateTimeFormat(pattern = "dd/MM/yyy HH:mm")
@@ -44,7 +45,7 @@ public class Anexo {
 	private Calendar dataUpload;
 	
 	@Column(nullable = false)
-	private int numeroDownload;
+	private long numeroDownloads;
 	
 	@Column(nullable = false)
 	private boolean visivel;
@@ -89,11 +90,11 @@ public class Anexo {
 		this.extensao = extensao;
 	}
 
-	public double getTamanho() {
+	public BigInteger getTamanho() {
 		return tamanho;
 	}
 
-	public void setTamanho(double tamanho) {
+	public void setTamanho(BigInteger tamanho) {
 		this.tamanho = tamanho;
 	}
 
@@ -105,12 +106,12 @@ public class Anexo {
 		this.dataUpload = dataUpload;
 	}
 
-	public int getNumeroDownload() {
-		return numeroDownload;
+	public long getNumeroDownloads() {
+		return numeroDownloads;
 	}
 
-	public void setNumeroDownload(int numeroDownload) {
-		this.numeroDownload = numeroDownload;
+	public void setNumeroDownloads(long numeroDownloads) {
+		this.numeroDownloads = numeroDownloads;
 	}
 
 	public boolean isVisivel() {

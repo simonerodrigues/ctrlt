@@ -2,6 +2,7 @@ package br.com.ctrlt.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -212,10 +213,10 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				}
 				
 				monografia.setCaminho(path);
-				monografia.setTamanho(arquivoMonografia.getTotalSpace());
+				monografia.setTamanho(new BigInteger(String.valueOf(arquivo.getSize())));
 				monografia.setNome(arquivoMonografia.getName());
 				monografia.setDataUpload(Calendar.getInstance());
-				monografia.setNumeroDownload(0);
+				monografia.setNumeroDownloads(0l);
 				monografia.setExtensao(FilenameUtils.getExtension(arquivoMonografia.getName()));
 				monografia.setAtivo(true);
 				

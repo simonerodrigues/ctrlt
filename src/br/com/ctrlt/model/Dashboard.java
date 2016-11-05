@@ -7,21 +7,8 @@ public class Dashboard {
 	private long numeroAdministradoresDeConteudo;
 	private long numeroProfessores;
 	private long numeroAlunos;
-
-	public Dashboard() {
-
-	}
-
-	public Dashboard(long numeroTrabalhosDeConclusao, long numeroMonografias, long numeroAnexos,
-			long numeroAdministradoresDeConteudo, long numeroProfessores, long numeroAlunos) {
-		super();
-		this.numeroTrabalhosDeConclusao = numeroTrabalhosDeConclusao;
-		this.numeroMonografias = numeroMonografias;
-		this.numeroAnexos = numeroAnexos;
-		this.numeroAdministradoresDeConteudo = numeroAdministradoresDeConteudo;
-		this.numeroProfessores = numeroProfessores;
-		this.numeroAlunos = numeroAlunos;
-	}
+	private String tamanhoArquivos;
+	private long numeroDownloads;
 
 	public long getNumeroTrabalhosDeConclusao() {
 		return numeroTrabalhosDeConclusao;
@@ -69,6 +56,22 @@ public class Dashboard {
 
 	public void setNumeroAlunos(long numeroAlunos) {
 		this.numeroAlunos = numeroAlunos;
+	}
+
+	public String getTamanhoArquivos() {
+		return tamanhoArquivos;
+	}
+
+	public void setTamanhoArquivos(String tamanhoArquivos) {
+		this.tamanhoArquivos = tamanhoArquivos;
+	}
+
+	public long getNumeroDownloads() {
+		return numeroDownloads;
+	}
+
+	public void setNumeroDownloads(long numeroDownloads) {
+		this.numeroDownloads = numeroDownloads;
 	}
 
 }
