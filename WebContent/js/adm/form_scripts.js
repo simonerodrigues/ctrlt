@@ -237,7 +237,7 @@ function cancelar() {
 	$("#pesquisa").attr('disabled', false);
 	$("#btnPesquisa").attr('disabled', false);
 	$("fieldset.alterar").attr('disabled', false);
-
+	
 	// Limpa os campos (input)
 	var $campos = $("input");
 
@@ -281,6 +281,37 @@ function cancelar() {
 	$("#panel-information").hide();
 	
 	$('#modal').modal('hide')
+}
+
+function cancelarAnexo(){
+	//Tela de cadastro de anexo
+	$("#fieldset-anexo").attr('disabled', true);
+	$("#cadastrar-anexo").attr('disabled', true);
+	$("#novo-anexo").attr('disabled', false);
+	$("#adicionar-anexo").attr('disabled', true);
+	
+	$("#fieldset-anexo").html('<input type="hidden" id="id-tcc" name="id-tcc" class="form-control" value="' +  + '" autocomplete="off">'
+			+ '<div class="col-lg-12">'
+				+ '<div class="col-lg-12">'
+					+ '<div class="col-lg-6">'
+						+ '<div class="form-group">'
+							+ '<label>Arquivo: </label> <input type="file" ' 
+								+ 'name="anexo[]" class="form-control anexo" autocomplete="off">'
+						+ '</div>'
+					+ ' </div>'
+	
+					+ '<div class="col-lg-6">'
+						+ '<div class="form-group">'
+							+ '<label>Disponível para Download?: </label>'
+							+ '<select name="visivel[]" class="form-control download">'
+								+ '<option value="1">Sim</option>'
+								+ '<option value="2">Não</option>'
+							+ '</select>'
+						+ '</div>'
+					+ '</div>'
+				+ '</div>'
+			+ '</div>'
+	);
 }
 
 //Função que reseta o formulário
@@ -574,7 +605,11 @@ function uploadArquivos(entidadeUpload, uploadData){
 			$("#texto-modal").html(response2.result);
 			$("#botao-modal-sim").unbind();
 			$("#botao-modal-sim").on("click", function(){
-				cancelar();
+				if(entidadeUpload == "anexo"){
+					cancelarAnexo();
+				}else{
+					cancelar();
+				}
 				$("#modal").modal("hide");
 				$("body").removeClass("modal-open");
 				$(".modal-backdrop").fadeOut("slow");
@@ -582,7 +617,7 @@ function uploadArquivos(entidadeUpload, uploadData){
 			});
 			$("#modal").modal("show");
 			
-			dataTable("#dataTable");
+			dataTable(dataTableName(entidadeUpload));
         },
         fail: function(response2) {
         	$("#botao-modal-nao").hide();
@@ -656,7 +691,7 @@ function inativarEntidade(entidade, id) {
 			
 			$("#modal").modal("show");
 			
-			dataTable("#dataTable");
+			dataTable(dataTableName(entidade));
 		} else {
 			$(".se-pre-con-dark").fadeOut("slow");
 			
@@ -713,7 +748,7 @@ function excluirEntidade(entidade, id) {
 			
 			$("#modal").modal("show");
 			
-			dataTable("#dataTable");
+			dataTable(dataTableName(entidade));
 		} else {
 			$(".se-pre-con-dark").fadeOut("slow");
 			
@@ -817,4 +852,13 @@ function entidadeMensagem(entidade){
 	}
 	
 	return nomeEntidadeMensagem;
+}
+
+//Retorna o nome da dataTable a ser atualizada
+function dataTableName(entidade){
+	if(entidade == "anexo"){
+		return "#dataTableAnexo";
+	}else{
+		return "#dataTable";
+	}
 }

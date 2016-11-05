@@ -2,6 +2,7 @@ package br.com.ctrlt.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import br.com.ctrlt.dao.AlunoDAO;
+import br.com.ctrlt.dao.AnexoDAO;
 import br.com.ctrlt.dao.ProfessorDAO;
 import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
 import br.com.ctrlt.json.ResponseJson;
@@ -58,6 +60,9 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	
 	@Autowired
 	private ProfessorDAO professorDAO;
+	
+	@Autowired
+	private AnexoDAO anexoDAO;
 	
 	@Override
 	@RequestMapping(value = "adm/cadastro/trabalho_de_conclusao", method = RequestMethod.GET)
@@ -399,6 +404,21 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		for(int i = 0; i < trabalhoDeConclusao.getListaAlunos().size(); i++){
 			trabalhoDeConclusao.getListaAlunos().get(i).setTrabalhoDeConclusao(null);
 		}
+		
+		for(int i = 0; i < trabalhoDeConclusao.getListaAnexos().size(); i++){
+			//Exclui o arquivo anexo ao excluir o Trabalho de Conclusão
+			File anexo = new File(trabalhoDeConclusao.getListaAnexos().get(i).getCaminho());
+			try {
+				FileUtils.deleteDirectory(anexo);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			anexoDAO.excluir(trabalhoDeConclusao.getListaAnexos().get(i));
+		}
+		
+		trabalhoDeConclusao.setListaAnexos(new ArrayList<>());
 		
 		if(trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusao)){
 			// Realiza a exclusão do linhaDePesquisa

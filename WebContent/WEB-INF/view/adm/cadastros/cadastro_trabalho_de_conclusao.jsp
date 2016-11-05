@@ -374,7 +374,7 @@
 							}, {
 								"data" : function(o) {
 									if(o.listaProfessores[1] != null){
-										return o.listaProfessores[2].nome;
+										return o.listaProfessores[1].nome;
 									}else{
 										return "";
 									}
@@ -621,6 +621,13 @@
 		$('#modal-anexo').on('hide.bs.modal', function (e) {
 			//Destroy a DataTable
 			$('#dataTableAnexo').DataTable().destroy();
+		});
+		
+		//Ao teclar o enter, clica no botão sim do modal
+		$("#modal").keyup(function(event){
+		    if(event.keyCode == 13){
+		        $("#botao-modal-sim").click();
+		    }
 		});
 	</script>
 	

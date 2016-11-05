@@ -28,7 +28,6 @@ import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
 import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.TableResponseJson;
 import br.com.ctrlt.model.Anexo;
-import br.com.ctrlt.model.Monografia;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 
 @Controller
@@ -87,7 +86,7 @@ public class AnexoController implements Control<Anexo> {
 	
 	@ResponseBody
 	@RequestMapping(value = "rest/cadastra/upload_anexo", method = RequestMethod.POST)
-	public ResponseJson uploadAnexo(@RequestParam("anexo") List<MultipartFile> arquivos, @RequestParam("id") Long idTcc){
+	public ResponseJson uploadAnexo(@RequestParam("anexo") List<MultipartFile> arquivos, @RequestParam("download") List<Boolean> permissao, @RequestParam("id") Long idTcc){
 		ResponseJson responseJson = new ResponseJson();
 		
 		TrabalhoDeConclusao trabalhoDeConclusaoBanco = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
@@ -119,7 +118,9 @@ public class AnexoController implements Control<Anexo> {
 					anexo.setDataUpload(Calendar.getInstance());
 					anexo.setNumeroDownload(0);
 					anexo.setExtensao(FilenameUtils.getExtension(arquivoMonografia.getName()));
+					anexo.setVisivel(permissao.get(i));
 					anexo.setAtivo(true);
+					anexo.setTrabalhoDeConclusao(trabalhoDeConclusaoBanco);
 					
 					trabalhoDeConclusaoBanco.getListaAnexos().add(anexo);							
 				} catch (IOException e) {
@@ -197,7 +198,7 @@ public class AnexoController implements Control<Anexo> {
 
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "excluir_anexo", method = RequestMethod.POST)
+	@RequestMapping(value = "rest/exclui/anexo", method = RequestMethod.POST)
 	public ResponseJson excluir(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
@@ -210,6 +211,14 @@ public class AnexoController implements Control<Anexo> {
 
 		// Realiza a exclusão do anexo
 		if (anexoDAO.excluir(anexo)) {
+			File arquivo = new File(anexo.getCaminho());
+			try {
+				FileUtils.deleteDirectory(arquivo);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			responseJson.setStatus("SUCCESS");
 			responseJson.setResult("Anexo excluído com sucesso.");
 		} else {
@@ -252,6 +261,42 @@ public class AnexoController implements Control<Anexo> {
 		} else {
 			responseJson.setStatus("FAIL");
 			responseJson.setResult("Erro ao ativar/inativar o anexo. Por gentileza contate o administrador do sistema.");
+		}
+
+		return responseJson;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "rest/status_download/anexo", method = RequestMethod.POST)
+	public ResponseJson statusDownload(HttpServletRequest req) {
+		// Cria objeto de retorno do JSON
+		ResponseJson responseJson = new ResponseJson();
+
+		// Pega o código do anexo que será inativado
+		String id = req.getParameter("id");
+
+		// Pega o objeto de anexo para alterar o status
+		Anexo anexo = anexoDAO.pesquisarPorId(Integer.parseInt(id));
+
+		// Altera o status do anexo
+		if (anexo.isVisivel()) {
+			anexo.setVisivel(false);
+		} else {
+			anexo.setVisivel(true);
+		}
+
+		// Grava as alterações realizadas com o anexo
+		if (anexoDAO.alterar(anexo)) {
+			responseJson.setStatus("SUCCESS");
+
+			if (anexo.isVisivel()) {
+				responseJson.setResult("Download do anexo habilitado com sucesso.");
+			} else {
+				responseJson.setResult("Download do anexo bloqueado com sucesso.");
+			}
+		} else {
+			responseJson.setStatus("FAIL");
+			responseJson.setResult("Erro ao habilitar/bloquear o download do anexo. Por gentileza contate o administrador do sistema.");
 		}
 
 		return responseJson;

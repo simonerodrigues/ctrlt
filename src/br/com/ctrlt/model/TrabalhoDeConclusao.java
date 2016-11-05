@@ -62,7 +62,7 @@ public class TrabalhoDeConclusao {
 	)
 	private List<Professor> listaProfessores;
 	
-	@OneToMany(mappedBy = "trabalhoDeConclusao")
+	@OneToMany(mappedBy = "trabalhoDeConclusao", cascade = CascadeType.MERGE)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Anexo> listaAnexos;
 
