@@ -49,53 +49,112 @@
 				<!-- /.row -->
 
 				<div class="row">
+					<div class="col-lg-12">
+						<h3>Trabalhos de Conclusão:</h3><br />
+					</div>
+				
 					<div class="col-lg-4">
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-xs-3">
-										<i class="fa fa-scissors fa-5x"></i>
+										<i class="fa fa-book fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="qtdeServicos">26</div>
-										<div>Serviço(s) Hoje</div>
+										<div class="huge" id="numTCC">26</div>
+										<div>Trabalhos de Conclusão</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-lg-4">
 						<div class="panel panel-green">
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-xs-3">
-										<i class="fa fa-money fa-5x"></i>
+										<i class="fa fa-book fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="lucroPrevisto">R$ 100,00</div>
-										<div>Lucro Previsto de Hoje</div>
+										<div class="huge" id="numMonografias">26</div>
+										<div>Monografias</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-lg-4">
 						<div class="panel panel-red">
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-xs-3">
-										<i class="fa fa-users fa-5x"></i>
+										<i class="fa fa-paperclip fa-5x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" id="qtdeClientes">2</div>
-										<div>Cliente(s) Hoje</div>
+										<div class="huge" id="numAnexos">2</div>
+										<div>Anexos</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- /.row -->
+				
+				<div class="col-lg-12">
+					<h3>Usuários do Sistema:</h3><br />
+				</div>
+		
+				<div class="col-lg-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-user fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div class="huge" id="numADM">26</div>
+										<div>Administradores</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4">
+						<div class="panel panel-green">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-user fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div class="huge" id="numProfessores">26</div>
+										<div>Professores</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4">
+						<div class="panel panel-red">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-user fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div class="huge" id="numAlunos">2</div>
+										<div>Alunos</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /.row -->
 
 			</div>
 			<!-- /.container-fluid -->
@@ -115,7 +174,33 @@
 	<c:import url="${javascript}"></c:import>
 	
 	<script>
+		function atualizaValores(){
+			$.post("/rest/dashboard", {}).done(function(response) {
+				$("#numTCC").html(response.numeroTrabalhosDeConclusao);
+				$("#numMonografias").html(response.numeroMonografias);
+				$("#numAnexos").html(response.numeroAnexos);
+				$("#numADM").html(response.numeroAdministradoresDeConteudo);
+				$("#numProfessores").html(response.numeroProfessores);
+				$("#numAlunos").html(response.numeroAlunos);
+			}).fail(function(e) {
+				$(".se-pre-con-dark").fadeOut("slow");
+				$("#botao-modal-nao").hide();
+				$("#botao-modal-sim").text("Ok");
+				$("#botao-modal-sim").unbind();
+				$("#botao-modal-sim").on("click", function(){
+					$("#modal").modal("hide");
+					$("body").removeClass("modal-open");
+					$(".modal-backdrop").fadeOut("slow");
+					$(".modal-backdrop").remove();
+				});
+				$("#texto-modal").html("Ocorreu um erro ao tentar puxar as informações da dashboard. Por gentileza contate o administrador do sistema.");
+				$("#modal").modal("show");
+			});
+		}
 		
+		$(document).on("load", atualizaValores());
+	
+		setInterval(atualizaValores, 10000);
 	</script>
 
 </body>
