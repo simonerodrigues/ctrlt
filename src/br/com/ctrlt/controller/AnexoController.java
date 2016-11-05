@@ -105,27 +105,38 @@ public class AnexoController implements Control<Anexo> {
 					file.mkdirs();
 				}
 				
-				File arquivoMonografia = new File(path + arquivos.get(i).getOriginalFilename());
-				
-				try {								
-					arquivos.get(i).transferTo(arquivoMonografia);
-					
+				try {													
 					Anexo anexo = new Anexo();
 									
 					anexo.setCaminho(path);
-					anexo.setTamanho(arquivoMonografia.getTotalSpace());
-					anexo.setNome(arquivoMonografia.getName());
+					anexo.setTamanho(arquivos.get(i).getSize());
+					anexo.setNome(arquivos.get(i).getOriginalFilename());
 					anexo.setDataUpload(Calendar.getInstance());
 					anexo.setNumeroDownload(0);
-					anexo.setExtensao(FilenameUtils.getExtension(arquivoMonografia.getName()));
+					anexo.setExtensao(FilenameUtils.getExtension(arquivos.get(i).getOriginalFilename()));
 					anexo.setVisivel(permissao.get(i));
 					anexo.setAtivo(true);
 					anexo.setTrabalhoDeConclusao(trabalhoDeConclusaoBanco);
 					
+					anexoDAO.cadastrar(anexo);
+					
+					anexo.setCaminho(path + String.valueOf(anexo.getId()) + "\\");
+					
+					file = new File(path + "/" + String.valueOf(anexo.getId()) + "/");
+					
+					//Cria o diretório caso não exista
+					if(! file.exists()){
+						file.mkdirs();
+					}
+					
+					File arquivoMonografia = new File(path + "/" + String.valueOf(anexo.getId()) + "/" + arquivos.get(i).getOriginalFilename());
+					
+					arquivos.get(i).transferTo(arquivoMonografia);
+					
 					trabalhoDeConclusaoBanco.getListaAnexos().add(anexo);							
 				} catch (IOException e) {
 					responseJson.setStatus("FAIL");
-					responseJson.setResult("O anexo " + arquivoMonografia.getName() + " foi carregado, porém ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+					responseJson.setResult("O anexo " + arquivos.get(i).getName() + " foi carregado, porém ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
 							+ " de conclusão e tente realizar o upload novamente.");
 				}
 			}
