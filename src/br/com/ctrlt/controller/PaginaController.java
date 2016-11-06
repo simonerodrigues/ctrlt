@@ -45,4 +45,9 @@ public class PaginaController {
 		return "adm/sobre";
 	}	
 	
+	@RequestMapping(value="alterar_senha")
+	public String alterarSenha(Model model){		
+		return "adm/cadastros/alterar_senha";
+	}	
+	
 }

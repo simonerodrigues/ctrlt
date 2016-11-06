@@ -74,6 +74,13 @@ public class AdmInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 		
+		//Página de alterar senha
+		if(uri.contains("alterar_senha") && (request.getSession().getAttribute("alunoLogado") != null ||
+				request.getSession().getAttribute("professorLogado") != null ||
+				request.getSession().getAttribute("administradorLogado") != null)){
+			return true;
+		}
+		
 		if((! (uri.contains("/adm/cadastro/") || uri.contains("adm/relatorio/") || uri.endsWith("dashboard"))) && 
 				(request.getSession().getAttribute("alunoLogado") != null ||
 				request.getSession().getAttribute("professorLogado") != null)){

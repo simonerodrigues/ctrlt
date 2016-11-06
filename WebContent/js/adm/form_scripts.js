@@ -87,7 +87,7 @@ $(document).ready(function() {
 				minlength: "O login deve conter no mínimo 4 dígitos"
 			},
 			senhaAtual : {
-				required: "Por favor, digite a senha",
+				required: "Por favor, digite a senha atual",
 				minlength: "A senha deve conter no mínimo 8 dígitos"
 			},
 			senha : {

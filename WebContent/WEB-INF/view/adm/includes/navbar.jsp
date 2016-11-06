@@ -29,7 +29,7 @@
 			
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="alterar_senha"><i class="fa fa-key"></i> Alterar Senha</a></li>
+				<li><a href="/alterar_senha"><i class="fa fa-key"></i> Alterar Senha</a></li>
 				<li class="divider"></li>
 				<li><a onclick="logout()" href="#"><i
 						class="fa fa-power-off"></i> Log Out</a></li>
