@@ -167,13 +167,18 @@ public class AlunoController implements Control<Aluno> {
 		// Pega o objeto de aluno para pesquisar no banco
 		Aluno aluno = alunoDAO.pesquisarPorId(Integer.parseInt(id));
 
-		// Realiza a exclusão do aluno
-		if (alunoDAO.excluir(aluno)) {
-			responseJson.setStatus("SUCCESS");
-			responseJson.setResult("Aluno excluído com sucesso.");
-		} else {
+		if(aluno.getTrabalhoDeConclusao() == null){
+			// Realiza a exclusão do aluno
+			if (alunoDAO.excluir(aluno)) {
+				responseJson.setStatus("SUCCESS");
+				responseJson.setResult("Aluno excluído com sucesso.");
+			} else {
+				responseJson.setStatus("FAIL");
+				responseJson.setResult("Erro ao excluir o aluno. Por gentileza contate o administrador do sistema.");
+			}
+		}else{
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("Erro ao excluir o aluno. Por gentileza contate o administrador do sistema.");
+			responseJson.setResult("Não é possíve exluir o aluno, o memso está vinculado a um trabalho de conclusão. Por gentileza realize a desassociação antes de excluí-lo.");
 		}
 
 		return responseJson;
