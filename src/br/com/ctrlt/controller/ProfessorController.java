@@ -190,15 +190,20 @@ public class ProfessorController implements Control<Professor> {
 		// Pega o objeto de professor para pesquisar no banco
 		Professor professor = professorDAO.pesquisarPorId(Integer.parseInt(id));
 
-		// Realiza a exclusão do professor
-		if (professorDAO.excluir(professor)) {
-			responseJson.setStatus("SUCCESS");
-			responseJson.setResult("Professor excluído com sucesso.");
-		} else {
+		if(professor.getListaTrabalhoDeConclusao().size() == 0){
+			// Realiza a exclusão do professor
+			if (professorDAO.excluir(professor)) {
+				responseJson.setStatus("SUCCESS");
+				responseJson.setResult("Professor excluído com sucesso.");
+			} else {
+				responseJson.setStatus("FAIL");
+				responseJson.setResult("Erro ao excluir o professor. Por gentileza contate o administrador do sistema.");
+			}
+		}else{
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("Erro ao excluir o professor. Por gentileza contate o administrador do sistema.");
+			responseJson.setResult("Não é possível exluir o professor, o mesmo está vinculado a um ou mais trabalho(s) de conclusão. Por gentileza realize a desassociação antes de excluí-lo.");
 		}
-
+		
 		return responseJson;
 	}
 

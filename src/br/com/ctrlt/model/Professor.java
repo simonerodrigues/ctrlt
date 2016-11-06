@@ -12,12 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -77,6 +81,11 @@ public class Professor {
 		inverseJoinColumns = @JoinColumn(name = "id_linhaDePesquisa")
 	)
 	private List<LinhaDePesquisa> listaLinhaDePesquisa;
+	
+	@ManyToMany(mappedBy = "listaProfessores")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonBackReference
+	private List<TrabalhoDeConclusao> listaTrabalhoDeConclusao;
 
 	public long getId() {
 		return id;
@@ -164,6 +173,14 @@ public class Professor {
 
 	public void setListaLinhaDePesquisa(List<LinhaDePesquisa> listaLinhaDePesquisa) {
 		this.listaLinhaDePesquisa = listaLinhaDePesquisa;
+	}
+
+	public List<TrabalhoDeConclusao> getListaTrabalhoDeConclusao() {
+		return listaTrabalhoDeConclusao;
+	}
+
+	public void setListaTrabalhoDeConclusao(List<TrabalhoDeConclusao> listaTrabalhoDeConclusao) {
+		this.listaTrabalhoDeConclusao = listaTrabalhoDeConclusao;
 	}
 
 }
