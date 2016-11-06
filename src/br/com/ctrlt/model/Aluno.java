@@ -18,6 +18,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "aluno")
@@ -37,6 +38,7 @@ public class Aluno implements Serializable {
 	@Column(length = 60, nullable = false)
 	@NotBlank(message = "{aluno.senha.vazio}")
 	@Size.List({ @Size(min = 4, message = "{aluno.senha.min}"), @Size(max = 60, message = "{aluno.senha.max}") })
+	@JsonIgnore
 	private String senha;
 
 	@Column(length = 100, nullable = false)

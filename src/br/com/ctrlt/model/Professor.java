@@ -18,6 +18,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "professor")
 public class Professor {
@@ -38,6 +40,7 @@ public class Professor {
 		@Size(min = 4, message = "{professor.senha.min}"),
 		@Size(max = 60, message = "{professor.senha.max}")
 	})
+	@JsonIgnore
 	private String senha;
 	
 	@Column(length = 100, nullable = false)

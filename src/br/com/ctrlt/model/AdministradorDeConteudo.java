@@ -15,6 +15,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "administradorDeConteudo")
 public class AdministradorDeConteudo {
@@ -35,6 +37,7 @@ public class AdministradorDeConteudo {
 		@Size(min = 4, message = "{administradorDeConteudo.senha.min}"),
 		@Size(max = 60, message = "{administradorDeConteudo.senha.max}")
 	})
+	@JsonIgnore
 	private String senha;
 	
 	@Column(length = 100, nullable = false)
