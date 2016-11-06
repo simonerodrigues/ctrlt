@@ -85,7 +85,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		ResponseJsonWithId responseJsonWithId = new ResponseJsonWithId();
 
 		//Seta a data de publicação
-		entidade.setDataPublicao(Calendar.getInstance());
+		entidade.setDataPublicacao(Calendar.getInstance());
 		
 		if(entidade.getListaProfessores() != null){
 			//Atualiza a lista de Professores
@@ -294,7 +294,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		
 		trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusaoBanco);
 		
-		entidade.setDataPublicao(trabalhoDeConclusaoBanco.getDataPublicao());
+		entidade.setDataPublicacao(trabalhoDeConclusaoBanco.getDataPublicacao());
 		entidade.setMonografia(trabalhoDeConclusaoBanco.getMonografia());
 		entidade.setListaAnexos(trabalhoDeConclusaoBanco.getListaAnexos());
 		
@@ -510,7 +510,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 
 	@RequestMapping(value = "adm/relatorio/pdf/trabalho_de_conclusao", method = RequestMethod.GET)
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
-		List<TrabalhoDeConclusao> listaTrabalhoDeConclusao = trabalhoDeConclusaoDAO.listar(" ORDER BY l.nome");
+		List<TrabalhoDeConclusao> listaTrabalhoDeConclusao = trabalhoDeConclusaoDAO.listar(" ORDER BY t.titulo");
 
 		//Criação da DataSouce do iReport
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(listaTrabalhoDeConclusao, false);

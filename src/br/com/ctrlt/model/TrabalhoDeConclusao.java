@@ -48,7 +48,7 @@ public class TrabalhoDeConclusao {
 	@Temporal(TemporalType.TIMESTAMP)	// Data e Hora
 	@DateTimeFormat(pattern = "dd/MM/yyy HH:mm")
 	@Column(nullable = false)
-	private Calendar dataPublicao;
+	private Calendar dataPublicacao;
 	
 	@OneToMany(mappedBy = "trabalhoDeConclusao", cascade = CascadeType.MERGE)
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -97,12 +97,12 @@ public class TrabalhoDeConclusao {
 		this.resumo = resumo;
 	}
 
-	public Calendar getDataPublicao() {
-		return dataPublicao;
+	public Calendar getDataPublicacao() {
+		return dataPublicacao;
 	}
 
-	public void setDataPublicao(Calendar dataPublicao) {
-		this.dataPublicao = dataPublicao;
+	public void setDataPublicacao(Calendar dataPublicacao) {
+		this.dataPublicacao = dataPublicacao;
 	}
 
 	public List<Aluno> getListaAlunos() {

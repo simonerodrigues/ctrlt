@@ -389,7 +389,7 @@
 								}
 							}, {
 								"data" : function(o) {
-									return moment(new Date(o.dataPublicao)).lang("pt-br").format('L') + " " + moment(new Date(o.dataPublicao)).lang("pt-br").format('LTS');
+									return moment(new Date(o.dataPublicacao)).lang("pt-br").format('L') + " " + moment(new Date(o.dataPublicacao)).lang("pt-br").format('LTS');
 								}
 							}, {
 								"data" : "ativo"
