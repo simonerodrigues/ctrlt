@@ -37,10 +37,29 @@ public class DashboardController {
 		//Informações de Arquivos
 		BigInteger tamanhoArquivosMonografia = (BigInteger) manager.createQuery("SELECT SUM(m.tamanho) FROM Monografia m").getSingleResult();
 		BigInteger tamanhoArquivosAnexos     = (BigInteger) manager.createQuery("SELECT SUM(a.tamanho) FROM Anexo a").getSingleResult();
+		
+		//Veriricação dos números de arquivos
+		if(tamanhoArquivosMonografia == null){
+			tamanhoArquivosMonografia = new BigInteger("0");
+		}
+		
+		if(tamanhoArquivosAnexos == null){
+			tamanhoArquivosAnexos = new BigInteger("0");
+		}
+		
 		dashboard.setTamanhoArquivos(FileUtils.byteCountToDisplaySize(tamanhoArquivosMonografia.add(tamanhoArquivosAnexos)));
 		
 		Long numeroDownloadsMonografia = (Long) manager.createQuery("SELECT SUM(m.numeroDownloads) FROM Monografia m").getSingleResult();
 		Long numeroDownloadsAnexo = (Long) manager.createQuery("SELECT SUM(a.numeroDownloads) FROM Anexo a").getSingleResult();
+		
+		//Veriricação dos números de arquivos
+		if(numeroDownloadsMonografia == null){
+			numeroDownloadsMonografia = 0l;
+		}
+		
+		if(numeroDownloadsAnexo == null){
+			numeroDownloadsAnexo = 0l;
+		}
 		
 		dashboard.setNumeroDownloads(numeroDownloadsMonografia + numeroDownloadsAnexo);
 		
