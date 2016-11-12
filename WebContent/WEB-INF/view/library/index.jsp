@@ -89,19 +89,96 @@
 					<center><h2>Trabalhos mais visitados</h2></center>
 					<hr />
 					<div id="coverflow">
-						<img class="cover" src="images/demo/1.jpg"/>
-						<img class="cover" src="images/demo/2.jpg"/>
-						<img class="cover" src="images/demo/3.jpg"/>
-						<img class="cover" src="images/demo/4.jpg"/>
-						<img class="cover" src="images/demo/5.jpg"/>
-						<img class="cover" src="images/demo/6.jpg"/>
-						<img class="cover" src="images/demo/7.jpg"/>
-						<img class="cover" src="images/demo/8.jpg"/>
-						<img class="cover" src="images/demo/9.jpg"/>
-						<img class="cover" src="images/demo/10.jpg"/>
-						<img class="cover" src="images/demo/11.jpg"/>
-						<img class="cover" src="images/demo/12.jpg"/>
-						<img class="cover" src="images/demo/13.jpg"/>
+						<div class="book-cover">
+							<img src="/images/logo/library/book-header.png" width="100%">
+							
+							<div class="book-student-names">
+								SIMONE SANTOS RODRIGUES
+							</div>
+							
+							<div class="book-title">
+								DESENVOLVIMENTO DO PROGRAMA GNU/CTRL + T:  UM SISTEMA GESTOR DE PUBLICAÇÕES DE MONOGRAFIAS LIVRE
+							</div>
+							
+							<div class="book-footer">
+								São Caetano do Sul - 2016
+							</div>
+						</div>
+						<div class="book-cover">
+							<img src="/images/logo/library/book-header.png" width="100%">
+							
+							<div class="book-student-names">
+								SIMONE SANTOS RODRIGUES
+							</div>
+							
+							<div class="book-title">
+								DESENVOLVIMENTO DO PROGRAMA GNU/CTRL + T:  UM SISTEMA GESTOR DE PUBLICAÇÕES DE MONOGRAFIAS LIVRE
+							</div>
+							
+							<div class="book-footer">
+								São Caetano do Sul - 2016
+							</div>
+						</div>
+						<div class="book-cover">
+							<img src="/images/logo/library/book-header.png" width="100%">
+							
+							<div class="book-student-names">
+								SIMONE SANTOS RODRIGUES
+							</div>
+							
+							<div class="book-title">
+								DESENVOLVIMENTO DO PROGRAMA GNU/CTRL + T:  UM SISTEMA GESTOR DE PUBLICAÇÕES DE MONOGRAFIAS LIVRE
+							</div>
+							
+							<div class="book-footer">
+								São Caetano do Sul - 2016
+							</div>
+						</div>
+						<div class="book-cover">
+							<img src="/images/logo/library/book-header.png" width="100%">
+							
+							<div class="book-student-names">
+								SIMONE SANTOS RODRIGUES
+							</div>
+							
+							<div class="book-title">
+								DESENVOLVIMENTO DO PROGRAMA GNU/CTRL + T:  UM SISTEMA GESTOR DE PUBLICAÇÕES DE MONOGRAFIAS LIVRE
+							</div>
+							
+							<div class="book-footer">
+								São Caetano do Sul - 2016
+							</div>
+						</div>
+						<div class="book-cover">
+							<img src="/images/logo/library/book-header.png" width="100%">
+							
+							<div class="book-student-names">
+								SIMONE SANTOS RODRIGUES
+							</div>
+							
+							<div class="book-title">
+								DESENVOLVIMENTO DO PROGRAMA GNU/CTRL + T:  UM SISTEMA GESTOR DE PUBLICAÇÕES DE MONOGRAFIAS LIVRE
+							</div>
+							
+							<div class="book-footer">
+								São Caetano do Sul - 2016
+							</div>
+						</div>
+						<div class="book-cover">
+							<img src="/images/logo/library/book-header.png" width="100%">
+							
+							<div class="book-student-names">
+								SIMONE SANTOS RODRIGUES
+							</div>
+							
+							<div class="book-title">
+								DESENVOLVIMENTO DO PROGRAMA GNU/CTRL + T:  UM SISTEMA GESTOR DE PUBLICAÇÕES DE MONOGRAFIAS LIVRE
+							</div>
+							
+							<div class="book-footer">
+								São Caetano do Sul - 2016
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
