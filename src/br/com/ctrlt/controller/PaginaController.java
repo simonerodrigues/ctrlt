@@ -21,9 +21,9 @@ public class PaginaController {
 		return "adm/profile";
 	}
 	
-	@RequestMapping(value = "galeria")
+	@RequestMapping(value = "biblioteca")
 	public String indexGallery(Model model){
-		return "gallery/index";
+		return "library/index";
 	}	
 	
 	@RequestMapping(value = "acesso_negado")
