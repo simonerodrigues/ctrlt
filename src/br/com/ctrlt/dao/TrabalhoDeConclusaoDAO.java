@@ -93,6 +93,28 @@ public class TrabalhoDeConclusaoDAO implements DAO<TrabalhoDeConclusao> {
 			return false;
 		}
 	}
+	
+	public List<TrabalhoDeConclusao> listarOsMaisBaixados(int quantidade){
+		Query query = manager.createQuery("SELECT t FROM TrabalhoDeConclusao t "
+				+ "JOIN FETCH t.monografia m "
+				+ "WHERE t.ativo = true "
+				+ "ORDER BY m.numeroDownloads DESC");
+
+		List<TrabalhoDeConclusao> listaTCC = query.setMaxResults(quantidade).getResultList();
+		
+		return listaTCC;
+	}
+	
+	public List<TrabalhoDeConclusao> listarOsRecemAdicionados(int quantidade){
+		Query query = manager.createQuery("SELECT t FROM TrabalhoDeConclusao t "
+				+ "JOIN FETCH t.monografia m "
+				+ "WHERE t.ativo = true "
+				+ "ORDER BY m.dataUpload DESC");
+
+		List<TrabalhoDeConclusao> listaTCC = query.setMaxResults(quantidade).getResultList();
+		
+		return listaTCC;
+	}
 
 	public EntityManager getEntityManager() {
 		return manager;

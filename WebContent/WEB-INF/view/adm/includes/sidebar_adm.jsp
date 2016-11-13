@@ -4,14 +4,17 @@
 	<ul class="nav navbar-nav side-nav">
 		<c:if test="${not empty sessionScope.alunoLogado}">
 			<li class="active"><a href="/adm/profile"><i class="fa fa-user"></i> Profile</a></li>
+			<li><a target="_blank" href="/biblioteca"><i class=" fa fa-book"></i> Biblioteca</a>
 		</c:if>
 		
 		<c:if test="${not empty sessionScope.professorLogado}">
 			<li class="active"><a href="/adm/profile"><i class="fa fa-user"></i> Profile</a></li>
+			<li><a target="_blank" href="/biblioteca"><i class=" fa fa-book"></i> Biblioteca</a>
 		</c:if>
 		
 		<c:if test="${not empty sessionScope.administradorLogado}">
 			<li class="active"><a href="/adm/dashboard"><i class=" fa fa-dashboard"></i> Dashboard</a></li>
+			<li><a target="_blank" href="/biblioteca"><i class=" fa fa-book"></i> Biblioteca</a>
 			<li><a href="javascript:;" data-toggle="collapse" data-target="#cadastros"><i class=" fa fa-plus"></i> Cadastros <i class=" fa fa-caret-down"></i></a>
 				<ul id="cadastros" class="collapse">
 					<li id="cadastroADM"><a href="/adm/cadastro/administrador_de_conteudo"><i class="fa fa-user-plus"></i> Adm de Conteúdo</a></li>

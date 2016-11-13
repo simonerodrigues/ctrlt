@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <header>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container container-navbar">
@@ -15,28 +17,16 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
 					<li><a href="#">Monografias</a></li>
-					<li><a href="#">Orientadores</a></li>
 					<li class="dropdown">
-					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ano Letivo <span class="caret"></span></a>
+					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cursos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">2014</a></li>
-							<li><a href="#">2015</a></li>
-							<li><a href="#">2016</a></li>
+							<c:forEach items="${cursos}" var="curso">
+								<li><a href="#">${curso.nome}</a></li>
+							</c:forEach>
 						</ul>
 					</li>
 					<li class="dropdown">
-					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categoria(s) <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Banco de Dados</a></li>
-							<li><a href="#">Mobile</a></li>
-							<li><a href="#">Mainframe</a></li>
-							<li><a href="#">Sistemas Distribuídos</a></li>
-							<li><a href="#">Web</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Prêmios</a></li>
-					<li class="dropdown">
-					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ajuda <span class="caret"></span></a>
+					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informações <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">FATEC São Caetano - Antonio Russo</a></li>
 							<li><a href="#">Sobre</a></li>
