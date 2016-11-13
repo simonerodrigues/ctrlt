@@ -26,7 +26,7 @@
 		<div class="container page">
 			<div class="row">
 				<div class="col-lg-12">		
-					<center><h2>Trabalhos mais visitados</h2></center>
+					<center><h2>Trabalhos mais baixados</h2></center>
 					<hr />
 					
 					<!-- Importando Coverflow -->
