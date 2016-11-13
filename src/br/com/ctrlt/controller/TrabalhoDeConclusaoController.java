@@ -73,6 +73,15 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		
 		return "adm/cadastros/cadastro_trabalho_de_conclusao";
 	}
+	
+	@RequestMapping(value = "trabalho_de_conclusao/{id}", method = RequestMethod.GET)
+	public String carregarTrabalhoDeConclusao(@PathVariable("id") Long idTcc, Model model) {
+		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
+		
+		model.addAttribute("trabalhoDeConclusao", trabalhoDeConclusao);
+		
+		return "library/trabalho_de_conclusao";
+	}
 
 	@Override
 	public ResponseJson cadastrar(@Valid TrabalhoDeConclusao entidade, BindingResult result) {

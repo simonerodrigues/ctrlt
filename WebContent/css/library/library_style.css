@@ -25,6 +25,10 @@ body {
 	outline: none;
 }
 
+a.book-link {
+	color: #000;
+}
+
 .book-cover {
 	background-color: #fff;
 	width: 275px;
@@ -85,7 +89,7 @@ body {
 @media (min-width: 992px){
 	/* Page */
 	.page {
-		margin-top: 155px;
+		margin-top: 175px;
 	}
 
 	/* Navbar */
@@ -98,9 +102,6 @@ body {
 		top: 10px;
 		right: 0px;
 	}
-
-
-
 }
 
 @media(min-width: 768px){

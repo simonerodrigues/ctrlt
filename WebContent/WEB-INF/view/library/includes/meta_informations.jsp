@@ -5,7 +5,7 @@
 <meta name="author" content="Simone Santos Rodrigues">
 
 <!-- Ícone da página -->
-<link rel="icon" type="image/png" href="images/icons/favicon.png">
+<link rel="icon" type="image/png" href="/images/icons/favicon.png">
 
 <!-- Title -->
 <title>Ctrl - T ADM</title>
