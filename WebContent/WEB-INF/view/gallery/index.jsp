@@ -46,7 +46,7 @@
 					<c:forEach items="${trabalhosRecemAdicionados}" var="trabalhoDeConclusao">
 						<a class="book-link" href="/trabalho_de_conclusao/${trabalhoDeConclusao.id}">
 							<div class="book-cover left">
-								<img src="/images/logo/library/book-header.png" width="100%">
+								<img src="/images/logo/gallery/book-header.png" width="100%">
 								
 								<div class="book-student-names">
 									<c:forEach items="${trabalhoDeConclusao.listaAlunos}" var="aluno">

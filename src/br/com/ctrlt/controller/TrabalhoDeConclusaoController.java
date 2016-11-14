@@ -80,7 +80,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		
 		model.addAttribute("trabalhoDeConclusao", trabalhoDeConclusao);
 		
-		return "library/trabalho_de_conclusao";
+		return "gallery/trabalho_de_conclusao";
 	}
 
 	@Override

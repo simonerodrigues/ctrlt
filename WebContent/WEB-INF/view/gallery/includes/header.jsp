@@ -9,13 +9,13 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 						<span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a href="/biblioteca"><img src="/images/logo/library/logo.png"/></a>	
+					<a href="/galeria"><img src="/images/logo/gallery/logo.png"/></a>	
 				</div>
 			</div>
 	
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/biblioteca">Home <span class="sr-only">(current)</span></a></li>
+					<li class="active"><a href="/galeria">Home <span class="sr-only">(current)</span></a></li>
 					<li><a href="#">Monografias</a></li>
 					<li class="dropdown">
 					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cursos <span class="caret"></span></a>

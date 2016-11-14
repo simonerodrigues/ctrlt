@@ -34,7 +34,7 @@ public class PaginaController {
 		return "adm/profile";
 	}
 	
-	@RequestMapping(value = "biblioteca")
+	@RequestMapping(value = "galeria")
 	public String indexGallery(Model model){
 		
 		List<Curso> listaCursos = cursoDAO.listar(" WHERE c.ativo = true ORDER BY c.nome");
@@ -46,7 +46,7 @@ public class PaginaController {
 		List<TrabalhoDeConclusao> trabalhosRecemAdicionados = trabalhoDeConclusaoDAO.listarOsMaisBaixados(8);
 		model.addAttribute("trabalhosRecemAdicionados", trabalhosRecemAdicionados);
 		
-		return "library/index";
+		return "gallery/index";
 	}	
 	
 	@RequestMapping(value = "acesso_negado")

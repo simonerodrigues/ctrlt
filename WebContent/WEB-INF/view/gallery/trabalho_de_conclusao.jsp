@@ -57,7 +57,7 @@
 					
 				<br />
 				
-				<textarea readonly="readonly" cols="70" rows="30">${trabalhoDeConclusao.resumo}</textarea>
+				<textarea readonly="readonly" cols="65" rows="20">${trabalhoDeConclusao.resumo}</textarea>
 			</div>
 			
 			<div class="col-lg-6">
@@ -67,7 +67,7 @@
 				
 				<div class="row">
 					<center><div class="book-cover">
-						<img src="/images/logo/library/book-header.png" width="100%">
+						<img src="/images/logo/gallery/book-header.png" width="100%">
 						
 						<div class="book-student-names">
 							<c:forEach items="${trabalhoDeConclusao.listaAlunos}" var="aluno">
@@ -93,12 +93,12 @@
 				<br />
 				
 				<div class="row">
-					<div class="col-lg-10">
+					<div class="col-lg-8">
 						<strong>Nome:</strong> ${trabalhoDeConclusao.monografia.nome} <br />
 						<strong>Número de Downloads:</strong> ${trabalhoDeConclusao.monografia.numeroDownloads}
 					</div>
 					
-					<div class="col-lg-2">
+					<div class="col-lg-4">
 						<a target="_blank" href="/monografias/${trabalhoDeConclusao.id}/${trabalhoDeConclusao.monografia.nome}">
 							<button class="btn btn-primary">
 								<i class="fa fa-cloud-download" aria-hidden="true"></i> Download
@@ -118,12 +118,12 @@
 							<br />
 														
 							<div class="row">
-								<div class="col-lg-10">
+								<div class="col-lg-8">
 									<strong>Nome:</strong> ${anexo.nome} <br />
 									<strong>Número de Downloads:</strong> ${anexo.numeroDownloads}
 								</div>
 								
-								<div class="col-lg-2">
+								<div class="col-lg-4">
 									<a target="_blank" href="/anexos/${trabalhoDeConclusao.id}/${anexo.id}/${anexo.nome}">
 										<button class="btn btn-primary">
 											<i class="fa fa-cloud-download" aria-hidden="true"></i> Download

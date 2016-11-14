@@ -11,4 +11,4 @@
 <script src="/js/vendor/coverflow/jquery.coverflow.js" charset="utf-8"></script>
 
 <!-- Personal Scripts -->
-<script src="/js/library/scripts.js"></script>
+<script src="/js/gallery/scripts.js"></script>
