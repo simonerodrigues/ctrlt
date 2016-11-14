@@ -99,7 +99,7 @@
 					</div>
 					
 					<div class="col-lg-4">
-						<a target="_blank" href="/monografias/${trabalhoDeConclusao.id}/${trabalhoDeConclusao.monografia.nome}">
+						<a target="_blank" href="/download/monografias/${trabalhoDeConclusao.id}">
 							<button class="btn btn-primary">
 								<i class="fa fa-cloud-download" aria-hidden="true"></i> Download
 							</button>
@@ -124,7 +124,7 @@
 								</div>
 								
 								<div class="col-lg-4">
-									<a target="_blank" href="/anexos/${trabalhoDeConclusao.id}/${anexo.id}/${anexo.nome}">
+									<a target="_blank" href="/download/anexos/${trabalhoDeConclusao.id}/${anexo.id}">
 										<button class="btn btn-primary">
 											<i class="fa fa-cloud-download" aria-hidden="true"></i> Download
 										</button>
