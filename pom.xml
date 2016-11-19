@@ -117,13 +117,12 @@
 			<version>5.2.2.Final</version>
 		</dependency>
 
-		<!-- Postgre Dependency -->
+		<!-- Mysql Dependency -->
 		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.39</version>
 		</dependency>
-
 
 		<!-- Servlet Dependency -->
 		<dependency>

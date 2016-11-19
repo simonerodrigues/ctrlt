@@ -53,14 +53,14 @@
 	<!-- Classe que realiza a conexão com o Banco de Dados -->
 	<bean id="mysqlDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgres://dxjgdsfapjthsm:_AidmPmV-NAzuIpLDyviMiIzdC@ec2-54-225-81-90.compute-1.amazonaws.com:5432/d1esrjurf8jrhg" />
-		<property name="user" value="dxjgdsfapjthsm" />
-		<property name="password" value="_AidmPmV-NAzuIpLDyviMiIzdC" />
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost/ctrlt?charSet=LATIN1" />
+		<property name="user" value="root" />
+		<property name="password" value="" />
 
 		<property name="minPoolSize" value="15" />
-		<property name="maxPoolSize" value="20" />
-		<property name="maxStatements" value="20" />
+		<property name="maxPoolSize" value="200" />
+		<property name="maxStatements" value="100" />
 	</bean>
 
 	<!-- Gerenciamento de JPA/Hibernate pelo Spring (Abertura de EntityManager) -->
