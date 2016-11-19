@@ -52,15 +52,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			 request.getSession().getAttribute("alunoLogado") != null
 			)) {
 			if(request.getSession().getAttribute("administradorLogado") != null){
-				response.sendRedirect("/adm/dashboard");
+				response.sendRedirect(request.getContextPath() + "/adm/dashboard");
 			}else{
-				response.sendRedirect("/adm/profile");
+				response.sendRedirect(request.getContextPath() + "/adm/profile");
 			}
 			
 			return false;
 		}
 
-		response.sendRedirect("/login");
+		response.sendRedirect(request.getContextPath() + "/login");
 		return false;
 	}
 }

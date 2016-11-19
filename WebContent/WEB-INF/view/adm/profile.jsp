@@ -3,15 +3,14 @@
 <html lang="pt-br">
 
 <head>
-<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
-
-<!-- Informações de Autor do projeto -->
-<c:import url="${metainformations}"></c:import>
-
-<!-- CSS Include -->
-<c:url value="includes/css.jsp" var="css"></c:url>
-<c:import url="${css}"></c:import>
-
+	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
+	
+	<!-- Informações de Autor do projeto -->
+	<c:import url="${metainformations}"></c:import>
+	
+	<!-- CSS Include -->
+	<c:url value="includes/css.jsp" var="css"></c:url>
+	<c:import url="${css}"></c:import>
 </head>
 
 <body>

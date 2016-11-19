@@ -1,18 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="baseURL" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-<!-- Informações de Autor do projeto --> 
-<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
-<c:import url="${metainformations}"></c:import>
-
-<!-- CSS Include -->
-<c:url value="includes/css.jsp" var="css"></c:url>
-<c:import url="${css}"></c:import>
-
+	<!-- Informações de Autor do projeto --> 
+	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
+	<c:import url="${metainformations}"></c:import>
+	
+	<!-- CSS Include -->
+	<c:url value="includes/css.jsp" var="css"></c:url>
+	<c:import url="${css}"></c:import>
 </head>
 
 <body>
@@ -67,7 +68,7 @@
 				
 				<div class="row">
 					<center><div class="book-cover">
-						<img src="/images/logo/gallery/book-header.png" width="100%">
+						<img src="${baseURL}/images/logo/gallery/book-header.png" width="100%">
 						
 						<div class="book-student-names">
 							<c:forEach items="${trabalhoDeConclusao.listaAlunos}" var="aluno">
@@ -99,7 +100,7 @@
 					</div>
 					
 					<div class="col-lg-4">
-						<a target="_blank" href="/monografias/${trabalhoDeConclusao.id}/${trabalhoDeConclusao.monografia.nome}">
+						<a target="_blank" href="${baseURL}/monografias/${trabalhoDeConclusao.id}/${trabalhoDeConclusao.monografia.nome}">
 							<button class="btn btn-primary">
 								<i class="fa fa-cloud-download" aria-hidden="true"></i> Download
 							</button>
@@ -124,7 +125,7 @@
 								</div>
 								
 								<div class="col-lg-4">
-									<a target="_blank" href="/anexos/${trabalhoDeConclusao.id}/${anexo.id}/${anexo.nome}">
+									<a target="_blank" href="${baseURL}/anexos/${trabalhoDeConclusao.id}/${anexo.id}/${anexo.nome}">
 										<button class="btn btn-primary">
 											<i class="fa fa-cloud-download" aria-hidden="true"></i> Download
 										</button>

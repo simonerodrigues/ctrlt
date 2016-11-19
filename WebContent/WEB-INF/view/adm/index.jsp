@@ -1,18 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set var="baseURL" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-<c:url value="includes/meta_informations.jsp"
-	var="metainformations"></c:url>
-
-<!-- Informações de Autor do projeto -->
-<c:import url="${metainformations}"></c:import>
-
-<!-- CSS Include -->
-<c:url value="includes/css.jsp" var="css"></c:url>
-<c:import url="${css}"></c:import>
-
+	<c:url value="includes/meta_informations.jsp"
+		var="metainformations"></c:url>
+	
+	<!-- Informações de Autor do projeto -->
+	<c:import url="${metainformations}"></c:import>
+	
+	<!-- CSS Include -->
+	<c:url value="includes/css.jsp" var="css"></c:url>
+	<c:import url="${css}"></c:import>
 </head>
 
 <body>
@@ -227,7 +229,7 @@
 	
 	<script>
 		function atualizaValores(){
-			$.post("/rest/dashboard", {}).done(function(response) {
+			$.post("${baseURL}/rest/dashboard", {}).done(function(response) {
 				$("#numTCC").html(response.numeroTrabalhosDeConclusao);
 				$("#numMonografias").html(response.numeroMonografias);
 				$("#numAnexos").html(response.numeroAnexos);

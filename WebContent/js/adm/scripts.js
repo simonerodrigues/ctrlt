@@ -49,7 +49,7 @@ function logout() {
 		$(".modal-backdrop").fadeOut("slow");
 		$(".modal-backdrop").remove();
 		
-		window.location="/logout";
+		window.location = baseURL + "/logout";
 	});
 	
 	$("#modal").modal("show");

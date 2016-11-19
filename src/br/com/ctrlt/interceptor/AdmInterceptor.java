@@ -59,14 +59,14 @@ public class AdmInterceptor extends HandlerInterceptorAdapter {
 				}else if(uri.endsWith("trabalho_de_conclusao") && administradorDeConteudo.getPermissao().isPublicarTCC()){
 					return true;
 				}else{
-					response.sendRedirect("/acesso_negado");
+					response.sendRedirect(request.getContextPath() + "/acesso_negado");
 					return false;
 				}
 			}
 			
 			if(uri.contains("adm/relatorio/")){
 				if(! administradorDeConteudo.getPermissao().isExtrairRelatorio()){
-					response.sendRedirect("/acesso_negado");
+					response.sendRedirect(request.getContextPath() + "/acesso_negado");
 					return false;
 				}
 			}
@@ -87,7 +87,7 @@ public class AdmInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 
-		response.sendRedirect("/acesso_negado");
+		response.sendRedirect(request.getContextPath() + "/acesso_negado");
 		return false;
 	}
 }

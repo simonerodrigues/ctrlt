@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set var="baseURL" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -230,7 +233,7 @@
 			
 			dataTable(
 					"#dataTable",
-					"/rest/lista/professor",
+					"${baseURL}/rest/lista/professor",
 					[
 							{
 								"data" : function(o) {
@@ -332,7 +335,7 @@
 			//Função que habilita os campos
 			alterar();
 			
-			$.post("/rest/json/professor", {"id" : id}).done(function(response) {
+			$.post("${baseURL}/rest/json/professor", {"id" : id}).done(function(response) {
 				$(".se-pre-con-dark").hide();
 				
 				$("#id").val(response.id);

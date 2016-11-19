@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:set var="baseURL" value="${pageContext.request.contextPath}" />
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
@@ -8,7 +10,7 @@
 			<span class="sr-only"></span> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/adm/dashboard"><i class="fa fa-book"></i>&nbsp;Ctrl+T</a>
+		<a class="navbar-brand" href="${baseURL}/adm/dashboard"><i class="fa fa-book"></i>&nbsp;Ctrl+T</a>
 	</div>
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
@@ -29,7 +31,7 @@
 			
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="/alterar_senha"><i class="fa fa-key"></i> Alterar Senha</a></li>
+				<li><a href="${baseURL}/alterar_senha"><i class="fa fa-key"></i> Alterar Senha</a></li>
 				<li class="divider"></li>
 				<li><a onclick="logout()" href="#"><i
 						class="fa fa-power-off"></i> Log Out</a></li>

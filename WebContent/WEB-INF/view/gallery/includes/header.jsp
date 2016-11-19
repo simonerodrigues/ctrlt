@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:set var="baseURL" value="${pageContext.request.contextPath}" />
+
 <header>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container container-navbar">
@@ -9,13 +11,13 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 						<span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a href="/galeria"><img src="/images/logo/gallery/logo.png"/></a>	
+					<a href="${baseURL}/galeria"><img src="${baseURL}/images/logo/gallery/logo.png"/></a>	
 				</div>
 			</div>
 	
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/galeria">Home <span class="sr-only">(current)</span></a></li>
+					<li class="active"><a href="${baseURL}/galeria">Home <span class="sr-only">(current)</span></a></li>
 					<li><a href="#">Monografias</a></li>
 					<li class="dropdown">
 					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cursos <span class="caret"></span></a>

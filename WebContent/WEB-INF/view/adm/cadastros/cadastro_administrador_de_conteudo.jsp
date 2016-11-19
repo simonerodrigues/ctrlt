@@ -1,22 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set var="baseURL" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-<c:url value="../includes/meta_informations.jsp"
-	var="metainformations"></c:url>
-
-<!-- Informações de Autor do projeto -->
-<c:import url="${metainformations}"></c:import>
-
-<!-- CSS Include -->
-<c:url value="../includes/css.jsp" var="css"></c:url>
-<c:import url="${css}"></c:import>
-
-<!-- CSS DataTable Include -->
-<c:url value="../includes/css_datatables.jsp" var="css_datatables"></c:url>
-<c:import url="${css_datatables}"></c:import>
-
+	<c:url value="../includes/meta_informations.jsp"
+		var="metainformations"></c:url>
+	
+	<!-- Informações de Autor do projeto -->
+	<c:import url="${metainformations}"></c:import>
+	
+	<!-- CSS Include -->
+	<c:url value="../includes/css.jsp" var="css"></c:url>
+	<c:import url="${css}"></c:import>
+	
+	<!-- CSS DataTable Include -->
+	<c:url value="../includes/css_datatables.jsp" var="css_datatables"></c:url>
+	<c:import url="${css_datatables}"></c:import>
 </head>
 
 <body>
@@ -263,7 +265,7 @@
 			
 			dataTable(
 					"#dataTable",
-					"/rest/lista/administrador_de_conteudo",
+					"${baseURL}/rest/lista/administrador_de_conteudo",
 					[
 							{
 								"data" : function(o) {
@@ -359,7 +361,7 @@
 			//Função que habilita os campos
 			alterar();
 			
-			$.post("/rest/json/administrador_de_conteudo", {"id" : id}).done(function(response) {
+			$.post("${baseURL}/rest/json/administrador_de_conteudo", {"id" : id}).done(function(response) {
 				$(".se-pre-con-dark").hide();
 				
 				$("#id").val(response.id);

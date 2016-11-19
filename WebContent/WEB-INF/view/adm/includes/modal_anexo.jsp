@@ -1,3 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set var="baseURL" value="${pageContext.request.contextPath}" />
+
 <div class="modal fade" id="modal-anexo" tabindex="-1" role="dialog"
 	aria-labelledby="modalCancelar" data-backdrop="static"
 	data-keyboard="false">
@@ -175,7 +179,7 @@
 	//Função para bloquear o download da entidade
 	function bloquearDownload(entidade, id) {
 		
-		$.post("/rest/status_download/" + entidade, {"id" : id}).done(function(response) {
+		$.post("${baseURL}/rest/status_download/" + entidade, {"id" : id}).done(function(response) {
 			$(".se-pre-con-dark").fadeIn("slow");
 			
 			if (response.status == "SUCCESS") {

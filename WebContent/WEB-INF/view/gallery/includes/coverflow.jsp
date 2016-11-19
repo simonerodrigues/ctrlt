@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="baseURL" value="${pageContext.request.contextPath}" />
+
 <div id="coverflow">
 	<c:forEach items="${trabalhosMaisBaixados}" var="trabalhoDeConclusao">
-		<a class="book-link" href="/trabalho_de_conclusao/${trabalhoDeConclusao.id}">
+		<a class="book-link" href="${baseURL}/trabalho_de_conclusao/${trabalhoDeConclusao.id}">
 			<div class="book-cover left">
-				<img src="/images/logo/gallery/book-header.png" width="100%">
+				<img src="${baseURL}/images/logo/gallery/book-header.png" width="100%">
 				
 				<div class="book-student-names">
 					<c:forEach items="${trabalhoDeConclusao.listaAlunos}" var="aluno">

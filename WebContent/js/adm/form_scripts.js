@@ -371,7 +371,7 @@ function dataTable(id, url, data) {
 	        "columns": data,
 			"scrollX": true,
 			"language" : {
-				"url" : "/json/Portuguese-Brasil.json"
+				"url" : baseURL + "/json/Portuguese-Brasil.json"
 			},
 			"aoColumnDefs": [ {
 				"aTargets": [0,1,2],
@@ -421,7 +421,7 @@ function dataTableTCC(id, url, data) {
 	        "columns": data,
 			"scrollX": true,
 			"language" : {
-				"url" : "/json/Portuguese-Brasil.json"
+				"url" : baseURL + "/json/Portuguese-Brasil.json"
 			},
 			"aoColumnDefs": [ {
 				"aTargets": [0,1,2,3,4],
@@ -466,9 +466,9 @@ function manterEntidade(acao,entidade, data) {
 	 */
 	
 	if(acao == 1){
-		var operacao = "/rest/cadastra/";
+		var operacao = baseURL + "/rest/cadastra/";
 	}else if(acao == 2){
-		var operacao = "/rest/altera/"
+		var operacao = baseURL + "/rest/altera/"
 	}
 
 	$.post(operacao + entidade, data).done(function(response) {
@@ -534,9 +534,9 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 	 */
 	
 	if(acao == 1){
-		var operacao = "/rest/cadastra/";
+		var operacao = baseURL + "/rest/cadastra/";
 	}else if(acao == 2){
-		var operacao = "/rest/altera/"
+		var operacao = baseURL + "/rest/altera/"
 	}
 
 	$.post(operacao + entidade, data).done(function(response) {
@@ -587,7 +587,7 @@ function manterEntidadeComUpload(acao, entidade, data, entidadeUpload, uploadDat
 //Função que realiza o upload do(s) arquivo(s)	
 function uploadArquivos(entidadeUpload, uploadData){
 	$.ajax({
-        url: "/rest/cadastra/upload_" + entidadeUpload,
+        url: baseURL + "/rest/cadastra/upload_" + entidadeUpload,
         type: 'POST',
         data: uploadData,
         xhr: function() {
@@ -671,7 +671,7 @@ function carregarProgresso(e){
 //Função para inativar a entidade
 function inativarEntidade(entidade, id) {
 	
-	$.post("/rest/inativa/" + entidade, {"id" : id}).done(function(response) {
+	$.post(baseURL + "/rest/inativa/" + entidade, {"id" : id}).done(function(response) {
 		$(".se-pre-con-dark").fadeIn("slow");
 		
 		if (response.status == "SUCCESS") {
@@ -728,7 +728,7 @@ function inativarEntidade(entidade, id) {
 //Função para excluir a entidade
 function excluirEntidade(entidade, id) {
 	
-	$.post("/rest/exclui/" + entidade, {"id" : id}).done(function(response) {
+	$.post(baseURL + "/rest/exclui/" + entidade, {"id" : id}).done(function(response) {
 		$(".se-pre-con-dark").fadeIn("slow");
 		
 		if (response.status == "SUCCESS") {
@@ -778,22 +778,6 @@ function excluirEntidade(entidade, id) {
 		});
 		
 		$("#texto-modal").html("Erro ao excluir o(a) " + entidadeMensagem(entidade) + ", por gentileza tente novamente!");
-		$("#modal").modal("show");
-	});
-}
-
-//Função que preenche o valor do produto
-function valorProduto(){
-	$.post("servico_json", {"id" : $("#servico").val()}).done(function(response) {
-		$(".se-pre-con-dark").hide();
-		
-		$("#preco").val(response.preco);
-		$("#preco").val(($("#preco").val()).replace(".",","));
-	}).fail(function(e) {
-		$(".se-pre-con-dark").fadeOut("slow");
-		$("#botao-modal-nao").hide();
-		$("#botao-modal-sim").text("Ok");
-		$("#texto-modal").html("Erro ao tentar carregar preço do serviço. Por gentileza tente novamente!");
 		$("#modal").modal("show");
 	});
 }
