@@ -34,6 +34,13 @@
 			<mvc:mapping path="/adm/**"/>
 			<bean class="br.com.ctrlt.interceptor.AdmInterceptor" />
 		</mvc:interceptor>
+		
+		<!-- Verifica permissões de Download dos arquivos -->
+		<mvc:interceptor>
+			<mvc:mapping path="/monografias/**"/>
+			<mvc:mapping path="/anexos/**"/>
+			<bean class="br.com.ctrlt.interceptor.DownloadInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<!-- Bean da InternalResourceViewResolver (Spring MVC) -->

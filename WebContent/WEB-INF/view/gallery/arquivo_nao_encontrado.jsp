@@ -27,7 +27,7 @@
 		
 		<div class="col-lg-12">
 			<center>
-				<p>Você não possui permissão para acessar a página em questão, caso possua dúvidas, entre em contato com o administrador do Sistema.</p>
+				<p>O arquivo solicitado está não foi encontrado no servidor. Por gentileza entre em contato com o administrador do sistema.</p>
 				
 				<br /><br />
 				
