@@ -59,8 +59,8 @@
 		<property name="password" value="_AidmPmV-NAzuIpLDyviMiIzdC" />
 
 		<property name="minPoolSize" value="15" />
-		<property name="maxPoolSize" value="200" />
-		<property name="maxStatements" value="100" />
+		<property name="maxPoolSize" value="20" />
+		<property name="maxStatements" value="20" />
 	</bean>
 
 	<!-- Gerenciamento de JPA/Hibernate pelo Spring (Abertura de EntityManager) -->
