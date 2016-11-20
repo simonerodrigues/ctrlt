@@ -16,3 +16,8 @@
 
 <!-- Personal Scripts -->
 <script src="${baseURL}/js/gallery/scripts.js"></script>
+
+<!-- Função para tratar o contexto da aplicação EX: 127.0.0.1:8080/ctrlt/ -->
+<script>
+	var baseURL = '${baseURL}';
+</script>

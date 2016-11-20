@@ -33,12 +33,14 @@ import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import br.com.ctrlt.dao.AlunoDAO;
 import br.com.ctrlt.dao.AnexoDAO;
+import br.com.ctrlt.dao.CursoDAO;
 import br.com.ctrlt.dao.ProfessorDAO;
 import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
 import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.ResponseJsonWithId;
 import br.com.ctrlt.json.TableResponseJson;
 import br.com.ctrlt.model.Anexo;
+import br.com.ctrlt.model.Curso;
 import br.com.ctrlt.model.Monografia;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -63,6 +65,9 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	private ProfessorDAO professorDAO;
 	
 	@Autowired
+	private CursoDAO cursoDAO;
+	
+	@Autowired
 	private AnexoDAO anexoDAO;
 	
 	@Override
@@ -77,8 +82,10 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	@RequestMapping(value = "trabalho_de_conclusao/{id}", method = RequestMethod.GET)
 	public String carregarTrabalhoDeConclusao(@PathVariable("id") Long idTcc, Model model) {
 		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
-		
 		model.addAttribute("trabalhoDeConclusao", trabalhoDeConclusao);
+		
+		List<Curso> listaCursos = cursoDAO.listar(" WHERE c.ativo = true ORDER BY c.nome");
+		model.addAttribute("cursos", listaCursos);
 		
 		return "gallery/trabalho_de_conclusao";
 	}

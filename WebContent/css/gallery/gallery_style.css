@@ -85,6 +85,32 @@ a.book-link {
 	float: left;
 }
 
+/* Modal centralizado */
+.modal {
+  text-align: center;
+}
+
+ .modal:before {
+   display: inline-block;
+   vertical-align: middle;
+   content: " ";
+   height: 100%;
+ }
+
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+@media ( min-width :768px) {
+	#modal-login .modal-dialog {
+		width: 450px;
+	}
+}
+
+
 /* Responsive Layout */
 @media (min-width: 992px){
 	/* Page */

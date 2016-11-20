@@ -92,7 +92,14 @@
 		<c:url value="../includes/javascript_form.jsp" var="javascript_form"></c:url>
 		<c:import url="${javascript_form}"></c:import>
 
+		<c:if test="${not empty param.redirect}">
+			<script type="text/javascript">
+				var redirect = '${baseURL}/${param.redirect}';
+			</script>
+		</c:if>
+
 		<script type="text/javascript">
+		
 			$("#modal-login").modal("show");
 			
 			$("body").removeClass("modal-open");
@@ -117,10 +124,14 @@
 								$(".modal-backdrop").fadeOut("slow");
 								$(".modal-backdrop").remove();
 								
-								if($("#tipo").val() == "1"){
-									window.location="${baseURL}/adm/dashboard";
+								if(redirect == ""){
+									if($("#tipo").val() == "1"){
+										window.location = "${baseURL}/adm/dashboard";
+									}else{
+										window.location = "${baseURL}/adm/profile";
+									}
 								}else{
-									window.location="${baseURL}/adm/profile";
+									window.location = redirect; 
 								}
 							} else {
 								$("#botao-modal-nao").hide();

@@ -35,7 +35,8 @@
 				<li class="divider"></li>
 				<li><a onclick="logout()" href="#"><i
 						class="fa fa-power-off"></i> Log Out</a></li>
-			</ul></li>
+			</ul>
+		</li>
 	</ul>
 
 	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->

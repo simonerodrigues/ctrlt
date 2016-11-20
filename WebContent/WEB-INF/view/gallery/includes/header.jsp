@@ -5,48 +5,100 @@
 <header>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container container-navbar">
-	
+
 			<div class="container">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-ex1-collapse">
+						<span class="sr-only"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a href="${baseURL}/galeria"><img src="${baseURL}/images/logo/gallery/logo.png"/></a>	
+					<a href="${baseURL}/galeria"><img
+						src="${baseURL}/images/logo/gallery/logo.png" /></a>
 				</div>
 			</div>
-	
+
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="${baseURL}/galeria">Home <span class="sr-only">(current)</span></a></li>
+					<li class="active"><a href="${baseURL}/galeria">Home <span
+							class="sr-only">(current)</span></a></li>
 					<li><a href="#">Monografias</a></li>
-					<li class="dropdown">
-					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cursos <span class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Cursos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<c:forEach items="${cursos}" var="curso">
 								<li><a href="#">${curso.nome}</a></li>
 							</c:forEach>
-						</ul>
-					</li>
-					<li class="dropdown">
-					 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informações <span class="caret"></span></a>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Informações <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">FATEC São Caetano - Antonio Russo</a></li>
+							<li><a target="_blank"
+								href="http://www.fatecsaocaetano.edu.br/">FATEC São Caetano
+									- Antonio Russo</a></li>
 							<li><a href="#">Sobre</a></li>
 						</ul>
 					</li>
 				</ul>
-			</div><!-- /.navbar-collapse -->
-	
+				
+				<c:if test="${not empty sessionScope.administradorLogado 
+					or not empty sessionScope.professorLogado 
+					or not empty sessionScope.alunoLogado}">
+					<ul class="nav navbar-right top-nav">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown"> <i class="fa fa-user"></i> 
+								<c:if test="${not empty sessionScope.administradorLogado}">
+									<c:out value="${sessionScope.administradorLogado.nome}" />
+								</c:if>
+								<c:if test="${not empty sessionScope.professorLogado}">
+									<c:out value="${sessionScope.professorLogado.nome}" />
+								</c:if> 
+								<c:if test="${not empty sessionScope.alunoLogado}">
+									<c:out value="${sessionScope.alunoLogado.nome}" />
+								</c:if> 
+								<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="${baseURL}/alterar_senha"><i
+										class="fa fa-key"></i> Alterar Senha</a></li>
+								<li class="divider"></li>
+								<li><a onclick="logout()" href="#"><i
+										class="fa fa-power-off"></i> Log Out</a></li>
+							</ul>
+						</li>
+					</ul>
+				</c:if>
+				
+				<c:if test="${empty sessionScope.administradorLogado 
+					and empty sessionScope.professorLogado 
+					and empty sessionScope.alunoLogado}">
+					<ul class="nav navbar-right top-nav">
+						<li class="dropdown">
+							<a href="${baseURL}/login?redirect=galeria"> 
+								<i class="fa fa-user"></i> Clique aqui para logar
+							</a>
+						</li>
+					</ul> 
+				</c:if>
+			</div>
+			<!-- /.navbar-collapse -->
+
 			<ul class="nav navbar-nav navbar-right search-form">
+
 				<form class="navbar-form" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" id="campo-pesquisa" placeholder="Digite sua pesquisa">
-					
+						<input type="text" class="form-control" id="campo-pesquisa"
+							placeholder="Digite sua pesquisa">
+
 						<button type="submit" class="btn btn-default" id="botao-pesquisa">Pesquisar</button>
 					</div>
 				</form>
 			</ul>
 		</div>
-		
 	</nav>
 </header>
+
+<!-- Modal Include -->
+<c:url value="includes/modal.jsp" var="modal"></c:url>
+<c:import url="${modal}"></c:import>
