@@ -97,6 +97,12 @@
 				var redirect = '${baseURL}/${param.redirect}';
 			</script>
 		</c:if>
+		
+		<c:if test="${empty param.redirect}">
+			<script type="text/javascript">
+				var redirect = '';
+			</script>
+		</c:if>
 
 		<script type="text/javascript">
 		
