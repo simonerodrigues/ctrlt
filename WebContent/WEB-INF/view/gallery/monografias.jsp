@@ -58,10 +58,19 @@
 			</div>
 			
 			<div class="col-lg-12 line">
-				<c:url var="firstUrl" value="/galeria/monografias/1" />
-				<c:url var="lastUrl" value="/galeria/monografias/${deploymentLog.totalPages}" />
-				<c:url var="prevUrl" value="/galeria/monografias/${currentIndex - 1}" />
-				<c:url var="nextUrl" value="/galeria/monografias/${currentIndex + 1}" />
+				<c:if test="${empty param.s}">
+					<c:url var="firstUrl" value="/galeria/monografias/1" />
+					<c:url var="lastUrl" value="/galeria/monografias/${deploymentLog.totalPages}" />
+					<c:url var="prevUrl" value="/galeria/monografias/${currentIndex - 1}" />
+					<c:url var="nextUrl" value="/galeria/monografias/${currentIndex + 1}" />
+				</c:if>
+				
+				<c:if test="${not empty param.s}">
+					<c:url var="firstUrl" value="/galeria/monografias/1?s=${param.s}" />
+					<c:url var="lastUrl" value="/galeria/monografias/${deploymentLog.totalPages}?s=${param.s}" />
+					<c:url var="prevUrl" value="/galeria/monografias/${currentIndex - 1}?s=${param.s}" />
+					<c:url var="nextUrl" value="/galeria/monografias/${currentIndex + 1}?s=${param.s}" />
+				</c:if>
 				
 				<div class="row text-center">
 					<ul class="pagination">
@@ -76,13 +85,20 @@
 				            </c:otherwise>
 				        </c:choose>
 				        <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
-							<c:url var="pageUrl" value="/galeria/monografias/${i}" />
+				        	<c:if test="${empty param.s}">
+								<c:url var="pageUrl" value="/galeria/monografias/${i}" />
+							</c:if>
+							
+							<c:if test="${not empty param.s}">
+								<c:url var="pageUrl" value="/galeria/monografias/${i}" />
+							</c:if>
+							
 				            <c:choose>
 				                <c:when test="${i == currentIndex}">
-				                    <li class="active"><a href="${pageUrl}"><c:out value="${i}" /></a></li>
+				                    <li class="active"><a href="${pageUrl}?s=${param.s}"><c:out value="${i}" /></a></li>
 				                </c:when>
 				                <c:otherwise>
-				                    <li><a href="${pageUrl}"><c:out value="${i}" /></a></li>
+				                    <li><a href="${pageUrl}?s=${param.s}"><c:out value="${i}" /></a></li>
 				                </c:otherwise>
 				            </c:choose>
 				        </c:forEach>
