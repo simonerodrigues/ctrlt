@@ -14,7 +14,7 @@ import br.com.ctrlt.repository.TrabalhoDeConclusaoRepository;
 @Service
 @Transactional
 public class TrabalhoDeConclusaoLogService implements TrabalhoDeConclusaoService {
-	 private static final int PAGE_SIZE = 2;
+	 private static final int PAGE_SIZE = 12;
 	
     @Autowired 
     private TrabalhoDeConclusaoRepository trabalhoDeConclusaoRepository;
