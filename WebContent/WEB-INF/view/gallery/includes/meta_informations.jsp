@@ -12,4 +12,4 @@
 <link rel="icon" type="image/png" href="${baseURL}/images/icons/favicon.png">
 
 <!-- Title -->
-<title>Ctrl - T ADM</title>
+<title>Ctrl+T - Galeria de Trabalhos de Conclusão</title>

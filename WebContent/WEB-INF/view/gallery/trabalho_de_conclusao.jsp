@@ -28,7 +28,7 @@
 		<!-- Trabalhos mais procurados -->
 		<div class="container page">
 			
-			<h2>Título: ${trabalhoDeConclusao.titulo}</h2>
+			<h2>Título: ${trabalhoDeConclusao.titulo} <button onclick="voltar()" class="btn btn-primary right"><i class="fa fa-arrow-circle-left"></i> Voltar</button></h2>
 			<hr />
 			
 			<br />
@@ -66,7 +66,7 @@
 				
 				<br />
 				
-				<div class="row">
+				<div class="row text-center">
 					<div class="book-cover text-center">
 						<img src="${baseURL}/images/logo/gallery/book-header.png" width="100%">
 						
@@ -140,13 +140,19 @@
 		</div>
 	</main>
 
-	<footer>
-		
-	</footer>
+	<!-- Importando Footer -->
+	<c:import url="includes/footer.jsp"></c:import>
 
 	<!-- JavaScript Include -->
 	<c:url value="includes/javascript.jsp" var="javascript"></c:url>
 	<c:import url="${javascript}"></c:import>
+	
+	<script>
+		function voltar(){
+			window.history.back();
+		}
+	</script>
+	
 </body>
 
 </html>

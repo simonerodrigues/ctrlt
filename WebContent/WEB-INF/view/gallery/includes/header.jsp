@@ -87,7 +87,7 @@
 
 				<form class="navbar-form" role="search" action="${baseURL}/galeria/monografias/1">
 					<div class="form-group">
-						<input type="text" class="form-control" name="s" id="campo-pesquisa"
+						<input type="text" class="form-control" name="s" id="campo-pesquisa" value="${param.s}"
 							placeholder="Digite sua pesquisa">
 
 						<button type="submit" class="btn btn-default" id="botao-pesquisa">Pesquisar</button>

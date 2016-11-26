@@ -18,6 +18,23 @@ body {
     font-weight: bold;
 }
 
+/* Footer */
+footer {
+	margin-top: 10px;
+	vertical-align: bottom;
+	padding: 1em;
+	line-height: 1em;
+	background-color: #f8f8f8;
+	border: #e7e7e7 1px solid;
+	text-align: center;
+}
+
+footer p{
+	margin: 0;
+	vertical-align: center;
+	display: inline-block;
+}
+
 /* Coverflow */
 #coverflow {
 	height: 400px;
@@ -83,6 +100,15 @@ a.book-link {
 
 .left {
 	float: left;
+}
+
+/* Imagem de resultado não encontrado */
+img.row.text-center.not-found {
+	margin-top: 60px;
+}
+
+.not-found {
+	color: #CCC;
 }
 
 /* Modal centralizado */

@@ -71,9 +71,8 @@
 		</div>
 	</main>
 
-	<footer>
-		
-	</footer>
+	<!-- Importando Footer -->
+	<c:import url="includes/footer.jsp"></c:import>
 
 	<!-- JavaScript Include -->
 	<c:url value="includes/javascript.jsp" var="javascript"></c:url>
