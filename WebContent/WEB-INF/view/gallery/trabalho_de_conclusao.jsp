@@ -67,7 +67,7 @@
 				<br />
 				
 				<div class="row">
-					<center><div class="book-cover">
+					<div class="book-cover text-center">
 						<img src="${baseURL}/images/logo/gallery/book-header.png" width="100%">
 						
 						<div class="book-student-names">
@@ -83,7 +83,7 @@
 						<div class="book-footer">
 							São Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
 						</div>
-					</div></center>
+					</div>
 				</div>
 				
 				<br />

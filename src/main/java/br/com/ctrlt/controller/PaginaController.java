@@ -4,13 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.ctrlt.dao.CursoDAO;
 import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
+import br.com.ctrlt.interfaces.TrabalhoDeConclusaoService;
 import br.com.ctrlt.model.Curso;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 
@@ -23,6 +28,9 @@ public class PaginaController {
 	
 	@Autowired
 	private TrabalhoDeConclusaoDAO trabalhoDeConclusaoDAO;
+	
+	@Autowired
+	TrabalhoDeConclusaoService trabalhoDeConclusaoService;
 	
 	@RequestMapping(value = "adm/dashboard")
 	public String indexADM(Model model){
@@ -47,6 +55,29 @@ public class PaginaController {
 		model.addAttribute("trabalhosRecemAdicionados", trabalhosRecemAdicionados);
 		
 		return "gallery/index";
+	}	
+	
+	@RequestMapping(value = "galeria/monografias/{pageNumber}")
+	public String monografias(@PathVariable Integer pageNumber, HttpServletRequest request, Model model){
+		Page<TrabalhoDeConclusao> page = null;
+		
+		if(request.getParameter("s") == null){
+			page = trabalhoDeConclusaoService.obterMonografias(pageNumber);
+		}else{
+			page = trabalhoDeConclusaoService.pesquisarMonografia(pageNumber, request.getParameter("s").toString());
+		}
+		
+		int current = page.getNumber() + 1;
+	    int begin = Math.max(1, current - 5);
+	    int end = Math.min(begin + 10, page.getTotalPages());
+
+	    model.addAttribute("deploymentLog", page);
+	    model.addAttribute("beginIndex", begin);
+	    model.addAttribute("endIndex", end);
+	    model.addAttribute("currentIndex", current);
+	    model.addAttribute("trabalhosDeConclusao", page.getContent());
+		
+		return "gallery/monografias";
 	}	
 	
 	@RequestMapping(value = "acesso_negado")

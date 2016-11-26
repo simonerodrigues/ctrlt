@@ -22,7 +22,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="${baseURL}/galeria">Home <span
 							class="sr-only">(current)</span></a></li>
-					<li><a href="#">Monografias</a></li>
+					<li><a href="${baseURL}/galeria/monografias/1">Monografias</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Cursos <span class="caret"></span></a>
@@ -86,9 +86,9 @@
 
 			<ul class="nav navbar-nav navbar-right search-form">
 
-				<form class="navbar-form" role="search">
+				<form class="navbar-form" role="search" action="${baseURL}/galeria/monografias/1">
 					<div class="form-group">
-						<input type="text" class="form-control" id="campo-pesquisa"
+						<input type="text" class="form-control" name="s" id="campo-pesquisa"
 							placeholder="Digite sua pesquisa">
 
 						<button type="submit" class="btn btn-default" id="botao-pesquisa">Pesquisar</button>

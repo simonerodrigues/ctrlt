@@ -1,13 +1,9 @@
 package br.com.ctrlt.interceptor;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import br.com.ctrlt.dao.AnexoDAO;
@@ -44,7 +40,7 @@ public class DownloadInterceptor extends HandlerInterceptorAdapter {
 
 		String uri = request.getRequestURI();
 
-		if(uri.contains("/monografias/")){
+		if(! uri.contains("/galeria/") && uri.contains("/monografias/")){
 			Long idTcc = 0l;
 			
 			try{

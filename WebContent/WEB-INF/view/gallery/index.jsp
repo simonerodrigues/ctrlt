@@ -28,7 +28,7 @@
 		<div class="container page">
 			<div class="row">
 				<div class="col-lg-12">		
-					<center><h2>Trabalhos mais baixados</h2></center>
+					<h2 class="row text-center">Trabalhos mais baixados</h2>
 					<hr />
 					
 					<!-- Importando Coverflow -->
@@ -39,7 +39,7 @@
 
 			<br />
 
-			<center><h2>Recém adicionados</h2></center>
+			<h2 class="row text-center">Recém adicionados</h2>
 			<hr />
 
 			<!-- Demais trabalhos acadêmicos -->
