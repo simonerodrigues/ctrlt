@@ -81,6 +81,8 @@
 
 	<!-- Coverflow script -->
 	<script>
+		$("li#menuHome").attr('class', 'active');
+	
 		$(function() {
 
 			$('#coverflow').coverflow({

@@ -20,10 +20,9 @@
 
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="${baseURL}/galeria">Home <span
-							class="sr-only">(current)</span></a></li>
-					<li><a href="${baseURL}/galeria/monografias/1">Monografias</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li id="menuHome"><a href="${baseURL}/galeria">Home</a></li>
+					<li id="menuMonografias"><a href="${baseURL}/galeria/monografias/1">Monografias</a></li>
+					<li id="menuCursos" class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Cursos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -31,7 +30,7 @@
 								<li><a href="#">${curso.nome}</a></li>
 							</c:forEach>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li id="menuInformacoes" class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Informações <span class="caret"></span></a>
 						<ul class="dropdown-menu">

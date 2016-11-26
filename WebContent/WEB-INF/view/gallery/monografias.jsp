@@ -125,6 +125,10 @@
 	<!-- JavaScript Include -->
 	<c:url value="includes/javascript.jsp" var="javascript"></c:url>
 	<c:import url="${javascript}"></c:import>
+	
+	<script>
+		$("li#menuMonografias").attr('class', 'active');
+	</script>
 </body>
 
 </html>

@@ -59,6 +59,10 @@ public class PaginaController {
 	
 	@RequestMapping(value = "galeria/monografias/{pageNumber}")
 	public String monografias(@PathVariable Integer pageNumber, HttpServletRequest request, Model model){
+		
+		List<Curso> listaCursos = cursoDAO.listar(" WHERE c.ativo = true ORDER BY c.nome");
+		model.addAttribute("cursos", listaCursos);
+		
 		Page<TrabalhoDeConclusao> page = null;
 		
 		if(request.getParameter("s") == null){
