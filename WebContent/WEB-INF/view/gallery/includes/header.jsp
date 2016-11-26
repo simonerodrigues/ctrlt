@@ -37,7 +37,7 @@
 							<li><a target="_blank"
 								href="http://www.fatecsaocaetano.edu.br/">FATEC São Caetano
 									- Antonio Russo</a></li>
-							<li><a href="#">Sobre</a></li>
+							<li><a href="${baseURL}/galeria/sobre">Sobre</a></li>
 						</ul>
 					</li>
 				</ul>

@@ -45,6 +45,8 @@ public class PaginaController {
 	@RequestMapping(value = "galeria")
 	public String indexGallery(Model model){
 		
+		model.addAttribute("ano", new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime()));
+		
 		List<Curso> listaCursos = cursoDAO.listar(" WHERE c.ativo = true ORDER BY c.nome");
 		model.addAttribute("cursos", listaCursos);
 		
@@ -59,6 +61,8 @@ public class PaginaController {
 	
 	@RequestMapping(value = "galeria/monografias/{pageNumber}")
 	public String monografias(@PathVariable Integer pageNumber, HttpServletRequest request, Model model){
+		
+		model.addAttribute("ano", new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime()));
 		
 		List<Curso> listaCursos = cursoDAO.listar(" WHERE c.ativo = true ORDER BY c.nome");
 		model.addAttribute("cursos", listaCursos);
@@ -97,11 +101,21 @@ public class PaginaController {
 	}	
 	
 	@RequestMapping(value="sobre")
-	public String sobre(Model model){
+	public String sobreAdm(Model model){
 		model.addAttribute("ano", new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime()));
 		
 		return "adm/sobre";
 	}	
+	
+	@RequestMapping(value="galeria/sobre")
+	public String sobreGaleria(Model model){
+		model.addAttribute("ano", new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime()));
+		
+		List<Curso> listaCursos = cursoDAO.listar(" WHERE c.ativo = true ORDER BY c.nome");
+		model.addAttribute("cursos", listaCursos);
+		
+		return "gallery/sobre";
+	}
 	
 	@RequestMapping(value="alterar_senha")
 	public String alterarSenha(Model model){		

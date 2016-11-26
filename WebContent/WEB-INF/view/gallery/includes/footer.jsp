@@ -3,7 +3,7 @@
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
 <footer>
-	<img src="${baseURL}/images/icons/favicon.png" /> <p>Ctrl+T - Sistema de Controle de Trabalhos Acadêmicos - FATEC São Caetano do Sul</p>
+	<img src="${baseURL}/images/icons/favicon.png" /> <p>Ctrl+T - Sistema de Controle de Trabalhos Acadêmicos - FATEC São Caetano do Sul - ${ano}</p>
 </footer>
 
 <!-- Modal Include -->
