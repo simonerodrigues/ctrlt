@@ -48,7 +48,11 @@ public class DownloadInterceptor extends HandlerInterceptorAdapter {
 			Long idTcc = 0l;
 			
 			try{
-				idTcc   = Long.parseLong(uri.split("/")[2]);
+				if(request.getContextPath().isEmpty()){
+					idTcc   = Long.parseLong(uri.split("/")[2]);
+				}else{
+					idTcc   = Long.parseLong(uri.split("/")[3]);
+				}
 			}catch(Exception e){
 				 e.printStackTrace();
 			}
