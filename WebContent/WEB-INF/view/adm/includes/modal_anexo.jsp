@@ -35,12 +35,10 @@
 				<table id="dataTableAnexo" class="table table-hover table-striped table-bordered dataTable nowrap" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Inativar</th>
 							<th>Excluir</th>
 							<th>Download?</th>
 							<th>Nome</th>
 							<th>Data de Upload</th>
-							<th class="status">Status</th>
 						</tr>
 					</thead>
 				</table>
@@ -90,18 +88,6 @@
 				[
 					{
 						"data" : function(o) {
-							if(o.ativo){
-								return '<center><button onclick="inativar(\'anexo\', '
-									+ o.id
-									+ ')" class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i></button></center>';
-							}else{
-								return '<center><button onclick="inativar(\'anexo\', '
-									+ o.id
-									+ ')" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button></center>';
-							}
-						}
-					}, {
-						"data" : function(o) {
 							return '<center><button onclick="excluir(\'anexo\', '
 									+ o.id
 									+ ')" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true"></i></button></center>';
@@ -124,8 +110,6 @@
 						"data" : function(o) {
 							return moment(new Date(o.dataUpload)).lang("pt-br").format('L') + " " + moment(new Date(o.dataUpload)).lang("pt-br").format('LTS');
 						}
-					}, {
-						"data" : "ativo"
 					} ]
 		);
 		
