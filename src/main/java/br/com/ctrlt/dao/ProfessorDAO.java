@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -123,13 +124,20 @@ public class ProfessorDAO implements DAO<Professor> {
 	}
 	
 	public Professor logar(String login, String senha){
+		
+		senha = new String(Base64.encodeBase64(senha.getBytes()));
+		
 		TypedQuery<Professor> query = manager.createQuery("SELECT p FROM Professor p "
 				+ "WHERE p.login = :login "
 				+ "AND p.senha = :senha", Professor.class)
 				.setParameter("login", login)
 				.setParameter("senha", senha);
 		
-		return query.getSingleResult();
+		try{
+			return query.getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
 	}
 	
 	public EntityManager getEntityManager() {

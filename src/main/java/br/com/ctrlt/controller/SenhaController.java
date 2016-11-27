@@ -2,6 +2,7 @@ package br.com.ctrlt.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,8 @@ public class SenhaController {
 	@RequestMapping(value = "rest/altera/senha", method = RequestMethod.POST)
 	public ResponseJson alterarSenha(@RequestParam("senhaAtual") String senhaAtual, @RequestParam("novaSenha") String novaSenha, HttpServletRequest request){
 		ResponseJson response = new ResponseJson();
+		
+		senhaAtual = new String(Base64.encodeBase64(senhaAtual.getBytes()));
 		
 		//É um administrador que está logado
 		if(request.getSession().getAttribute("administradorLogado") != null){

@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
@@ -37,11 +38,11 @@ public class Professor {
 	})
 	private String login;
 	
-	@Column(length = 60, nullable = false)
+	@Column(nullable = false)
 	@NotBlank(message = "{professor.senha.vazio}")
 	@Size.List({
 		@Size(min = 4, message = "{professor.senha.min}"),
-		@Size(max = 60, message = "{professor.senha.max}")
+		@Size(max = 255, message = "{professor.senha.max}")
 	})
 	@JsonIgnore
 	private String senha;
@@ -107,7 +108,7 @@ public class Professor {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = new String(Base64.encodeBase64(senha.getBytes()));
 	}
 
 	public String getNome() {

@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -31,11 +32,11 @@ public class AdministradorDeConteudo {
 	})
 	private String login;
 	
-	@Column(length = 60, nullable = false)
+	@Column(nullable = false)
 	@NotBlank(message = "{administradorDeConteudo.senha.vazio}")
 	@Size.List({
 		@Size(min = 4, message = "{administradorDeConteudo.senha.min}"),
-		@Size(max = 60, message = "{administradorDeConteudo.senha.max}")
+		@Size(max = 255, message = "{administradorDeConteudo.senha.max}")
 	})
 	@JsonIgnore
 	private String senha;
@@ -93,7 +94,7 @@ public class AdministradorDeConteudo {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = new String(Base64.encodeBase64(senha.getBytes()));
 	}
 	
 	public String getNome() {

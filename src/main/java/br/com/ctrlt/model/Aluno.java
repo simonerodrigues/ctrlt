@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -35,9 +36,12 @@ public class Aluno implements Serializable {
 	@Size.List({ @Size(min = 4, message = "{aluno.login.min}"), @Size(max = 30, message = "{aluno.login.max}") })
 	private String login;
 
-	@Column(length = 60, nullable = false)
+	@Column(nullable = false)
 	@NotBlank(message = "{aluno.senha.vazio}")
-	@Size.List({ @Size(min = 4, message = "{aluno.senha.min}"), @Size(max = 60, message = "{aluno.senha.max}") })
+	@Size.List({ 
+		@Size(min = 4, message = "{aluno.senha.min}"), 
+		@Size(max = 255, message = "{aluno.senha.max}")
+	})
 	@JsonIgnore
 	private String senha;
 
@@ -105,7 +109,7 @@ public class Aluno implements Serializable {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = new String(Base64.encodeBase64(senha.getBytes()));
 	}
 
 	public String getNome() {
