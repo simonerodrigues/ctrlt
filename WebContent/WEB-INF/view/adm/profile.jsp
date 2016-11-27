@@ -39,7 +39,7 @@
 							Profile <small>Você no Ctrl+T</small>
 						</h1>
 						<ol class="breadcrumb">
-							<li class="active"><i class="fa fa-user"></i> Dashboard
+							<li class="active"><i class="fa fa-user"></i> Profile
 							</li>
 						</ol>
 					</div>
@@ -47,51 +47,7 @@
 				<!-- /.row -->
 
 				<div class="row">
-					<div class="col-lg-4">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-xs-3">
-										<i class="fa fa-scissors fa-5x"></i>
-									</div>
-									<div class="col-xs-9 text-right">
-										<div class="huge" id="qtdeServicos">26</div>
-										<div>Serviço(s) Hoje</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="panel panel-green">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-xs-3">
-										<i class="fa fa-money fa-5x"></i>
-									</div>
-									<div class="col-xs-9 text-right">
-										<div class="huge" id="lucroPrevisto">R$ 100,00</div>
-										<div>Lucro Previsto de Hoje</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="panel panel-red">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-xs-3">
-										<i class="fa fa-users fa-5x"></i>
-									</div>
-									<div class="col-xs-9 text-right">
-										<div class="huge" id="qtdeClientes">2</div>
-										<div>Cliente(s) Hoje</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<!-- Conteúdo futuro -->
 				</div>
 				<!-- /.row -->
 

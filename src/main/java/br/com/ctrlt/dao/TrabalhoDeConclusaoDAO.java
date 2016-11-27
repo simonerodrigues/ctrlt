@@ -94,6 +94,7 @@ public class TrabalhoDeConclusaoDAO implements DAO<TrabalhoDeConclusao> {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<TrabalhoDeConclusao> listarOsMaisBaixados(int quantidade){
 		Query query = manager.createQuery("SELECT t FROM TrabalhoDeConclusao t "
 				+ "JOIN FETCH t.monografia m "
@@ -105,6 +106,7 @@ public class TrabalhoDeConclusaoDAO implements DAO<TrabalhoDeConclusao> {
 		return listaTCC;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<TrabalhoDeConclusao> listarOsRecemAdicionados(int quantidade){
 		Query query = manager.createQuery("SELECT t FROM TrabalhoDeConclusao t "
 				+ "JOIN FETCH t.monografia m "

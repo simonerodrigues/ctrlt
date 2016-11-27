@@ -68,7 +68,51 @@ public class AlunoController implements Control<Aluno> {
 		entidade.setCurso(cursoDAO.pesquisarPorId(entidade.getCurso().getId()));
 		entidade.setPeriodo(periodoDAO.pesquisarPorId(entidade.getPeriodo().getId()));
 		
+		String erros = "";
+		
 		if (!result.hasErrors()) {
+			
+			//Valida dados que não podem ser repetidos na base
+			boolean raExistente = alunoDAO.verificarRaExistente(entidade);
+			boolean loginExistente = alunoDAO.verificarLoginExistente(entidade);
+			boolean emailAlternativoExistente = alunoDAO.verificarEmailAlternativoExistente(entidade);
+			boolean emailFatecExistente = alunoDAO.verificarEmailFatecExistente(entidade);
+			
+			int numeroErros = 0;
+			
+			if(raExistente){
+				erros += "<br />" + "RA de aluno já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(loginExistente){
+				erros += "<br />" + "Login de aluno já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailAlternativoExistente){
+				erros += "<br />" + "E-mail alternativo de aluno já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailFatecExistente){
+				erros += "<br />" + "E-mail Fatec de aluno já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(numeroErros > 0){
+				if(numeroErros == 1){
+					erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />" + erros;
+				}else{
+					erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />" + erros;
+				}
+				
+				responseJson.setStatus("FAIL");
+				responseJson.setResult(erros);
+				
+				return responseJson;
+			}
+			
 			entidade.setAtivo(true);
 			
 			if (alunoDAO.cadastrar(entidade)) {
@@ -80,8 +124,6 @@ public class AlunoController implements Control<Aluno> {
 			}
 		} else {
 			responseJson.setStatus("FAIL");
-
-			String erros = "";
 
 			if (result.getErrorCount() == 1) {
 				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
@@ -105,7 +147,50 @@ public class AlunoController implements Control<Aluno> {
 	public ResponseJson alterar(@Valid Aluno entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
 
+		String erros = "";
+		
 		if (!result.hasErrors()) {
+			
+			//Valida dados que não podem ser repetidos na base
+			boolean raExistente = alunoDAO.verificarRaExistente(entidade);
+			boolean loginExistente = alunoDAO.verificarLoginExistente(entidade);
+			boolean emailAlternativoExistente = alunoDAO.verificarEmailAlternativoExistente(entidade);
+			boolean emailFatecExistente = alunoDAO.verificarEmailFatecExistente(entidade);
+			
+			int numeroErros = 0;
+			
+			if(raExistente){
+				erros += "<br />" + "RA de aluno já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(loginExistente){
+				erros += "<br />" + "Login de aluno já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailAlternativoExistente){
+				erros += "<br />" + "E-mail alternativo de aluno já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailFatecExistente){
+				erros += "<br />" + "E-mail Fatec de aluno já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(numeroErros > 0){
+				if(numeroErros == 1){
+					erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />" + erros;
+				}else{
+					erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />" + erros;
+				}
+				
+				responseJson.setStatus("FAIL");
+				responseJson.setResult(erros);
+				
+				return responseJson;
+			}
 			
 			Aluno alunoBanco = alunoDAO.pesquisarPorId(entidade.getId());
 			
@@ -122,8 +207,6 @@ public class AlunoController implements Control<Aluno> {
 			}
 		} else {
 			responseJson.setStatus("FAIL");
-
-			String erros = "";
 
 			if (result.getErrorCount() == 1) {
 				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";

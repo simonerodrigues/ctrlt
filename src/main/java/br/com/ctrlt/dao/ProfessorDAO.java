@@ -31,7 +31,7 @@ public class ProfessorDAO implements DAO<Professor> {
 
 	@Override
 	public Professor pesquisarPorId(long id) {
-		// O metodo find do hibernate ja pesquisa pela chave primária.
+		// O metodo find do hibernate ja pesquisa pela chave primárip.
 		Professor professor = manager.find(Professor.class, id);
 
 		return professor;
@@ -93,6 +93,33 @@ public class ProfessorDAO implements DAO<Professor> {
 
 			return false;
 		}
+	}
+	
+	public boolean verificarLoginExistente(Professor professor){
+		Query query = manager.createQuery("SELECT p FROM Professor p "
+				+ "WHERE p.login = :login AND p.id <> :id")
+				.setParameter("login", professor.getLogin())
+				.setParameter("id", professor.getId());
+
+		return (query.getResultList().size() > 0);
+	}
+	
+	public boolean verificarEmailAlternativoExistente(Professor professor){
+		Query query = manager.createQuery("SELECT p FROM Professor p "
+				+ "WHERE p.emailAlternativo = :emailAlternativo AND p.id <> :id")
+				.setParameter("emailAlternativo", professor.getEmailAlternativo())
+				.setParameter("id", professor.getId());
+
+		return (query.getResultList().size() > 0);
+	}
+	
+	public boolean verificarEmailFatecExistente(Professor professor){
+		Query query = manager.createQuery("SELECT p FROM Professor p "
+				+ "WHERE p.emailFatec = :emailFatec AND p.emailFatec <> '' AND p.id <> :id")
+				.setParameter("emailFatec", professor.getEmailFatec())
+				.setParameter("id", professor.getId());
+
+		return (query.getResultList().size()> 0);
 	}
 	
 	public Professor logar(String login, String senha){

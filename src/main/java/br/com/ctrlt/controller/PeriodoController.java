@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -53,6 +54,7 @@ public class PeriodoController implements Control<Periodo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/periodo", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid Periodo entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -90,6 +92,7 @@ public class PeriodoController implements Control<Periodo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/periodo", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid Periodo entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -129,6 +132,7 @@ public class PeriodoController implements Control<Periodo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/lista/periodo", method = RequestMethod.POST)
 	public TableResponseJson listar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -144,6 +148,7 @@ public class PeriodoController implements Control<Periodo> {
 	@Override
 	@SuppressWarnings("unchecked")
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/exclui/periodo", method = RequestMethod.POST)
 	public ResponseJson excluir(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -184,6 +189,7 @@ public class PeriodoController implements Control<Periodo> {
 	@Override
 	@SuppressWarnings("unchecked")
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/inativa/periodo", method = RequestMethod.POST)
 	public ResponseJson inativar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -237,6 +243,7 @@ public class PeriodoController implements Control<Periodo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/json/periodo", method = RequestMethod.POST)
 	public Periodo entidadeJSON(HttpServletRequest req) {
 		// Pega o código do Periodo que será inativado
@@ -248,6 +255,7 @@ public class PeriodoController implements Control<Periodo> {
 		return periodo;
 	}
 
+	@Transactional
 	@RequestMapping(value = "adm/relatorio/pdf/periodo", method = RequestMethod.GET)
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<Periodo> listaPeriodo = periodoDAO.listar(" ORDER BY p.nome");

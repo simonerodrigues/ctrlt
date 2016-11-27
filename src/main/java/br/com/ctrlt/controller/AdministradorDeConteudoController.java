@@ -51,8 +51,46 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 	@RequestMapping(value = "rest/cadastra/administrador_de_conteudo", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid AdministradorDeConteudo entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
+		
+		String erros = "";
 
-		if (!result.hasErrors()) {			
+		if (!result.hasErrors()) {		
+			
+			//Valida dados que não podem ser repetidos na base
+			boolean loginExistente = administradorDeConteudoDAO.verificarLoginExistente(entidade);
+			boolean emailAlternativoExistente = administradorDeConteudoDAO.verificarEmailAlternativoExistente(entidade);
+			boolean emailFatecExistente = administradorDeConteudoDAO.verificarEmailFatecExistente(entidade);
+			
+			int numeroErros = 0;
+			
+			if(loginExistente){
+				erros += "<br />" + "Login de administrador já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailAlternativoExistente){
+				erros += "<br />" + "E-mail alternativo de administrador já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailFatecExistente){
+				erros += "<br />" + "E-mail Fatec de administrador já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(numeroErros > 0){
+				if(numeroErros == 1){
+					erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />" + erros;
+				}else{
+					erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />" + erros;
+				}
+				
+				responseJson.setStatus("FAIL");
+				responseJson.setResult(erros);
+				
+				return responseJson;
+			}
+			
 			entidade.setAtivo(true);
 			
 			if (administradorDeConteudoDAO.cadastrar(entidade)) {
@@ -64,8 +102,6 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 			}			
 		} else {
 			responseJson.setStatus("FAIL");
-
-			String erros = "";
 
 			if (result.getErrorCount() == 1) {
 				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
@@ -88,8 +124,46 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 	@RequestMapping(value = "rest/altera/administrador_de_conteudo", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid AdministradorDeConteudo entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
+		
+		String erros = "";
 
 		if (!result.hasErrors()) {			
+			
+			//Valida dados que não podem ser repetidos na base
+			boolean loginExistente = administradorDeConteudoDAO.verificarLoginExistente(entidade);
+			boolean emailAlternativoExistente = administradorDeConteudoDAO.verificarEmailAlternativoExistente(entidade);
+			boolean emailFatecExistente = administradorDeConteudoDAO.verificarEmailFatecExistente(entidade);
+			
+			int numeroErros = 0;
+			
+			if(loginExistente){
+				erros += "<br />" + "Login de administrador já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailAlternativoExistente){
+				erros += "<br />" + "E-mail alternativo de administrador já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailFatecExistente){
+				erros += "<br />" + "E-mail Fatec de administrador já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(numeroErros > 0){
+				if(numeroErros == 1){
+					erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />" + erros;
+				}else{
+					erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />" + erros;
+				}
+				
+				responseJson.setStatus("FAIL");
+				responseJson.setResult(erros);
+				
+				return responseJson;
+			}
+			
 			AdministradorDeConteudo administradorDeConteudoBanco = administradorDeConteudoDAO.pesquisarPorId(entidade.getId());
 			
 			entidade.setSenha(administradorDeConteudoBanco.getSenha());
@@ -104,8 +178,6 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 			}
 		} else {
 			responseJson.setStatus("FAIL");
-
-			String erros = "";
 
 			if (result.getErrorCount() == 1) {
 				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";

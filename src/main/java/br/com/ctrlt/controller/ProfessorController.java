@@ -64,7 +64,44 @@ public class ProfessorController implements Control<Professor> {
 	public ResponseJson cadastrar(@Valid Professor entidade, Long[] linhasDePesquisa, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
 
+		String erros = "";
+		
 		if (!result.hasErrors()) {
+			//Valida dados que não podem ser repetidos na base
+			boolean loginExistente = professorDAO.verificarLoginExistente(entidade);
+			boolean emailAlternativoExistente = professorDAO.verificarEmailAlternativoExistente(entidade);
+			boolean emailFatecExistente = professorDAO.verificarEmailFatecExistente(entidade);
+			
+			int numeroErros = 0;
+			
+			if(loginExistente){
+				erros += "<br />" + "Login de professor já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailAlternativoExistente){
+				erros += "<br />" + "E-mail alternativo de professor já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailFatecExistente){
+				erros += "<br />" + "E-mail Fatec de professor já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(numeroErros > 0){
+				if(numeroErros == 1){
+					erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />" + erros;
+				}else{
+					erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />" + erros;
+				}
+				
+				responseJson.setStatus("FAIL");
+				responseJson.setResult(erros);
+				
+				return responseJson;
+			}
+			
 			entidade.setAtivo(true);
 			
 			//Preenche as linhas de Pesquisa
@@ -88,8 +125,6 @@ public class ProfessorController implements Control<Professor> {
 			}
 		} else {
 			responseJson.setStatus("FAIL");
-
-			String erros = "";
 
 			if (result.getErrorCount() == 1) {
 				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";
@@ -117,7 +152,44 @@ public class ProfessorController implements Control<Professor> {
 	public ResponseJson alterarCustom(@Valid Professor entidade, Long[] linhasDePesquisa, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
 
+		String erros = "";
+		
 		if (!result.hasErrors()) {			
+			//Valida dados que não podem ser repetidos na base
+			boolean loginExistente = professorDAO.verificarLoginExistente(entidade);
+			boolean emailAlternativoExistente = professorDAO.verificarEmailAlternativoExistente(entidade);
+			boolean emailFatecExistente = professorDAO.verificarEmailFatecExistente(entidade);
+			
+			int numeroErros = 0;
+			
+			if(loginExistente){
+				erros += "<br />" + "Login de professor já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailAlternativoExistente){
+				erros += "<br />" + "E-mail alternativo de professor já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(emailFatecExistente){
+				erros += "<br />" + "E-mail Fatec de professor já cadastrado no sistema";
+				numeroErros++;
+			}
+			
+			if(numeroErros > 0){
+				if(numeroErros == 1){
+					erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />" + erros;
+				}else{
+					erros = "Os seguintes erros foram apresentados durante a validação dos dados: <br />" + erros;
+				}
+				
+				responseJson.setStatus("FAIL");
+				responseJson.setResult(erros);
+				
+				return responseJson;
+			}
+			
 			Professor professorBanco = professorDAO.pesquisarPorId(entidade.getId());
 			
 			entidade.setSenha(professorBanco.getSenha());
@@ -144,8 +216,6 @@ public class ProfessorController implements Control<Professor> {
 			}
 		} else {
 			responseJson.setStatus("FAIL");
-
-			String erros = "";
 
 			if (result.getErrorCount() == 1) {
 				erros = "O seguinte erro foi apresentado durante a validação dos dados: <br />";

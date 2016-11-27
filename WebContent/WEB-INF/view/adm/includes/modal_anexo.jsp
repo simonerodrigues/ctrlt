@@ -86,7 +86,7 @@
 		$("#adicionar-anexo").attr('disabled', true);
 		
 		//Carrega a tabela de acordo com os anexos do TCC
-		dataTable("#dataTableAnexo", "/rest/lista/anexo/" + id, 
+		dataTable("#dataTableAnexo", "${baseURL}/rest/lista/anexo/" + id, 
 				[
 					{
 						"data" : function(o) {

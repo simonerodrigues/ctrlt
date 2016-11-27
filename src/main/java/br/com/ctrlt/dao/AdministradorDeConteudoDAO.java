@@ -95,6 +95,33 @@ public class AdministradorDeConteudoDAO implements DAO<AdministradorDeConteudo> 
 		}
 	}
 	
+	public boolean verificarLoginExistente(AdministradorDeConteudo administradorDeConteudo){
+		Query query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a "
+				+ "WHERE a.login = :login AND a.id <> :id")
+				.setParameter("login", administradorDeConteudo.getLogin())
+				.setParameter("id", administradorDeConteudo.getId());
+
+		return (query.getResultList().size() > 0);
+	}
+	
+	public boolean verificarEmailAlternativoExistente(AdministradorDeConteudo administradorDeConteudo){
+		Query query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a "
+				+ "WHERE a.emailAlternativo = :emailAlternativo AND a.id <> :id")
+				.setParameter("emailAlternativo", administradorDeConteudo.getEmailAlternativo())
+				.setParameter("id", administradorDeConteudo.getId());
+
+		return (query.getResultList().size() > 0);
+	}
+	
+	public boolean verificarEmailFatecExistente(AdministradorDeConteudo administradorDeConteudo){
+		Query query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a "
+				+ "WHERE a.emailFatec = :emailFatec AND a.emailFatec <> '' AND a.id <> :id")
+				.setParameter("emailFatec", administradorDeConteudo.getEmailFatec())
+				.setParameter("id", administradorDeConteudo.getId());
+
+		return (query.getResultList().size()> 0);
+	}
+	
 	public AdministradorDeConteudo logar(String login, String senha){
 		TypedQuery<AdministradorDeConteudo> query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a "
 				+ "WHERE a.login = :login "

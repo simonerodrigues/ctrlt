@@ -94,6 +94,42 @@ public class AlunoDAO implements DAO<Aluno> {
 		}
 	}
 	
+	public boolean verificarRaExistente(Aluno aluno){
+		Query query = manager.createQuery("SELECT a FROM Aluno a "
+				+ "WHERE a.ra = :ra AND a.id <> :id")
+				.setParameter("ra", aluno.getRa())
+				.setParameter("id", aluno.getId());
+
+		return (query.getResultList().size() > 0);
+	}
+	
+	public boolean verificarLoginExistente(Aluno aluno){
+		Query query = manager.createQuery("SELECT a FROM Aluno a "
+				+ "WHERE a.login = :login AND a.id <> :id")
+				.setParameter("login", aluno.getLogin())
+				.setParameter("id", aluno.getId());
+
+		return (query.getResultList().size() > 0);
+	}
+	
+	public boolean verificarEmailAlternativoExistente(Aluno aluno){
+		Query query = manager.createQuery("SELECT a FROM Aluno a "
+				+ "WHERE a.emailAlternativo = :emailAlternativo AND a.id <> :id")
+				.setParameter("emailAlternativo", aluno.getEmailAlternativo())
+				.setParameter("id", aluno.getId());
+
+		return (query.getResultList().size() > 0);
+	}
+	
+	public boolean verificarEmailFatecExistente(Aluno aluno){
+		Query query = manager.createQuery("SELECT a FROM Aluno a "
+				+ "WHERE a.emailFatec = :emailFatec AND a.emailFatec <> '' AND a.id <> :id")
+				.setParameter("emailFatec", aluno.getEmailFatec())
+				.setParameter("id", aluno.getId());
+
+		return (query.getResultList().size()> 0);
+	}
+
 	public Aluno logar(String login, String senha){
 		TypedQuery<Aluno> query = manager.createQuery("SELECT a FROM Aluno a "
 				+ "WHERE a.login = :login "

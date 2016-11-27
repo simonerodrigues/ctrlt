@@ -35,8 +35,8 @@
 				</div>
 				
 				<div class="col-lg-12 text-center">
-					<p>Ctrl+T é um software desenvolvido como trabalho de conclusão de curso para a Fatec São Caetano do Sul - Antonio Russo com o 
-					intuíto de se tornar a ferramenta padrão de publicação dos trabalhos de conclusão. </p>
+					<p>Ctrl+T é um software desenvolvido como trabalho de conclusão de curso para a Fatec São Caetano do Sul - Antonio Russo com o intuito de auxiliar 
+						a faculdade a dar maior publicidade aos trabalhos realizados, assim como garantir maior segurança em relação ao armazenamento destes.</p>
 					
 					<br />
 					

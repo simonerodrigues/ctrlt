@@ -576,7 +576,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	@Override
 	public Page<TrabalhoDeConclusao> pesquisarMonografia(Integer pageNumber, String titulo) {
 		PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "titulo");
-        return trabalhoDeConclusaoRepository.pesquisarPorTitulo(titulo, request);
+        return trabalhoDeConclusaoRepository.pesquisarTcc(titulo, request);
 	}
 
 	@Override

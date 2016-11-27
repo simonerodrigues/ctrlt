@@ -42,8 +42,6 @@
 		</c:if>
 		<li><a href="javascript:;" data-toggle="collapse" data-target="#ajuda"><i class="fa fa-question-circle"></i> Ajuda <i class="fa fa-caret-down"></i></a>
 			<ul id="ajuda" class="collapse">
-				<li id="ajudaFAQ"><a target="_blank" href="doc/"><i class="fa fa-code"></i> Documentação</a></li>
-				<li id="ajudaFAQ"><a href="${baseURL}/manual"><i class="fa fa-life-ring"></i> Manual</a></li>
 				<li id="ajudaSobre"><a href="${baseURL}/sobre"><i class="fa fa-info-circle"></i> Sobre</a></li>
 			</ul>
 		</li>

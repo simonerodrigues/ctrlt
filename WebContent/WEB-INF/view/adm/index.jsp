@@ -118,7 +118,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numTCC">0</div>
-										<div>Número de Trabalhos de Conclusão</div>
+										<div>Número de TCC</div>
 									</div>
 								</div>
 							</div>

@@ -83,6 +83,15 @@
 							</div>
 							
 							<div class="col-lg-12">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label>Palavras Chave:</label> <input type="text" id="palavrasChave"
+											name="palavrasChave" class="form-control" autocomplete="off">
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-lg-12">
 								<div class="col-lg-4">
 									<div class="form-group">
 										<label>Aluno 1: (*)</label>
@@ -238,6 +247,7 @@
 							<th>Professor 2</th>
 							<th>Professor 3</th>
 							<th>Data de Publicação</th>
+							<th>Palavras Chave</th>
 							<th class="status">Status</th>
 						</tr>
 					</thead>
@@ -315,7 +325,7 @@
 								"data" : function(o) {
 									if(o.monografia != null){
 										return '<center>'
-											+'<a target="_blank" href="/monografias/' + o.id + "/" + o.monografia.nome + '">'
+											+'<a target="_blank" href="${baseURL}/monografias/' + o.id + "/" + o.monografia.nome + '">'
 												+'<button class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>'
 											+'</a>'
 										+'</center>';
@@ -393,6 +403,8 @@
 								"data" : function(o) {
 									return moment(new Date(o.dataPublicacao)).lang("pt-br").format('L') + " " + moment(new Date(o.dataPublicacao)).lang("pt-br").format('LTS');
 								}
+							}, {
+								"data" : "palavrasChave"
 							}, {
 								"data" : "ativo"
 							} ]
@@ -478,6 +490,7 @@
 						manterEntidade(1,"trabalho_de_conclusao", {
 							"titulo" : $("#titulo").val(),
 							"resumo" : $("#resumo").val(),
+							"palavrasChave" : $("#palavrasChave").val(),
 							"dataPublicao" : moment().format("L") + " " + moment().format("LT"),
 							"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
 							"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
@@ -495,6 +508,7 @@
 						manterEntidadeComUpload(1,"trabalho_de_conclusao", {
 							"titulo" : $("#titulo").val(),
 							"resumo" : $("#resumo").val(),
+							"palavrasChave" : $("#palavrasChave").val(),
 							"dataPublicao" : moment().format("L") + " " + moment().format("LT"),
 							"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
 							"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
@@ -512,6 +526,7 @@
 							"id" : $("#id").val(),
 							"titulo" : $("#titulo").val(),
 							"resumo" : $("#resumo").val(),
+							"palavrasChave" : $("#palavrasChave").val(),
 							"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
 							"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
 							"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
@@ -529,6 +544,7 @@
 							"id" : $("#id").val(),
 							"titulo" : $("#titulo").val(),
 							"resumo" : $("#resumo").val(),
+							"palavrasChave" : $("#palavrasChave").val(),
 							"listaAlunos[0].id" : $("#aluno1").val() == "" ? 0 : $("#aluno1").val(),
 							"listaAlunos[1].id" : $("#aluno2").val() == "" ? 0 : $("#aluno2").val(),
 							"listaAlunos[2].id" : $("#aluno3").val() == "" ? 0 : $("#aluno3").val(),
@@ -553,6 +569,7 @@
 				$("#id").val(response.id);
 				$("#titulo").val(response.titulo);
 				$("#resumo").val(response.resumo);
+				$("#palavrasChave").val(response.palavrasChave);
 				$("#aluno1").val(response.listaAlunos[0].id);
 				
 				if(response.listaAlunos[1] != null){
@@ -584,7 +601,7 @@
 				$("#panel-information").show();
 				
 				if(response.monografia != null){
-					$("#panel-message").html('O trabalho de conclusão em alteração possui o arquivo <a target="_blank" href="/monografias/'+response.id+'/'+response.monografia.nome+'">'+response.monografia.nome+'</a> associado. '
+					$("#panel-message").html('O trabalho de conclusão em alteração possui o arquivo <a target="_blank" href="${baseURL}/monografias/'+response.id+'/'+response.monografia.nome+'">'+response.monografia.nome+'</a> associado. '
 							+ 'Caso não inclua um novo arquivo na alteração, o arquivo será mantido. Caso um novo arquivo seja associado, o atual será sobreposto.' );
 				}else{
 					$("#panel-message").html('O trabalho de conclusão em alteração não possui uma monografia associada.');

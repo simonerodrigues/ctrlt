@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -65,6 +66,7 @@ public class CursoController implements Control<Curso> {
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/curso", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid Curso entidade, Long[] periodos, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -118,6 +120,7 @@ public class CursoController implements Control<Curso> {
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/curso", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid Curso entidade, Long[] periodos, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -169,6 +172,7 @@ public class CursoController implements Control<Curso> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/lista/curso", method = RequestMethod.POST)
 	public TableResponseJson listar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -184,6 +188,7 @@ public class CursoController implements Control<Curso> {
 	@Override
 	@SuppressWarnings("unchecked")
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/exclui/curso", method = RequestMethod.POST)
 	public ResponseJson excluir(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -224,6 +229,7 @@ public class CursoController implements Control<Curso> {
 	@Override
 	@SuppressWarnings("unchecked")
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/inativa/curso", method = RequestMethod.POST)
 	public ResponseJson inativar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -277,6 +283,7 @@ public class CursoController implements Control<Curso> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/json/curso", method = RequestMethod.POST)
 	public Curso entidadeJSON(HttpServletRequest req) {
 		// Pega o código do Curso que será inativado
@@ -288,6 +295,7 @@ public class CursoController implements Control<Curso> {
 		return curso;
 	}
 
+	@Transactional
 	@RequestMapping(value = "adm/relatorio/pdf/curso", method = RequestMethod.GET)
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<Curso> listaCurso = cursoDAO.listar(" ORDER BY c.nome");

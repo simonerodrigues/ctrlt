@@ -26,50 +26,52 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name = "trabalhoDeConclusao")
 public class TrabalhoDeConclusao {
-	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Column(length = 200, nullable = false)
 	@NotBlank(message = "{trabalhoDeConclusao.titulo.vazio}")
-	@Size.List({
-		@Size(min = 2, message = "{trabalhoDeConclusao.titulo..min}"),
-		@Size(max = 200, message = "{trabalhoDeConclusao.titulo.max}")
-	})
+	@Size.List({ @Size(min = 2, message = "{trabalhoDeConclusao.titulo..min}"),
+			@Size(max = 200, message = "{trabalhoDeConclusao.titulo.max}") })
 	private String titulo;
-	
+
 	@Lob
 	private String resumo;
-	
-	@Temporal(TemporalType.TIMESTAMP)	// Data e Hora
+
+	@Lob
+	private String palavrasChave;
+
+	@Temporal(TemporalType.TIMESTAMP) // Data e Hora
 	@DateTimeFormat(pattern = "dd/MM/yyy HH:mm")
 	@Column(nullable = false)
 	private Calendar dataPublicacao;
-	
+
 	@OneToMany(mappedBy = "trabalhoDeConclusao", cascade = CascadeType.MERGE)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Aluno> listaAlunos;
-	
+
 	@ManyToMany
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinTable(name = "trabalhoDeConclusao_professor",
-		joinColumns = @JoinColumn(name = "id_trabalhoDeConclusao"),
-		inverseJoinColumns = @JoinColumn(name = "id_professor")
-	)
+	@JoinTable(name = "trabalhoDeConclusao_professor", joinColumns = @JoinColumn(name = "id_trabalhoDeConclusao"), inverseJoinColumns = @JoinColumn(name = "id_professor"))
 	private List<Professor> listaProfessores;
-	
+
 	@OneToMany(mappedBy = "trabalhoDeConclusao", cascade = CascadeType.MERGE)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Anexo> listaAnexos;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // faz select na permissao quando fizer em admConteudo
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // faz select
+																	// na
+																	// permissao
+																	// quando
+																	// fizer em
+																	// admConteudo
 	@JoinColumn(name = "id_monografia", nullable = true)
 	private Monografia monografia;
-	
+
 	@Column(nullable = false)
 	private boolean ativo;
 
@@ -95,6 +97,14 @@ public class TrabalhoDeConclusao {
 
 	public void setResumo(String resumo) {
 		this.resumo = resumo;
+	}
+
+	public String getPalavrasChave() {
+		return palavrasChave;
+	}
+
+	public void setPalavrasChave(String palavrasChave) {
+		this.palavrasChave = palavrasChave;
 	}
 
 	public Calendar getDataPublicacao() {
@@ -143,6 +153,6 @@ public class TrabalhoDeConclusao {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
-	}	
+	}
 
 }

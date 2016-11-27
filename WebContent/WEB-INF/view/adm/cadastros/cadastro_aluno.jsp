@@ -139,7 +139,7 @@
 										<select class="form-control" id="cursoPeriodo" name="cursoPeriodo">
 											<c:forEach items="${listaCurso}" var="curso">
 												<c:forEach items="${curso.listaPeriodo}" var="periodo">
-													<option value="${curso.id}|${periodo.id}">${curso.nome} - ${periodo.nome}</option>
+													<option value="${curso.id}|${periodo.id}">${curso.sigla} - ${periodo.nome}</option>
 												</c:forEach>
 											</c:forEach>
 										</select>
