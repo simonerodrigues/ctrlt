@@ -121,6 +121,11 @@ public class AnexoController implements Control<Anexo> {
 					
 					anexoDAO.cadastrar(anexo);
 					
+					anexo.setNome("Anexo_" + String.valueOf(anexo.getId()) + "." + anexo.getExtensao());
+					
+					//Altera o nome do arquivo
+					anexoDAO.alterar(anexo);
+					
 					anexo.setCaminho(path + String.valueOf(anexo.getId()) + "\\");
 					
 					file = new File(path + "/" + String.valueOf(anexo.getId()) + "/");
@@ -130,7 +135,7 @@ public class AnexoController implements Control<Anexo> {
 						file.mkdirs();
 					}
 					
-					File arquivoMonografia = new File(path + "/" + String.valueOf(anexo.getId()) + "/" + arquivos.get(i).getOriginalFilename());
+					File arquivoMonografia = new File(path + "/" + String.valueOf(anexo.getId()) + "/" + "Anexo_" + String.valueOf(anexo.getId()) + "." + anexo.getExtensao());
 					
 					arquivos.get(i).transferTo(arquivoMonografia);
 					

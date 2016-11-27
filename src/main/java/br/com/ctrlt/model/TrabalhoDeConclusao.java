@@ -63,12 +63,7 @@ public class TrabalhoDeConclusao {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Anexo> listaAnexos;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // faz select
-																	// na
-																	// permissao
-																	// quando
-																	// fizer em
-																	// admConteudo
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_monografia", nullable = true)
 	private Monografia monografia;
 

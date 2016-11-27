@@ -229,7 +229,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			}
 			
 			try {			
-				File arquivoMonografia = new File(path + arquivo.getOriginalFilename());
+				File arquivoMonografia = new File(path + "Monografia." + FilenameUtils.getExtension(arquivo.getOriginalFilename()));
 				
 				arquivo.transferTo(arquivoMonografia);
 				
@@ -241,7 +241,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				
 				monografia.setCaminho(path);
 				monografia.setTamanho(new BigInteger(String.valueOf(arquivo.getSize())));
-				monografia.setNome(arquivoMonografia.getName());
+				monografia.setNome("Monografia." + FilenameUtils.getExtension(arquivo.getOriginalFilename()));
 				monografia.setDataUpload(Calendar.getInstance());
 				monografia.setNumeroDownloads(0l);
 				monografia.setExtensao(FilenameUtils.getExtension(arquivoMonografia.getName()));

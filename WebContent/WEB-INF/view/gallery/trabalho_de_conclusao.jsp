@@ -111,7 +111,7 @@
 				<br />
 				<br />
 				
-				<c:if test="${not empty  trabalhoDeConclusao.resumo}">	
+				<c:if test="${not empty  trabalhoDeConclusao.listaAnexos}">	
 					<h3>Anexo(s):</h3>
 
 					<c:forEach items="${trabalhoDeConclusao.listaAnexos}" var="anexo">
