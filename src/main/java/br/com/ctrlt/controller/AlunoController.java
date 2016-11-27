@@ -52,7 +52,7 @@ public class AlunoController implements Control<Aluno> {
 	@Override
 	@RequestMapping(value = "adm/cadastro/aluno", method = RequestMethod.GET)
 	public String carregarPagina(Model model) {
-		List<Curso> listaCurso = cursoDAO.listar(" WHERE c.ativo = 1 ORDER BY c.nome ASC");
+		List<Curso> listaCurso = cursoDAO.listar(" WHERE c.ativo = true ORDER BY c.nome ASC");
 		
 		model.addAttribute("listaCurso", listaCurso);
 		

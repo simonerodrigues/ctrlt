@@ -49,7 +49,7 @@ public class ProfessorController implements Control<Professor> {
 	@Override
 	@RequestMapping(value = "adm/cadastro/professor", method = RequestMethod.GET)
 	public String carregarPagina(Model model) {
-		model.addAttribute("linhasDePesquisa", linhaDePesquisaDAO.listar(" WHERE l.ativo = 1 ORDER BY nome ASC"));
+		model.addAttribute("linhasDePesquisa", linhaDePesquisaDAO.listar(" WHERE l.ativo = true ORDER BY nome ASC"));
 		
 		return "adm/cadastros/cadastro_professor";
 	}

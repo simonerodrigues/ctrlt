@@ -55,7 +55,7 @@ public class CursoController implements Control<Curso> {
 	@Override
 	@RequestMapping(value = "adm/cadastro/curso", method = RequestMethod.GET)
 	public String carregarPagina(Model model) {		
-		model.addAttribute("periodos", periodoDAO.listar(" WHERE p.ativo = 1 ORDER BY p.id ASC"));
+		model.addAttribute("periodos", periodoDAO.listar(" WHERE p.ativo = true ORDER BY p.id ASC"));
 		
 		return "adm/cadastros/cadastro_curso";
 	}
