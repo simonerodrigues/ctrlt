@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.ctrlt.dao.CursoDAO;
 import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
-import br.com.ctrlt.interfaces.TrabalhoDeConclusaoService;
+import br.com.ctrlt.interfaces.service.TrabalhoDeConclusaoService;
 import br.com.ctrlt.model.Curso;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 
@@ -69,10 +69,12 @@ public class PaginaController {
 		
 		Page<TrabalhoDeConclusao> page = null;
 		
-		if(request.getParameter("s") == null){
+		if(request.getParameter("s") == null && request.getParameter("c") == null){
 			page = trabalhoDeConclusaoService.obterMonografias(pageNumber);
-		}else{
+		}else if(request.getParameter("s") != null){
 			page = trabalhoDeConclusaoService.pesquisarMonografia(pageNumber, request.getParameter("s").toString());
+		}else{
+			page = trabalhoDeConclusaoService.obeterMonografiasPorCurso(pageNumber, request.getParameter("c"));
 		}
 		
 		int current = page.getNumber() + 1;

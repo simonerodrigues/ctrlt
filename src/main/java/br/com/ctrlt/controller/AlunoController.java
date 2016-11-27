@@ -111,6 +111,7 @@ public class AlunoController implements Control<Aluno> {
 			
 			entidade.setSenha(alunoBanco.getSenha());
 			entidade.setAtivo(alunoBanco.isAtivo());
+			entidade.setTrabalhoDeConclusao(alunoBanco.getTrabalhoDeConclusao());
 			
 			if (alunoDAO.alterar(entidade)) {
 				responseJson.setStatus("SUCCESS");

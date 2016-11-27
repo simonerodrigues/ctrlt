@@ -7,6 +7,10 @@ body {
 	margin-top: 155px;
 }
 
+main {
+	margin-bottom: 4em;
+}
+
 .container-navbar {
 	position: relative;
 }
@@ -20,6 +24,10 @@ body {
 
 /* Footer */
 footer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
 	margin-top: 10px;
 	vertical-align: bottom;
 	padding: 1em;
@@ -159,7 +167,7 @@ img.row.text-center.not-found {
 @media(min-width: 768px){
 	/* Page */
 	.page {
-		margin-top: 155px;
+		margin-top: 125px;
 	}
 
 	/* Navbar */
@@ -167,10 +175,30 @@ img.row.text-center.not-found {
 		position: relative;
 	}
 
-	.search-form {
+	#search-form {
+		display: inline-block;
 		position: absolute;
-		top: 10px;
+		top: 6px;
 		right: 0px;
+	}
+	
+	#user-bar {
+		display: inline-block;
+	   position: absolute;
+	   top: 66px;
+	   right: -15px;
+	}
+	
+	.nav.navbar-nav {
+		position: absolute;
+	    top: 20px;
+	    left: 200px;
+	}
+	
+	.nav.navbar-right.top-nav {
+		position: absolute;
+	    top: 60px;
+	    left: 1000px;
 	}
 }
 

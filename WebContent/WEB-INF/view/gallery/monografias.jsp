@@ -118,11 +118,19 @@
 				</div>
 			</c:if>
 			
-			<!-- Nenhum trabalho encontrado -->
-			<c:if test="${empty trabalhosDeConclusao}">
+			<!-- Nenhum trabalho encontrado para a pesquisa digitada -->
+			<c:if test="${empty trabalhosDeConclusao and not empty param.s}">
 				<div class="row text-center">
 					<img class="row text-center not-found" src="${baseURL}/images/others/not-found.png" />
 					<h3 class="row text-center not-found">Nenhum resultado encontrado para a pesquisa: "${param.s}"</h3>
+				</div>
+			</c:if>
+			
+			<!-- Nenhum trabalho encontrado para a o curso selecionado -->
+			<c:if test="${empty trabalhosDeConclusao and not empty param.c}">
+				<div class="row text-center">
+					<img class="row text-center not-found" src="${baseURL}/images/others/not-found.png" />
+					<h3 class="row text-center not-found">Nenhum resultado encontrado para o curso selecionado</h3>
 				</div>
 			</c:if>
 		</div>
@@ -136,7 +144,13 @@
 	<c:import url="${javascript}"></c:import>
 	
 	<script>
-		$("li#menuMonografias").attr('class', 'active');
+		<c:if test="${empty param.c}">
+			$("li#menuMonografias").attr('class', 'active');
+		</c:if>
+		
+		<c:if test="${not empty param.c}">
+		$("li#menuCursos").attr('class', 'active');
+	</c:if>
 	</script>
 </body>
 

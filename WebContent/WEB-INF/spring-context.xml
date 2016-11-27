@@ -88,7 +88,7 @@
 	</bean>
 	
 	<!-- Habilita a utilização do Spring Data -->
-	<jpa:repositories base-package="br.com.ctrlt.repository" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
+	<jpa:repositories base-package="br.com.ctrlt.interfaces.repository" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
 
 </beans>
 

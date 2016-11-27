@@ -18,6 +18,9 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,6 +39,8 @@ import br.com.ctrlt.dao.AnexoDAO;
 import br.com.ctrlt.dao.CursoDAO;
 import br.com.ctrlt.dao.ProfessorDAO;
 import br.com.ctrlt.dao.TrabalhoDeConclusaoDAO;
+import br.com.ctrlt.interfaces.repository.TrabalhoDeConclusaoRepository;
+import br.com.ctrlt.interfaces.service.TrabalhoDeConclusaoService;
 import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.ResponseJsonWithId;
 import br.com.ctrlt.json.TableResponseJson;
@@ -47,7 +52,10 @@ import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
-public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusao> {
+public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusao>, TrabalhoDeConclusaoService {
+	
+	//Número de páginas a serem exibidas por página
+	private static final int PAGE_SIZE = 12;
 
 	@Autowired
 	private ApplicationContext applicationContext;
@@ -69,6 +77,9 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	
 	@Autowired
 	private AnexoDAO anexoDAO;
+	
+    @Autowired 
+    private TrabalhoDeConclusaoRepository trabalhoDeConclusaoRepository;
 	
 	@Override
 	@RequestMapping(value = "adm/cadastro/trabalho_de_conclusao", method = RequestMethod.GET)
@@ -554,6 +565,33 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		// Gera o relatório de acordo com a extensao enviada por parâmetro de URL
 		modelAndView = new ModelAndView(view, parameterMap);
 		return modelAndView;
+	}
+
+	@Override
+	public Page<TrabalhoDeConclusao> obterMonografias(Integer pageNumber) {
+		PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "titulo");
+        return trabalhoDeConclusaoRepository.findAll(request);
+	}
+
+	@Override
+	public Page<TrabalhoDeConclusao> pesquisarMonografia(Integer pageNumber, String titulo) {
+		PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "titulo");
+        return trabalhoDeConclusaoRepository.pesquisarPorTitulo(titulo, request);
+	}
+
+	@Override
+	public Page<TrabalhoDeConclusao> obeterMonografiasPorCurso(Integer pageNumber, String curso) {
+		
+		Long idCurso = 0l;
+		
+		try{
+			idCurso = Long.parseLong(curso);
+		}catch(Exception e ){
+			idCurso = 0l;
+		}
+		
+		PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "titulo");
+        return trabalhoDeConclusaoRepository.pesquisaPorCurso(idCurso, request);
 	}
 
 }

@@ -27,7 +27,7 @@
 						aria-expanded="false">Cursos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<c:forEach items="${cursos}" var="curso">
-								<li><a href="#">${curso.nome}</a></li>
+								<li><a href="${baseURL}/galeria/monografias/1?c=${curso.id}">${curso.nome}</a></li>
 							</c:forEach>
 						</ul></li>
 					<li id="menuInformacoes" class="dropdown"><a href="#" class="dropdown-toggle"
@@ -45,7 +45,7 @@
 				<c:if test="${not empty sessionScope.administradorLogado 
 					or not empty sessionScope.professorLogado 
 					or not empty sessionScope.alunoLogado}">
-					<ul class="nav navbar-right top-nav">
+					<ul id="user-bar" class="nav top-nav">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"> <i class="fa fa-user"></i> 
 								<c:if test="${not empty sessionScope.administradorLogado}">
@@ -72,7 +72,7 @@
 				<c:if test="${empty sessionScope.administradorLogado 
 					and empty sessionScope.professorLogado 
 					and empty sessionScope.alunoLogado}">
-					<ul class="nav navbar-right top-nav">
+					<ul id="user-bar" class="nav top-nav">
 						<li class="dropdown">
 							<a href="${baseURL}/login?redirect=galeria"> 
 								<i class="fa fa-user"></i> Clique aqui para logar
@@ -85,8 +85,8 @@
 
 			<ul class="nav navbar-nav navbar-right search-form">
 
-				<form class="navbar-form" role="search" action="${baseURL}/galeria/monografias/1">
-					<div class="form-group">
+				<form class="navbar-form" role="search" action="${baseURL}/galeria/monografias/1" accept-charset="UTF-8">
+					<div id="search-form" class="form-group">
 						<input type="text" class="form-control" name="s" id="campo-pesquisa" value="${param.s}"
 							placeholder="Digite sua pesquisa">
 

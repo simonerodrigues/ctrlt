@@ -1,4 +1,4 @@
-package br.com.ctrlt.interfaces;
+package br.com.ctrlt.interfaces.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -11,5 +11,7 @@ public interface TrabalhoDeConclusaoService {
 	Page<TrabalhoDeConclusao> obterMonografias(Integer pageNumber);
 	
 	Page<TrabalhoDeConclusao> pesquisarMonografia(Integer pageNumber, String titulo);
+	
+	Page<TrabalhoDeConclusao> obeterMonografiasPorCurso(Integer pageNumber, String curso);
 
 }
