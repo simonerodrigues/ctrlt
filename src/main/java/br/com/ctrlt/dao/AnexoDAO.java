@@ -20,6 +20,7 @@ public class AnexoDAO implements DAO<Anexo> {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Anexo> listar(String criterio) {
 		Query query = manager.createQuery("SELECT a FROM Anexo a " + criterio);
 
@@ -29,6 +30,7 @@ public class AnexoDAO implements DAO<Anexo> {
 	}
 
 	@Override
+	@Transactional
 	public Anexo pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Anexo anexo = manager.find(Anexo.class, id);

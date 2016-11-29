@@ -22,6 +22,7 @@ public class AlunoDAO implements DAO<Aluno> {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Aluno> listar(String criterio) {
 		Query query = manager.createQuery("SELECT a FROM Aluno a " + criterio);
 
@@ -31,6 +32,7 @@ public class AlunoDAO implements DAO<Aluno> {
 	}
 
 	@Override
+	@Transactional
 	public Aluno pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Aluno aluno = manager.find(Aluno.class, id);
@@ -95,6 +97,7 @@ public class AlunoDAO implements DAO<Aluno> {
 		}
 	}
 	
+	@Transactional
 	public boolean verificarRaExistente(Aluno aluno){
 		Query query = manager.createQuery("SELECT a FROM Aluno a "
 				+ "WHERE a.ra = :ra AND a.id <> :id")
@@ -104,6 +107,7 @@ public class AlunoDAO implements DAO<Aluno> {
 		return (query.getResultList().size() > 0);
 	}
 	
+	@Transactional
 	public boolean verificarLoginExistente(Aluno aluno){
 		Query query = manager.createQuery("SELECT a FROM Aluno a "
 				+ "WHERE a.login = :login AND a.id <> :id")
@@ -113,6 +117,7 @@ public class AlunoDAO implements DAO<Aluno> {
 		return (query.getResultList().size() > 0);
 	}
 	
+	@Transactional
 	public boolean verificarEmailAlternativoExistente(Aluno aluno){
 		Query query = manager.createQuery("SELECT a FROM Aluno a "
 				+ "WHERE a.emailAlternativo = :emailAlternativo AND a.id <> :id")
@@ -122,6 +127,7 @@ public class AlunoDAO implements DAO<Aluno> {
 		return (query.getResultList().size() > 0);
 	}
 	
+	@Transactional
 	public boolean verificarEmailFatecExistente(Aluno aluno){
 		Query query = manager.createQuery("SELECT a FROM Aluno a "
 				+ "WHERE a.emailFatec = :emailFatec AND a.emailFatec <> '' AND a.id <> :id")
@@ -131,6 +137,7 @@ public class AlunoDAO implements DAO<Aluno> {
 		return (query.getResultList().size()> 0);
 	}
 
+	@Transactional
 	public Aluno logar(String login, String senha){
 		
 		senha = new String(Base64.encodeBase64(senha.getBytes()));
@@ -148,6 +155,20 @@ public class AlunoDAO implements DAO<Aluno> {
 		}
 	}
 
+	@Transactional
+	public Aluno pesquisarPorEmail(String email){
+		TypedQuery<Aluno> query = manager.createQuery("SELECT a FROM Aluno a "
+				+ "WHERE a.emailAlternativo = :email OR"
+				+ "a.emailFatec = :email", Aluno.class)
+				.setParameter("email", email);
+		
+		try{
+			return query.getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
+	}
+	
 	public EntityManager getEntityManager() {
 		return manager;
 	}

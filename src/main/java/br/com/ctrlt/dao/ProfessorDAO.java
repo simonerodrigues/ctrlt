@@ -22,6 +22,7 @@ public class ProfessorDAO implements DAO<Professor> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Professor> listar(String criterio) {
 		Query query = manager.createQuery("SELECT p FROM Professor p " + criterio);
 
@@ -31,6 +32,7 @@ public class ProfessorDAO implements DAO<Professor> {
 	}
 
 	@Override
+	@Transactional
 	public Professor pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primárip.
 		Professor professor = manager.find(Professor.class, id);
@@ -96,6 +98,7 @@ public class ProfessorDAO implements DAO<Professor> {
 		}
 	}
 	
+	@Transactional
 	public boolean verificarLoginExistente(Professor professor){
 		Query query = manager.createQuery("SELECT p FROM Professor p "
 				+ "WHERE p.login = :login AND p.id <> :id")
@@ -105,6 +108,7 @@ public class ProfessorDAO implements DAO<Professor> {
 		return (query.getResultList().size() > 0);
 	}
 	
+	@Transactional
 	public boolean verificarEmailAlternativoExistente(Professor professor){
 		Query query = manager.createQuery("SELECT p FROM Professor p "
 				+ "WHERE p.emailAlternativo = :emailAlternativo AND p.id <> :id")
@@ -114,6 +118,7 @@ public class ProfessorDAO implements DAO<Professor> {
 		return (query.getResultList().size() > 0);
 	}
 	
+	@Transactional
 	public boolean verificarEmailFatecExistente(Professor professor){
 		Query query = manager.createQuery("SELECT p FROM Professor p "
 				+ "WHERE p.emailFatec = :emailFatec AND p.emailFatec <> '' AND p.id <> :id")
@@ -123,6 +128,7 @@ public class ProfessorDAO implements DAO<Professor> {
 		return (query.getResultList().size()> 0);
 	}
 	
+	@Transactional
 	public Professor logar(String login, String senha){
 		
 		senha = new String(Base64.encodeBase64(senha.getBytes()));
@@ -132,6 +138,20 @@ public class ProfessorDAO implements DAO<Professor> {
 				+ "AND p.senha = :senha", Professor.class)
 				.setParameter("login", login)
 				.setParameter("senha", senha);
+		
+		try{
+			return query.getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
+	}
+	
+	@Transactional
+	public Professor pesquisarPorEmail(String email){
+		TypedQuery<Professor> query = manager.createQuery("SELECT p FROM Professor p "
+				+ "WHERE p.emailAlternativo = :email OR"
+				+ "p.emailFatec = :email", Professor.class)
+				.setParameter("email", email);
 		
 		try{
 			return query.getSingleResult();

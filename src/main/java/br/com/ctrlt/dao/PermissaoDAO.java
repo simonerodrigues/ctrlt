@@ -20,6 +20,7 @@ public class PermissaoDAO implements DAO<Permissao> {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Permissao> listar(String criterio) {
 		Query query = manager.createQuery("SELECT p FROM Permissao p " + criterio);
 
@@ -29,6 +30,7 @@ public class PermissaoDAO implements DAO<Permissao> {
 	}
 
 	@Override
+	@Transactional
 	public Permissao pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Permissao permissao = manager.find(Permissao.class, id);

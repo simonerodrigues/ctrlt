@@ -20,6 +20,7 @@ public class LinhaDePesquisaDAO implements DAO<LinhaDePesquisa> {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<LinhaDePesquisa> listar(String criterio) {
 		Query query = manager.createQuery("SELECT l FROM LinhaDePesquisa l " + criterio);
 
@@ -29,6 +30,7 @@ public class LinhaDePesquisaDAO implements DAO<LinhaDePesquisa> {
 	}
 
 	@Override
+	@Transactional
 	public LinhaDePesquisa pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		LinhaDePesquisa linhaDePesquisa = manager.find(LinhaDePesquisa.class, id);
