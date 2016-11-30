@@ -149,7 +149,7 @@ public class AdministradorDeConteudoDAO implements DAO<AdministradorDeConteudo> 
 	@Transactional
 	public AdministradorDeConteudo pesquisarPorEmail(String email){
 		TypedQuery<AdministradorDeConteudo> query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a "
-				+ "WHERE a.emailAlternativo = :email OR"
+				+ "WHERE a.emailAlternativo = :email OR "
 				+ "a.emailFatec = :email", AdministradorDeConteudo.class)
 				.setParameter("email", email);
 		
