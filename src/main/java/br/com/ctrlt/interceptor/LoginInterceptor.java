@@ -27,7 +27,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		String uri = request.getRequestURI();
 
-		if ((uri.endsWith("login") || uri.endsWith("efetua_login") || uri.endsWith("galeria") ||  uri.endsWith("reseta_senha")) && 
+		if ((uri.endsWith("login") || uri.endsWith("efetua_login") || uri.endsWith("galeria") ||  
+			 uri.endsWith("reset_senha") || uri.endsWith("enviar_senha")) && 
 			(request.getSession().getAttribute("administradorLogado") == null && 
 			 request.getSession().getAttribute("professorLogado") == null &&
 			 request.getSession().getAttribute("alunoLogado") == null

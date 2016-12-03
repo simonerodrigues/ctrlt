@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+ï»¿package br.com.ctrlt.controller;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -24,7 +24,7 @@ import br.com.ctrlt.model.Aluno;
 import br.com.ctrlt.model.Professor;
 
 @Controller
-public class MailController {
+public class PasswordController {
 	
 	@Autowired
 	AdministradorDeConteudoDAO administradorDeConteudoDAO;
@@ -37,8 +37,13 @@ public class MailController {
 	
 	@Autowired
     private JavaMailSender mailSender;
+	
+	@RequestMapping(value = "reset_senha", method = RequestMethod.GET)
+	public String carregarPagina() {
+		return "adm/autenticacao/reset_senha";
+	}
 
-	@RequestMapping(value = "reseta_senha", method = RequestMethod.GET)
+	@RequestMapping(value = "enviar_senha", method = RequestMethod.POST)
 	public @ResponseBody ResponseJson resetarSenha(HttpServletRequest request) throws MessagingException{
 		
 		ResponseJson response = new ResponseJson();
@@ -62,9 +67,9 @@ public class MailController {
 				
 				if(administradorDeConteudo == null){
 					response.setStatus("FAIL");
-					response.setResult("Não foi encontrado nenhum administrador com este e-mail");
+					response.setResult("NÃ£o foi encontrado nenhum administrador com este e-mail");
 				}else{
-					//Realiza o reset de senha do Administrador de Conteúdo
+					//Realiza o reset de senha do Administrador de ConteÃºdo
 					administradorDeConteudo.setSenha(novaSenha);
 					
 					//Efetiva o reset de senha
@@ -79,7 +84,7 @@ public class MailController {
 				
 				if(professor == null){
 					response.setStatus("FAIL");
-					response.setResult("Não foi encontrado nenhum professor com este e-mail");
+					response.setResult("NÃ£o foi encontrado nenhum professor com este e-mail");
 				}else{
 					//Realiza o reset de senha do Professor
 					professor.setSenha(novaSenha);
@@ -95,7 +100,7 @@ public class MailController {
 				
 				if(aluno == null){
 					response.setStatus("FAIL");
-					response.setResult("Não foi encontrado nenhum aluno com este e-mail");
+					response.setResult("NÃ£o foi encontrado nenhum aluno com este e-mail");
 				}else{
 					//Realiza o reset de senha do Aluno
 					aluno.setSenha(novaSenha);
@@ -114,20 +119,22 @@ public class MailController {
 		
 		//Envia o e-mail de reset de senha
         MimeMessage mimeMessage = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
          
         String body = "<p>Prezado " + nome + ", <br /><br />"
-        		+ "Sua solicitação de reset de senha foi atendida. Segue sua nova senha: " + novaSenha + "<br /><br />"
+        		+ "Sua solicita&ccedil;&atilde;o de reset de senha foi atendida. Segue sua nova senha: " + novaSenha + "<br /><br />"
         		+ "Atenciosamente,<br /><br />"
         		+ "Ctrl+T<p>";
         
         mimeMessage.setContent(body, "text/html");
         helper.setTo(email);
         helper.setSubject("Ctrl+T - Reset de Senha");
-        helper.setFrom("noreply@ctrlt.com.br");
         
         // sends the e-mail
         mailSender.send(mimeMessage);
+        
+        response.setStatus("SUCCESS");
+        response.setResult("Reset de senha realizado com sucesso. A senha foi enviada para o e-mail informado.");
         
         return response;
 	}
