@@ -22,6 +22,7 @@ public class AdministradorDeConteudoDAO implements DAO<AdministradorDeConteudo> 
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<AdministradorDeConteudo> listar(String criterio) {
 		Query query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a " + criterio);
 
@@ -31,6 +32,7 @@ public class AdministradorDeConteudoDAO implements DAO<AdministradorDeConteudo> 
 	}
 
 	@Override
+	@Transactional
 	public AdministradorDeConteudo pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		AdministradorDeConteudo administradorDeConteudo = manager.find(AdministradorDeConteudo.class, id);
@@ -96,6 +98,7 @@ public class AdministradorDeConteudoDAO implements DAO<AdministradorDeConteudo> 
 		}
 	}
 	
+	@Transactional
 	public boolean verificarLoginExistente(AdministradorDeConteudo administradorDeConteudo){
 		Query query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a "
 				+ "WHERE a.login = :login AND a.id <> :id")
@@ -105,6 +108,7 @@ public class AdministradorDeConteudoDAO implements DAO<AdministradorDeConteudo> 
 		return (query.getResultList().size() > 0);
 	}
 	
+	@Transactional
 	public boolean verificarEmailAlternativoExistente(AdministradorDeConteudo administradorDeConteudo){
 		Query query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a "
 				+ "WHERE a.emailAlternativo = :emailAlternativo AND a.id <> :id")
@@ -114,6 +118,7 @@ public class AdministradorDeConteudoDAO implements DAO<AdministradorDeConteudo> 
 		return (query.getResultList().size() > 0);
 	}
 	
+	@Transactional
 	public boolean verificarEmailFatecExistente(AdministradorDeConteudo administradorDeConteudo){
 		Query query = manager.createQuery("SELECT a FROM AdministradorDeConteudo a "
 				+ "WHERE a.emailFatec = :emailFatec AND a.emailFatec <> '' AND a.id <> :id")
@@ -123,6 +128,7 @@ public class AdministradorDeConteudoDAO implements DAO<AdministradorDeConteudo> 
 		return (query.getResultList().size()> 0);
 	}
 	
+	@Transactional
 	public AdministradorDeConteudo logar(String login, String senha){
 		
 		senha = new String(Base64.encodeBase64(senha.getBytes()));

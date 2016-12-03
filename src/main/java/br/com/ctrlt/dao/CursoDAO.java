@@ -20,6 +20,7 @@ public class CursoDAO implements DAO<Curso> {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Curso> listar(String criterio) {
 		Query query = manager.createQuery("SELECT c FROM Curso c " + criterio);
 
@@ -29,6 +30,7 @@ public class CursoDAO implements DAO<Curso> {
 	}
 
 	@Override
+	@Transactional
 	public Curso pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Curso curso = manager.find(Curso.class, id);
@@ -79,6 +81,7 @@ public class CursoDAO implements DAO<Curso> {
 	}
 
 	@Override
+	@Transactional
 	public boolean excluirPorId(int id) {
 		Curso curso = pesquisarPorId(id);
 		

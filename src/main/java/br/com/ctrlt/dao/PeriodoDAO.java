@@ -20,6 +20,7 @@ public class PeriodoDAO implements DAO<Periodo> {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Periodo> listar(String criterio) {
 		Query query = manager.createQuery("SELECT p FROM Periodo p " + criterio);
 
@@ -29,6 +30,7 @@ public class PeriodoDAO implements DAO<Periodo> {
 	}
 
 	@Override
+	@Transactional
 	public Periodo pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Periodo periodo = manager.find(Periodo.class, id);

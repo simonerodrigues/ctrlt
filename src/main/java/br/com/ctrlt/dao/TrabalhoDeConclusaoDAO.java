@@ -20,6 +20,7 @@ public class TrabalhoDeConclusaoDAO implements DAO<TrabalhoDeConclusao> {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<TrabalhoDeConclusao> listar(String criterio) {
 		Query query = manager.createQuery("SELECT t FROM TrabalhoDeConclusao t " + criterio);
 
@@ -29,6 +30,7 @@ public class TrabalhoDeConclusaoDAO implements DAO<TrabalhoDeConclusao> {
 	}
 
 	@Override
+	@Transactional
 	public TrabalhoDeConclusao pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		TrabalhoDeConclusao trabalhoDeConclusao = manager.find(TrabalhoDeConclusao.class, id);
@@ -95,6 +97,7 @@ public class TrabalhoDeConclusaoDAO implements DAO<TrabalhoDeConclusao> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Transactional
 	public List<TrabalhoDeConclusao> listarOsMaisBaixados(int quantidade){
 		Query query = manager.createQuery("SELECT t FROM TrabalhoDeConclusao t "
 				+ "JOIN FETCH t.monografia m "
@@ -107,6 +110,7 @@ public class TrabalhoDeConclusaoDAO implements DAO<TrabalhoDeConclusao> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Transactional
 	public List<TrabalhoDeConclusao> listarOsRecemAdicionados(int quantidade){
 		Query query = manager.createQuery("SELECT t FROM TrabalhoDeConclusao t "
 				+ "JOIN FETCH t.monografia m "

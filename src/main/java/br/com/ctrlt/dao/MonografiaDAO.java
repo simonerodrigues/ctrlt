@@ -20,6 +20,7 @@ public class MonografiaDAO implements DAO<Monografia> {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Monografia> listar(String criterio) {
 		Query query = manager.createQuery("SELECT m FROM Monografia m " + criterio);
 
@@ -29,6 +30,7 @@ public class MonografiaDAO implements DAO<Monografia> {
 	}
 
 	@Override
+	@Transactional
 	public Monografia pesquisarPorId(long id) {
 		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Monografia monografia = manager.find(Monografia.class, id);
