@@ -155,6 +155,20 @@ public class AlunoDAO implements DAO<Aluno> {
 		}
 	}
 
+	@Transactional
+	public Aluno pesquisarPorEmail(String email){
+		TypedQuery<Aluno> query = manager.createQuery("SELECT a FROM Aluno a "
+				+ "WHERE a.emailAlternativo = :email OR "
+				+ "a.emailFatec = :email", Aluno.class)
+				.setParameter("email", email);
+		
+		try{
+			return query.getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
+	}
+	
 	public EntityManager getEntityManager() {
 		return manager;
 	}

@@ -146,6 +146,20 @@ public class ProfessorDAO implements DAO<Professor> {
 		}
 	}
 	
+	@Transactional
+	public Professor pesquisarPorEmail(String email){
+		TypedQuery<Professor> query = manager.createQuery("SELECT p FROM Professor p "
+				+ "WHERE p.emailAlternativo = :email OR "
+				+ "p.emailFatec = :email", Professor.class)
+				.setParameter("email", email);
+		
+		try{
+			return query.getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
+	}
+	
 	public EntityManager getEntityManager() {
 		return manager;
 	}

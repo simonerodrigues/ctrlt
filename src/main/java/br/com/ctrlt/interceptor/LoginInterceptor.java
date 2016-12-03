@@ -27,8 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		String uri = request.getRequestURI();
 
-		// Verifica se está na tela de login e não está logado
-		if ((uri.endsWith("login") || uri.endsWith("efetua_login") || uri.endsWith("galeria")) && 
+		if ((uri.endsWith("login") || uri.endsWith("efetua_login") || uri.endsWith("galeria") ||  uri.endsWith("reseta_senha")) && 
 			(request.getSession().getAttribute("administradorLogado") == null && 
 			 request.getSession().getAttribute("professorLogado") == null &&
 			 request.getSession().getAttribute("alunoLogado") == null
