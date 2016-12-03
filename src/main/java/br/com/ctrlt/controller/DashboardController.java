@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+ï»¿package br.com.ctrlt.controller;
 
 import java.math.BigInteger;
 
@@ -24,21 +24,21 @@ public class DashboardController {
 	public Dashboard carregarInformacoes() {
 		Dashboard dashboard = new Dashboard();
 		
-		//Trabalhos de Conclusão
+		//Trabalhos de ConclusÃ£o
 		dashboard.setNumeroTrabalhosDeConclusao((Long) manager.createQuery("SELECT COUNT(t) FROM TrabalhoDeConclusao t").getSingleResult());
 		dashboard.setNumeroMonografias((Long) manager.createQuery("SELECT COUNT(m) FROM Monografia m").getSingleResult());
 		dashboard.setNumeroAnexos((Long) manager.createQuery("SELECT COUNT(a) FROM Anexo a").getSingleResult());
 		
-		//Usuários do Sistema
+		//UsuÃ¡rios do Sistema
 		dashboard.setNumeroAdministradoresDeConteudo((Long) manager.createQuery("SELECT COUNT(a) FROM AdministradorDeConteudo a").getSingleResult());
 		dashboard.setNumeroProfessores((Long) manager.createQuery("SELECT COUNT(p) FROM Professor p").getSingleResult());
 		dashboard.setNumeroAlunos((Long) manager.createQuery("SELECT COUNT(a) FROM Aluno a").getSingleResult());
 		
-		//Informações de Arquivos
+		//InformaÃ§Ãµes de Arquivos
 		BigInteger tamanhoArquivosMonografia = (BigInteger) manager.createQuery("SELECT SUM(m.tamanho) FROM Monografia m").getSingleResult();
 		BigInteger tamanhoArquivosAnexos     = (BigInteger) manager.createQuery("SELECT SUM(a.tamanho) FROM Anexo a").getSingleResult();
 		
-		//Veriricação dos números de arquivos
+		//VeriricaÃ§Ã£o dos nÃºmeros de arquivos
 		if(tamanhoArquivosMonografia == null){
 			tamanhoArquivosMonografia = new BigInteger("0");
 		}
@@ -52,7 +52,7 @@ public class DashboardController {
 		Long numeroDownloadsMonografia = (Long) manager.createQuery("SELECT SUM(m.numeroDownloads) FROM Monografia m").getSingleResult();
 		Long numeroDownloadsAnexo = (Long) manager.createQuery("SELECT SUM(a.numeroDownloads) FROM Anexo a").getSingleResult();
 		
-		//Veriricação dos números de arquivos
+		//VeriricaÃ§Ã£o dos nÃºmeros de arquivos
 		if(numeroDownloadsMonografia == null){
 			numeroDownloadsMonografia = 0l;
 		}

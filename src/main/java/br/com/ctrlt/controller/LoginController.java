@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,7 +50,7 @@ public class LoginController {
 				session.setAttribute("administradorLogado", administradorDeConteudo);
 			}else{
 				res.setStatus("FAIL");
-				res.setResult("Usu·rio e/ou senha incorretos! Por gentileza tente novamente!");
+				res.setResult("Usu√°rio e/ou senha incorretos! Por gentileza tente novamente!");
 			}
 			break;
 
@@ -63,7 +63,7 @@ public class LoginController {
 				session.setAttribute("professorLogado", professor);
 			}else{
 				res.setStatus("FAIL");
-				res.setResult("Usu·rio e/ou senha incorretos! Por gentileza tente novamente!");
+				res.setResult("Usu√°rio e/ou senha incorretos! Por gentileza tente novamente!");
 			}
 			break;
 			
@@ -76,7 +76,7 @@ public class LoginController {
 				session.setAttribute("alunoLogado", aluno);
 			}else{
 				res.setStatus("FAIL");
-				res.setResult("Usu·rio e/ou senha incorretos! Por gentileza tente novamente!");
+				res.setResult("Usu√°rio e/ou senha incorretos! Por gentileza tente novamente!");
 			}
 			break;
 			

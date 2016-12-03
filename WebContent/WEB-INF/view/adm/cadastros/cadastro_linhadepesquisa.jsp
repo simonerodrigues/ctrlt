@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+Ôªø<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -9,7 +9,7 @@
 <c:url value="../includes/meta_informations.jsp"
 	var="metainformations"></c:url>
 
-<!-- InformaÁıes de Autor do projeto -->
+<!-- Informa√ß√µes de Autor do projeto -->
 <c:import url="${metainformations}"></c:import>
 
 <!-- CSS Include -->
@@ -77,8 +77,8 @@
 						</fieldset>
 
 						<div class="col-lg-6">
-							<p class="help-block">Todos os campos com (*) s„o de
-								preenchimento obrigatÛrio</p>
+							<p class="help-block">Todos os campos com (*) s√£o de
+								preenchimento obrigat√≥rio</p>
 						</div>
 
 						<div class="col-lg-6">
@@ -136,7 +136,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			//Marca no menu a opÁ„o correta sobre a p·gina
+			//Marca no menu a op√ß√£o correta sobre a p√°gina
 			marcaMenu("#cadastros", "#cadastroLinhaDePesquisa");
 			
 			dataTable(
@@ -196,7 +196,7 @@
 		});
 		
 		function carregarAlteracao(id) {
-			//FunÁ„o que habilita os campos
+			//Fun√ß√£o que habilita os campos
 			alterar();
 			
 			$.post("${baseURL}/rest/json/linha_de_pesquisa", {"id" : id}).done(function(response) {

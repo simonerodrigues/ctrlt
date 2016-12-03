@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.util.List;
 
@@ -40,10 +40,10 @@ public class PermissaoController implements Control<Permissao> {
 		if (!result.hasErrors()) {			
 			if (permissaoDAO.cadastrar(entidade)) {
 				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Permiss„o cadastrada com sucesso.");
+				responseJson.setResult("Permiss√£o cadastrada com sucesso.");
 			} else {
 				responseJson.setStatus("FAIL");
-				responseJson.setResult("Erro ao cadastrar a permiss„o. Por gentileza contate o administrador do sistema.");
+				responseJson.setResult("Erro ao cadastrar a permiss√£o. Por gentileza contate o administrador do sistema.");
 			}
 		} else {
 			responseJson.setStatus("FAIL");
@@ -51,9 +51,9 @@ public class PermissaoController implements Control<Permissao> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -75,10 +75,10 @@ public class PermissaoController implements Control<Permissao> {
 		if (!result.hasErrors()) {
 			if (permissaoDAO.alterar(entidade)) {
 				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Permiss„o alterada com sucesso.");
+				responseJson.setResult("Permiss√£o alterada com sucesso.");
 			} else {
 				responseJson.setStatus("FAIL");
-				responseJson.setResult("Erro ao alterar o permiss„o. Por gentileza contate o administrador do sistema.");
+				responseJson.setResult("Erro ao alterar o permiss√£o. Por gentileza contate o administrador do sistema.");
 			}
 		} else {
 			responseJson.setStatus("FAIL");
@@ -86,9 +86,9 @@ public class PermissaoController implements Control<Permissao> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -122,19 +122,19 @@ public class PermissaoController implements Control<Permissao> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do permissao que ser· excluido
+		// Pega o c√≥digo do permissao que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de permissao para pesquisar no banco
 		Permissao permissao = permissaoDAO.pesquisarPorId(Integer.parseInt(id));
 
-		// Realiza a exclus„o do permissao
+		// Realiza a exclus√£o do permissao
 		if (permissaoDAO.excluir(permissao)) {
 			responseJson.setStatus("SUCCESS");
-			responseJson.setResult("Permiss„o excluÌda com sucesso.");
+			responseJson.setResult("Permiss√£o exclu√≠da com sucesso.");
 		} else {
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("Erro ao excluir a permiss„o. Por gentileza contate o administrador do sistema.");
+			responseJson.setResult("Erro ao excluir a permiss√£o. Por gentileza contate o administrador do sistema.");
 		}
 
 		return responseJson;
@@ -142,7 +142,7 @@ public class PermissaoController implements Control<Permissao> {
 
 	@Override
 	public ResponseJson inativar(HttpServletRequest req) {
-		// N√O UTILIZAMOS NO MOMENTO
+		// N√ÉO UTILIZAMOS NO MOMENTO
 		return null;
 	}
 	
@@ -150,7 +150,7 @@ public class PermissaoController implements Control<Permissao> {
 	@ResponseBody
 	@RequestMapping(value = "rest/json/permissao", method = RequestMethod.POST)
 	public Permissao entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo do Permissao que ser· inativado
+		// Pega o c√≥digo do Permissao que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de permissao para alterar o status

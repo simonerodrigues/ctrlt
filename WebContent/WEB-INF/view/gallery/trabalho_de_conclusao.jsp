@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
@@ -7,7 +7,7 @@
 <html lang="pt-br">
 
 <head>
-	<!-- Informações de Autor do projeto --> 
+	<!-- InformaÃ§Ãµes de Autor do projeto --> 
 	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
 	<c:import url="${metainformations}"></c:import>
 	
@@ -28,7 +28,7 @@
 		<!-- Trabalhos mais procurados -->
 		<div class="container page">
 			
-			<h2>Título: ${trabalhoDeConclusao.titulo} <button onclick="voltar()" class="btn btn-primary right"><i class="fa fa-arrow-circle-left"></i> Voltar</button></h2>
+			<h2>TÃ­tulo: ${trabalhoDeConclusao.titulo} <button onclick="voltar()" class="btn btn-primary right"><i class="fa fa-arrow-circle-left"></i> Voltar</button></h2>
 			<hr />
 			
 			<br />
@@ -62,7 +62,7 @@
 			</div>
 			
 			<div class="col-lg-6">
-				<h3>Capa padrão Ctrl+T:</h3>
+				<h3>Capa padrÃ£o Ctrl+T:</h3>
 				
 				<br />
 				
@@ -81,7 +81,7 @@
 						</div>
 						
 						<div class="book-footer">
-							São Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
+							SÃ£o Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
 						</div>
 					</div>
 				</div>
@@ -96,7 +96,7 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<strong>Nome:</strong> ${trabalhoDeConclusao.monografia.nome} <br />
-						<strong>Número de Downloads:</strong> ${trabalhoDeConclusao.monografia.numeroDownloads}
+						<strong>NÃºmero de Downloads:</strong> ${trabalhoDeConclusao.monografia.numeroDownloads}
 					</div>
 					
 					<div class="col-lg-4">
@@ -121,7 +121,7 @@
 							<div class="row">
 								<div class="col-lg-8">
 									<strong>Nome:</strong> ${anexo.nome} <br />
-									<strong>Número de Downloads:</strong> ${anexo.numeroDownloads}
+									<strong>NÃºmero de Downloads:</strong> ${anexo.numeroDownloads}
 								</div>
 								
 								<div class="col-lg-4">

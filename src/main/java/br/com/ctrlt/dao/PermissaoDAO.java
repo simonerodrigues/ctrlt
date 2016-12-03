@@ -1,4 +1,4 @@
-package br.com.ctrlt.dao;
+﻿package br.com.ctrlt.dao;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class PermissaoDAO implements DAO<Permissao> {
 
 	@Override
 	public Permissao pesquisarPorId(long id) {
-		// O metodo find do hibernate ja pesquisa pela chave prim�ria.
+		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Permissao permissao = manager.find(Permissao.class, id);
 
 		return permissao;

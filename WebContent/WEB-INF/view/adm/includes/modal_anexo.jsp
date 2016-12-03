@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+Ôªø<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -16,7 +16,7 @@
 			<div  id="anexo-page" class="modal-body">
 				<form id="form-anexo" role="form" method="post">
 					<fieldset disabled="disabled" id="fieldset-anexo">
-						<!-- Os campos ser„o carregados quando o modal for aberto -->						
+						<!-- Os campos ser√£o carregados quando o modal for aberto -->						
 					</fieldset>
 					
 					<div class="col-lg-12">
@@ -48,7 +48,7 @@
 </div>
 
 <script type="text/javascript">
-	//Nunca deixa o form realiza o submit, quem realiza o submit È o JQuery(Ajax)
+	//Nunca deixa o form realiza o submit, quem realiza o submit √© o JQuery(Ajax)
 	$("#form-anexo").on("submit", function() {
 		return false;
 	});
@@ -66,10 +66,10 @@
 		
 						+ '<div class="col-lg-6">'
 							+ '<div class="form-group">'
-								+ '<label>DisponÌvel para Download?: </label>'
+								+ '<label>Dispon√≠vel para Download?: </label>'
 								+ '<select name="visivel[]" class="form-control download">'
 									+ '<option value="1">Sim</option>'
-									+ '<option value="2">N„o</option>'
+									+ '<option value="2">N√£o</option>'
 								+ '</select>'
 							+ '</div>'
 						+ '</div>'
@@ -115,7 +115,7 @@
 		
 	}
 	
-	//FunÁ„o que realiza o cadastro dos anexos
+	//Fun√ß√£o que realiza o cadastro dos anexos
 	function cadastrarAnexo(id){
 		var anexos = $(".anexo");
 		
@@ -127,7 +127,7 @@
 			formData.append("download", $(".download").eq(i).val() == "1" ? true : false);
 		}
 		
-		//Adiciona o ID do trabalho de conclus„o a qual os Anexos pertencem
+		//Adiciona o ID do trabalho de conclus√£o a qual os Anexos pertencem
 		formData.append("id", id);
 		
 		//Exibe o progresso do upload
@@ -137,7 +137,7 @@
 		uploadArquivos("anexo", formData);
 	}
 	
-	//FunÁ„o com aÁ„o de inativar cadastro
+	//Fun√ß√£o com a√ß√£o de inativar cadastro
 	function perguntaBloquearDownload(status,id) {
 		$("#botao-modal-nao").show();
 		$("#botao-modal-sim").text("Sim");
@@ -160,7 +160,7 @@
 		$("#modal").modal("show");
 	}
 	
-	//FunÁ„o para bloquear o download da entidade
+	//Fun√ß√£o para bloquear o download da entidade
 	function bloquearDownload(entidade, id) {
 		
 		$.post("${baseURL}/rest/status_download/" + entidade, {"id" : id}).done(function(response) {
@@ -217,7 +217,7 @@
 		});
 	}
 	
-	//FunÁ„o com aÁ„o de novo cadastro
+	//Fun√ß√£o com a√ß√£o de novo cadastro
 	$("#novo-anexo").on("click", function novoAnexo() {		
 		$("#fieldset-anexo").attr('disabled', false);
 		$("#cadastrar-anexo").attr('disabled', false);
@@ -236,10 +236,10 @@
 	
 					+ '<div class="col-lg-6">'
 						+ '<div class="form-group">'
-							+ '<label>DisponÌvel para Download? </label>'
+							+ '<label>Dispon√≠vel para Download? </label>'
 							+ '<select name="visivel[]" class="form-control download">'
 								+ '<option value="1">Sim</option>'
-								+ '<option value="2">N„o</option>'
+								+ '<option value="2">N√£o</option>'
 							+ '</select>'
 						+ '</div>'
 					+ '</div>'

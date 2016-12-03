@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,28 +10,28 @@ import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.TableResponseJson;
 
 public interface Control<Entidade> {
-	//MÈtodo que devolve o nome da p·gina JSP que ir· ser aberta pelo @RequestMapping
+	//M√©todo que devolve o nome da p√°gina JSP que ir√° ser aberta pelo @RequestMapping
 	public String carregarPagina(Model model);
 	
-	//MÈtodo de controle para cadastrar as entidades
+	//M√©todo de controle para cadastrar as entidades
 	public ResponseJson cadastrar(Entidade entidade, BindingResult result);
 
-	//MÈtodo de controle para alterar as entidades
+	//M√©todo de controle para alterar as entidades
 	public ResponseJson alterar(Entidade entidade, BindingResult result);
 	
-	//MÈtodo de controle para listar as entidades
+	//M√©todo de controle para listar as entidades
 	public TableResponseJson listar(HttpServletRequest req);
 	
-	//MÈtodo de controle para excluir as entidades
+	//M√©todo de controle para excluir as entidades
 	public ResponseJson excluir(HttpServletRequest req);
 	
-	//MÈtodo de controle para inativar as entidades
+	//M√©todo de controle para inativar as entidades
 	public ResponseJson inativar(HttpServletRequest req);
 	
-	//MÈtodo de controle para retornar a entidade em JSON
+	//M√©todo de controle para retornar a entidade em JSON
 	public Entidade entidadeJSON(HttpServletRequest req);
 	
-	//MÈtodo de controle para gerar os relatÛrios
+	//M√©todo de controle para gerar os relat√≥rios
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView);
 	
 }

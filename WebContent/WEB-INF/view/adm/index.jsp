@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -9,7 +9,7 @@
 	<c:url value="includes/meta_informations.jsp"
 		var="metainformations"></c:url>
 	
-	<!-- Informações de Autor do projeto -->
+	<!-- InformaÃ§Ãµes de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -40,7 +40,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Dashboard <small>Estatísticas do Ctrl+T</small>
+							Dashboard <small>EstatÃ­sticas do Ctrl+T</small>
 						</h1>
 						<ol class="breadcrumb">
 							<li class="active"><i class="fa fa-dashboard"></i> Dashboard
@@ -54,7 +54,7 @@
 
 				<div class="row">
 					<div class="col-lg-12">
-						<h3>Usuários do Sistema:</h3><br />
+						<h3>UsuÃ¡rios do Sistema:</h3><br />
 					</div>
 		
 					<div class="col-lg-4">
@@ -66,7 +66,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numADM">0</div>
-										<div>Número de Administradores</div>
+										<div>NÃºmero de Administradores</div>
 									</div>
 								</div>
 							</div>
@@ -82,7 +82,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numProfessores">0</div>
-										<div>Número de Professores</div>
+										<div>NÃºmero de Professores</div>
 									</div>
 								</div>
 							</div>
@@ -98,7 +98,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numAlunos">0</div>
-										<div>Número de Alunos</div>
+										<div>NÃºmero de Alunos</div>
 									</div>
 								</div>
 							</div>
@@ -106,7 +106,7 @@
 					</div>
 				
 					<div class="col-lg-12">
-						<h3>Trabalhos de Conclusão:</h3><br />
+						<h3>Trabalhos de ConclusÃ£o:</h3><br />
 					</div>
 				
 					<div class="col-lg-4">
@@ -118,7 +118,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numTCC">0</div>
-										<div>Número de TCC</div>
+										<div>NÃºmero de TCC</div>
 									</div>
 								</div>
 							</div>
@@ -134,7 +134,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numMonografias">0</div>
-										<div>Número de Monografias</div>
+										<div>NÃºmero de Monografias</div>
 									</div>
 								</div>
 							</div>
@@ -150,7 +150,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numAnexos">0</div>
-										<div>Número de Anexos</div>
+										<div>NÃºmero de Anexos</div>
 									</div>
 								</div>
 							</div>
@@ -158,7 +158,7 @@
 					</div>
 					
 					<div class="col-lg-12">
-						<h3>Informações de Arquivos:</h3><br />
+						<h3>InformaÃ§Ãµes de Arquivos:</h3><br />
 					</div>
 					
 					<div class="col-lg-4">
@@ -170,7 +170,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numArquivos">0</div>
-										<div>Número de Arquivos</div>
+										<div>NÃºmero de Arquivos</div>
 									</div>
 								</div>
 							</div>
@@ -202,7 +202,7 @@
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge" id="numDownloads">0</div>
-										<div>Número de Downloads</div>
+										<div>NÃºmero de Downloads</div>
 									</div>
 								</div>
 							</div>
@@ -250,7 +250,7 @@
 					$(".modal-backdrop").fadeOut("slow");
 					$(".modal-backdrop").remove();
 				});
-				$("#texto-modal").html("Ocorreu um erro ao tentar puxar as informações da dashboard. Por gentileza contate o administrador do sistema.");
+				$("#texto-modal").html("Ocorreu um erro ao tentar puxar as informaÃ§Ãµes da dashboard. Por gentileza contate o administrador do sistema.");
 				$("#modal").modal("show");
 			});
 		}

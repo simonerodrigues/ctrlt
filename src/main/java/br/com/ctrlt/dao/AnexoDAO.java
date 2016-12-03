@@ -1,4 +1,4 @@
-package br.com.ctrlt.dao;
+﻿package br.com.ctrlt.dao;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class AnexoDAO implements DAO<Anexo> {
 
 	@Override
 	public Anexo pesquisarPorId(long id) {
-		// O metodo find do hibernate ja pesquisa pela chave prim�ria.
+		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Anexo anexo = manager.find(Anexo.class, id);
 
 		return anexo;

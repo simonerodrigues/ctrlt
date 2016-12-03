@@ -1,7 +1,7 @@
-package br.com.ctrlt.json;
+ï»¿package br.com.ctrlt.json;
 
 /**
- * Classe de modelo para resposta genérica em JSON de requisição JavaScript
+ * Classe de modelo para resposta genÃ©rica em JSON de requisiÃ§Ã£o JavaScript
  * 
  * @author Simone Santos Rodrigues
  * @version 1.0
@@ -12,18 +12,18 @@ public class ResponseJson {
 	private String result = null;
 
 	/**
-	 * Getter da mensagem do status da operação realizada
+	 * Getter da mensagem do status da operaÃ§Ã£o realizada
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @return status Mensagem do status da operação realizada
+	 * @return status Mensagem do status da operaÃ§Ã£o realizada
 	 */
 	public String getStatus() {
 		return status;
 	}
 
 	/**
-	 * Setter da mensagem do status da operação realizada
+	 * Setter da mensagem do status da operaÃ§Ã£o realizada
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
@@ -35,22 +35,22 @@ public class ResponseJson {
 	}
 
 	/**
-	 * Getter da mensagem do resultado da operação realizada
+	 * Getter da mensagem do resultado da operaÃ§Ã£o realizada
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @return result Mensagem do resultado da operação realizada
+	 * @return result Mensagem do resultado da operaÃ§Ã£o realizada
 	 */
 	public Object getResult() {
 		return result;
 	}
 
 	/**
-	 * Setter da mensagem da operação realizada
+	 * Setter da mensagem da operaÃ§Ã£o realizada
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @param result Mensagem da operação realizada
+	 * @param result Mensagem da operaÃ§Ã£o realizada
 	 * @return void
 	 */
 	public void setResult(String result) {

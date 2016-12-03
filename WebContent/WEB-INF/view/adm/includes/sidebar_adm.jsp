@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -19,22 +19,22 @@
 			<li><a target="_blank" href="${baseURL}/galeria"><i class=" fa fa-book"></i> Galeria</a>
 			<li><a href="javascript:;" data-toggle="collapse" data-target="#cadastros"><i class=" fa fa-plus"></i> Cadastros <i class=" fa fa-caret-down"></i></a>
 				<ul id="cadastros" class="collapse">
-					<li id="cadastroADM"><a href="${baseURL}/adm/cadastro/administrador_de_conteudo"><i class="fa fa-user-plus"></i> Adm de Conteúdo</a></li>
+					<li id="cadastroADM"><a href="${baseURL}/adm/cadastro/administrador_de_conteudo"><i class="fa fa-user-plus"></i> Adm de ConteÃºdo</a></li>
 					<li id="cadastroAluno"><a href="${baseURL}/adm/cadastro/aluno"><i class="fa fa-user-plus"></i> Aluno</a></li>
 					<li id="cadastroCurso"><a href="${baseURL}/adm/cadastro/curso"><i class="fa fa-puzzle-piece"></i> Curso</a></li>
 					<li id="cadastroLinhaDePesquisa"><a href="${baseURL}/adm/cadastro/linha_de_pesquisa"><i class="fa fa-tag"></i> Linha de Pesquisa</a></li>
-					<li id="cadastroPeriodo"><a href="${baseURL}/adm/cadastro/periodo"><i class="fa fa-sun-o"></i> Período</a></li>
+					<li id="cadastroPeriodo"><a href="${baseURL}/adm/cadastro/periodo"><i class="fa fa-sun-o"></i> PerÃ­odo</a></li>
 					<li id="cadastroProfessor"><a href="${baseURL}/adm/cadastro/professor"><i class="fa fa-user-plus"></i> Professor</a></li>
 					<li id="cadastroTrabalhoDeConclusao"><a href="${baseURL}/adm/cadastro/trabalho_de_conclusao"><i class="fa fa-book"></i> TCC</a></li>
 				</ul>
 			</li>
-			<li><a href="javascript:;" data-toggle="collapse"data-target="#relatorios"><i class="fa fa-file-text"></i> Relatórios <i class="fa fa-caret-down"></i></a>
+			<li><a href="javascript:;" data-toggle="collapse"data-target="#relatorios"><i class="fa fa-file-text"></i> RelatÃ³rios <i class="fa fa-caret-down"></i></a>
 				<ul id="relatorios" class="collapse">
-					<li id="relatorioADMPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/administrador_de_conteudo"><i class="fa fa-file-pdf-o"></i> ADM de Conteúdo</a></li>
+					<li id="relatorioADMPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/administrador_de_conteudo"><i class="fa fa-file-pdf-o"></i> ADM de ConteÃºdo</a></li>
 					<li id="relatorioAlunoPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/aluno"><i class="fa fa-file-pdf-o"></i> Aluno</a></li>
 					<li id="relatorioCursoPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/curso"><i class="fa fa-file-pdf-o"></i> Curso</a></li>
 					<li id="relatorioLinhaDePesquisaPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/linha_de_pesquisa"><i class="fa fa-file-pdf-o"></i> Linha de Pesquisa</a></li>
-					<li id="relatorioPeriodoPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/periodo"><i class="fa fa-file-pdf-o"></i> Período</a></li>
+					<li id="relatorioPeriodoPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/periodo"><i class="fa fa-file-pdf-o"></i> PerÃ­odo</a></li>
 					<li id="relatorioProfessorPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/professor"><i class="fa fa-file-pdf-o"></i> Professor</a></li>
 					<li id="relatorioProfessorPDF"><a target="_blank" href="${baseURL}/adm/relatorio/pdf/trabalho_de_conclusao"><i class="fa fa-file-pdf-o"></i> TCC</a></li>
 				</ul>

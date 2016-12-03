@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,7 +37,7 @@ public class SenhaController {
 		
 		senhaAtual = new String(Base64.encodeBase64(senhaAtual.getBytes()));
 		
-		//… um administrador que est· logado
+		//√â um administrador que est√° logado
 		if(request.getSession().getAttribute("administradorLogado") != null){
 			AdministradorDeConteudo administradorDeConteudo = administradorDeConteudoDAO.pesquisarPorId(((AdministradorDeConteudo) request.getSession().getAttribute("administradorLogado")).getId());
 			
@@ -56,9 +56,9 @@ public class SenhaController {
 				}
 			}else{
 				response.setStatus("FAIL");
-				response.setResult("Senha atual digitada È inv·lida! A senha n„o foi alterada.");
+				response.setResult("Senha atual digitada √© inv√°lida! A senha n√£o foi alterada.");
 			}
-		}else if(request.getSession().getAttribute("professorLogado") != null){ //… um professor logado
+		}else if(request.getSession().getAttribute("professorLogado") != null){ //√â um professor logado
 			Professor professor = professorDAO.pesquisarPorId(((Professor) request.getSession().getAttribute("professorLogado")).getId());
 			
 			//Verifica a senha atual
@@ -76,9 +76,9 @@ public class SenhaController {
 				}
 			}else{
 				response.setStatus("FAIL");
-				response.setResult("Senha atual digitada È inv·lida! A senha n„o foi alterada.");
+				response.setResult("Senha atual digitada √© inv√°lida! A senha n√£o foi alterada.");
 			}
-		}else{ //… um aluno logado
+		}else{ //√â um aluno logado
 			Aluno aluno = alunoDAO.pesquisarPorId(((Aluno) request.getSession().getAttribute("alunoLogado")).getId());
 			
 			//Verifica a senha atual
@@ -96,7 +96,7 @@ public class SenhaController {
 				}
 			}else{
 				response.setStatus("FAIL");
-				response.setResult("Senha atual digitada È inv·lida! A senha n„o foi alterada.");
+				response.setResult("Senha atual digitada √© inv√°lida! A senha n√£o foi alterada.");
 			}
 		}
 		

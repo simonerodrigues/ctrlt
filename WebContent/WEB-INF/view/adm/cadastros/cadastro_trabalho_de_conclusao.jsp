@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+Ôªø<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -9,7 +9,7 @@
 	<c:url value="../includes/meta_informations.jsp"
 		var="metainformations"></c:url>
 	
-	<!-- InformaÁıes de Autor do projeto -->
+	<!-- Informa√ß√µes de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -44,7 +44,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Cadastro de Trabalho de Conclus„o
+							Cadastro de Trabalho de Conclus√£o
 						</h1>
 						<ol class="breadcrumb">
 							<li>
@@ -67,7 +67,7 @@
 							<div class="col-lg-12">
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label>TÌtulo: (*)</label> <input type="text" id="titulo"
+										<label>T√≠tulo: (*)</label> <input type="text" id="titulo"
 											name="titulo" class="form-control" autocomplete="off">
 									</div>
 								</div>
@@ -209,8 +209,8 @@
 						
 
 						<div class="col-lg-6">
-							<p class="help-block">Todos os campos com (*) s„o de
-								preenchimento obrigatÛrio</p>
+							<p class="help-block">Todos os campos com (*) s√£o de
+								preenchimento obrigat√≥rio</p>
 						</div>
 
 						<div class="col-lg-6">
@@ -237,7 +237,7 @@
 							<th>Alterar</th>
 							<th>Anexos</th>
 							<th>Monografia</th>
-							<th>TÌtulo</th>
+							<th>T√≠tulo</th>
 							<th>Aluno 1</th>
 							<th>Aluno 2</th>
 							<th>Aluno 3</th>
@@ -246,7 +246,7 @@
 							<th>Professor 1</th>
 							<th>Professor 2</th>
 							<th>Professor 3</th>
-							<th>Data de PublicaÁ„o</th>
+							<th>Data de Publica√ß√£o</th>
 							<th>Palavras Chave</th>
 							<th class="status">Status</th>
 						</tr>
@@ -284,7 +284,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			//Marca no menu a opÁ„o correta sobre a p·gina
+			//Marca no menu a op√ß√£o correta sobre a p√°gina
 			marcaMenu("#cadastros", "#cadastroTrabalhoDeConclusao");
 			
 			dataTableTCC(
@@ -417,11 +417,11 @@
 		$.validator.setDefaults({
 			submitHandler : function() {
 				
-				//Mensagem que ir· conter a mensagem de erro
+				//Mensagem que ir√° conter a mensagem de erro
 				var mensagemAluno = "";
 				var mensagemProfessor = "";
 				
-				//Array que ir· conter os campos de alunos e professores
+				//Array que ir√° conter os campos de alunos e professores
 				var listaAlunos = [];
 				var listaProfessores = [];
 				
@@ -436,7 +436,7 @@
 						for(var j = i + 1; j < listaAlunos.length; j++){
 							if($(listaAlunos[j]).val() != "" && $(listaAlunos[i]).val() == $(listaAlunos[j]).val()){
 								if(mensagemAluno == ""){
-									mensagemAluno = "Existem alunos repetidos para o mesmo trabalho de conclus„o. Os repetidos foram removidos, por gentileza revise os dados.";
+									mensagemAluno = "Existem alunos repetidos para o mesmo trabalho de conclus√£o. Os repetidos foram removidos, por gentileza revise os dados.";
 								}
 								
 								$(listaAlunos[j]).val("");
@@ -458,7 +458,7 @@
 										mensagemProfessor = "<br /><br />"
 									}
 									
-									mensagemProfessor += "Existem professores repetidos para o mesmo trabalho de conclus„o. Os repetidos foram removidos, por gentileza revise os dados.";
+									mensagemProfessor += "Existem professores repetidos para o mesmo trabalho de conclus√£o. Os repetidos foram removidos, por gentileza revise os dados.";
 								}
 								
 								$(listaProfessores[j]).val("");
@@ -560,7 +560,7 @@
 		});
 		
 		function carregarAlteracao(id) {
-			//FunÁ„o que habilita os campos
+			//Fun√ß√£o que habilita os campos
 			alterar();
 			
 			$.post("${baseURL}/rest/json/trabalho_de_conclusao", {"id" : id}).done(function(response) {
@@ -601,10 +601,10 @@
 				$("#panel-information").show();
 				
 				if(response.monografia != null){
-					$("#panel-message").html('O trabalho de conclus„o em alteraÁ„o possui o arquivo <a target="_blank" href="${baseURL}/monografias/'+response.id+'/'+response.monografia.nome+'">'+response.monografia.nome+'</a> associado. '
-							+ 'Caso n„o inclua um novo arquivo na alteraÁ„o, o arquivo ser· mantido. Caso um novo arquivo seja associado, o atual ser· sobreposto.' );
+					$("#panel-message").html('O trabalho de conclus√£o em altera√ß√£o possui o arquivo <a target="_blank" href="${baseURL}/monografias/'+response.id+'/'+response.monografia.nome+'">'+response.monografia.nome+'</a> associado. '
+							+ 'Caso n√£o inclua um novo arquivo na altera√ß√£o, o arquivo ser√° mantido. Caso um novo arquivo seja associado, o atual ser√° sobreposto.' );
 				}else{
-					$("#panel-message").html('O trabalho de conclus„o em alteraÁ„o n„o possui uma monografia associada.');
+					$("#panel-message").html('O trabalho de conclus√£o em altera√ß√£o n√£o possui uma monografia associada.');
 				}
 				
 			}).fail(function(e) {
@@ -633,7 +633,7 @@
 			//Ajusta a coluna da DataTable
 		    $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
 			
-			//Caso exista, a mensagem "Nenhum registro encontrad" ficar· com o espaÁamento de 6 colunas
+			//Caso exista, a mensagem "Nenhum registro encontrad" ficar√° com o espa√ßamento de 6 colunas
 		    $("#dataTableAnexo td.dataTables_empty").attr("colspan",6);
 		});
 		
@@ -642,7 +642,7 @@
 			$('#dataTableAnexo').DataTable().destroy();
 		});
 		
-		//Ao teclar o enter, clica no bot„o sim do modal
+		//Ao teclar o enter, clica no bot√£o sim do modal
 		$("#modal").keyup(function(event){
 		    if(event.keyCode == 13){
 		        $("#botao-modal-sim").click();

@@ -1,9 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
 <footer>
-	<img src="${baseURL}/images/icons/favicon.png" /> <p>Ctrl+T - Sistema de Controle de Trabalhos Acadêmicos - FATEC São Caetano do Sul - ${ano}</p>
+	<img src="${baseURL}/images/icons/favicon.png" /> <p>Ctrl+T - Sistema de Controle de Trabalhos AcadÃªmicos - FATEC SÃ£o Caetano do Sul - ${ano}</p>
 </footer>
 
 <!-- Modal Include -->

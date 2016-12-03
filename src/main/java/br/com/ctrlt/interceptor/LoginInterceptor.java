@@ -1,4 +1,4 @@
-package br.com.ctrlt.interceptor;
+Ôªøpackage br.com.ctrlt.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
- * Classe de controle de autenticaÁ„o no sistema
+ * Classe de controle de autentica√ß√£o no sistema
  * 
  * @author Simone Santos Rodrigues
  * @version 1.0
@@ -15,10 +15,10 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	/**
-	 * MÈtodo que faz a verificaÁ„o de autenticaÁ„o do sistema e direciona para as devidas p·ginas caso este ou n„o autenticado
+	 * M√©todo que faz a verifica√ß√£o de autentica√ß√£o do sistema e direciona para as devidas p√°ginas caso este ou n√£o autenticado
 	 * 
-	 * @param request Request da p·gina
-	 * @param response Response da p·gina
+	 * @param request Request da p√°gina
+	 * @param response Response da p√°gina
 	 * @param controller Controlador
 	 */
 	@Override
@@ -27,7 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		String uri = request.getRequestURI();
 
-		// Verifica se est· na tela de login e n„o est· logado
+		// Verifica se est√° na tela de login e n√£o est√° logado
 		if ((uri.endsWith("login") || uri.endsWith("efetua_login") || uri.endsWith("galeria")) && 
 			(request.getSession().getAttribute("administradorLogado") == null && 
 			 request.getSession().getAttribute("professorLogado") == null &&
@@ -36,7 +36,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 
-		// Verifica se n„o est· na tela de login e est· logado
+		// Verifica se n√£o est√° na tela de login e est√° logado
 		if (!(uri.endsWith("login") || uri.endsWith("efetua_login")) && 
 			(request.getSession().getAttribute("administradorLogado") != null ||
 			 request.getSession().getAttribute("professorLogado") != null ||
@@ -45,7 +45,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 
-		// Verifica se est· logado, porÈm est· tentando acessar a tela de login
+		// Verifica se est√° logado, por√©m est√° tentando acessar a tela de login
 		if ((uri.endsWith("login") || uri.endsWith("efetua_login")) && 
 			(request.getSession().getAttribute("administradorLogado") != null ||
 			 request.getSession().getAttribute("professorLogado") != null ||

@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,7 +67,7 @@ public class ProfessorController implements Control<Professor> {
 		String erros = "";
 		
 		if (!result.hasErrors()) {
-			//Valida dados que n„o podem ser repetidos na base
+			//Valida dados que n√£o podem ser repetidos na base
 			boolean loginExistente = professorDAO.verificarLoginExistente(entidade);
 			boolean emailAlternativoExistente = professorDAO.verificarEmailAlternativoExistente(entidade);
 			boolean emailFatecExistente = professorDAO.verificarEmailFatecExistente(entidade);
@@ -75,25 +75,25 @@ public class ProfessorController implements Control<Professor> {
 			int numeroErros = 0;
 			
 			if(loginExistente){
-				erros += "<br />" + "Login de professor j· cadastrado no sistema";
+				erros += "<br />" + "Login de professor j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailAlternativoExistente){
-				erros += "<br />" + "E-mail alternativo de professor j· cadastrado no sistema";
+				erros += "<br />" + "E-mail alternativo de professor j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailFatecExistente){
-				erros += "<br />" + "E-mail Fatec de professor j· cadastrado no sistema";
+				erros += "<br />" + "E-mail Fatec de professor j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(numeroErros > 0){
 				if(numeroErros == 1){
-					erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />" + erros;
 				}else{
-					erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />" + erros;
 				}
 				
 				responseJson.setStatus("FAIL");
@@ -127,9 +127,9 @@ public class ProfessorController implements Control<Professor> {
 			responseJson.setStatus("FAIL");
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -155,7 +155,7 @@ public class ProfessorController implements Control<Professor> {
 		String erros = "";
 		
 		if (!result.hasErrors()) {			
-			//Valida dados que n„o podem ser repetidos na base
+			//Valida dados que n√£o podem ser repetidos na base
 			boolean loginExistente = professorDAO.verificarLoginExistente(entidade);
 			boolean emailAlternativoExistente = professorDAO.verificarEmailAlternativoExistente(entidade);
 			boolean emailFatecExistente = professorDAO.verificarEmailFatecExistente(entidade);
@@ -163,25 +163,25 @@ public class ProfessorController implements Control<Professor> {
 			int numeroErros = 0;
 			
 			if(loginExistente){
-				erros += "<br />" + "Login de professor j· cadastrado no sistema";
+				erros += "<br />" + "Login de professor j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailAlternativoExistente){
-				erros += "<br />" + "E-mail alternativo de professor j· cadastrado no sistema";
+				erros += "<br />" + "E-mail alternativo de professor j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailFatecExistente){
-				erros += "<br />" + "E-mail Fatec de professor j· cadastrado no sistema";
+				erros += "<br />" + "E-mail Fatec de professor j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(numeroErros > 0){
 				if(numeroErros == 1){
-					erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />" + erros;
 				}else{
-					erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />" + erros;
 				}
 				
 				responseJson.setStatus("FAIL");
@@ -218,9 +218,9 @@ public class ProfessorController implements Control<Professor> {
 			responseJson.setStatus("FAIL");
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -254,24 +254,24 @@ public class ProfessorController implements Control<Professor> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do professor que ser· excluido
+		// Pega o c√≥digo do professor que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de professor para pesquisar no banco
 		Professor professor = professorDAO.pesquisarPorId(Integer.parseInt(id));
 
 		if(professor.getListaTrabalhoDeConclusao().size() == 0){
-			// Realiza a exclus„o do professor
+			// Realiza a exclus√£o do professor
 			if (professorDAO.excluir(professor)) {
 				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Professor excluÌdo com sucesso.");
+				responseJson.setResult("Professor exclu√≠do com sucesso.");
 			} else {
 				responseJson.setStatus("FAIL");
 				responseJson.setResult("Erro ao excluir o professor. Por gentileza contate o administrador do sistema.");
 			}
 		}else{
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("N„o È possÌvel exluir o professor, o mesmo est· vinculado a um ou mais trabalho(s) de conclus„o. Por gentileza realize a desassociaÁ„o antes de excluÌ-lo.");
+			responseJson.setResult("N√£o √© poss√≠vel exluir o professor, o mesmo est√° vinculado a um ou mais trabalho(s) de conclus√£o. Por gentileza realize a desassocia√ß√£o antes de exclu√≠-lo.");
 		}
 		
 		return responseJson;
@@ -284,7 +284,7 @@ public class ProfessorController implements Control<Professor> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do professor que ser· inativado
+		// Pega o c√≥digo do professor que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de professor para alterar o status
@@ -297,7 +297,7 @@ public class ProfessorController implements Control<Professor> {
 			professor.setAtivo(true);
 		}
 
-		// Grava as alteraÁıes realizadas com o professor
+		// Grava as altera√ß√µes realizadas com o professor
 		if (professorDAO.alterar(professor)) {
 			responseJson.setStatus("SUCCESS");
 
@@ -318,7 +318,7 @@ public class ProfessorController implements Control<Professor> {
 	@ResponseBody
 	@RequestMapping(value = "rest/json/professor", method = RequestMethod.POST)
 	public Professor entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo do Professor que ser· inativado
+		// Pega o c√≥digo do Professor que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de professor para alterar o status
@@ -331,10 +331,10 @@ public class ProfessorController implements Control<Professor> {
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<Professor> listaProfessores = professorDAO.listar(" ORDER BY p.nome");
 
-		//CriaÁ„o da DataSouce do iReport
+		//Cria√ß√£o da DataSouce do iReport
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(listaProfessores, false);
 		
-		//Map de par‚metros a serem passados para o iReport
+		//Map de par√¢metros a serem passados para o iReport
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", JRdataSource);
 		parameterMap.put("path", servletContext.getRealPath("/images/reports/"));
@@ -344,7 +344,7 @@ public class ProfessorController implements Control<Professor> {
 		//Propriedades do Header da Response
 		Properties header = new Properties();
 		
-		//Nome do arquivo caso o usu·rio de Ctrl+S (Salvar)
+		//Nome do arquivo caso o usu√°rio de Ctrl+S (Salvar)
 		header.put("Content-Disposition", "inline; filename=Professores.pdf");
 		
 		JasperReportsPdfView view = new JasperReportsPdfView();
@@ -354,7 +354,7 @@ public class ProfessorController implements Control<Professor> {
 		view.setApplicationContext(applicationContext);
 		view.setHeaders(header);
 		
-		// Gera o relatÛrio de acordo com a extensao enviada por par‚metro de URL
+		// Gera o relat√≥rio de acordo com a extensao enviada por par√¢metro de URL
 		modelAndView = new ModelAndView(view, parameterMap);
 		return modelAndView;
 	}

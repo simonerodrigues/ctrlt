@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -9,7 +9,7 @@
 	<c:url value="../includes/meta_informations.jsp"
 		var="metainformations"></c:url>
 	
-	<!-- Informações de Autor do projeto -->
+	<!-- InformaÃ§Ãµes de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -41,7 +41,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h4 class="modal-title">
-									<center><i class="fa fa-book"></i>&nbsp;Ctrl+T - Controle de Trabalhos Acadêmicos</center>
+									<center><i class="fa fa-book"></i>&nbsp;Ctrl+T - Controle de Trabalhos AcadÃªmicos</center>
 								</h4>
 							</div>
 							<div class="modal-body">
@@ -62,7 +62,7 @@
 										<div class="form-group">
 											<label><i class="fa fa-tag"></i>&nbsp;Tipo de acesso: </label>
 											<select class="form-control" name="tipo" id="tipo" >
-												<option value="1">Administrador de Conteúdo</option>
+												<option value="1">Administrador de ConteÃºdo</option>
 												<option value="2">Professor</option>
 												<option value="3">Aluno</option>
 											</select>
@@ -114,7 +114,7 @@
 			
 			$.validator.setDefaults({
 				submitHandler :
-					//Função para cadastrar a entidade
+					//FunÃ§Ã£o para cadastrar a entidade
 					function realizarLogin(acao,entidade, data) {	
 						$(".se-pre-con-dark").fadeIn("slow");
 					

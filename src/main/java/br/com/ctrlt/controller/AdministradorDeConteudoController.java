@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +56,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 
 		if (!result.hasErrors()) {		
 			
-			//Valida dados que n„o podem ser repetidos na base
+			//Valida dados que n√£o podem ser repetidos na base
 			boolean loginExistente = administradorDeConteudoDAO.verificarLoginExistente(entidade);
 			boolean emailAlternativoExistente = administradorDeConteudoDAO.verificarEmailAlternativoExistente(entidade);
 			boolean emailFatecExistente = administradorDeConteudoDAO.verificarEmailFatecExistente(entidade);
@@ -64,25 +64,25 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 			int numeroErros = 0;
 			
 			if(loginExistente){
-				erros += "<br />" + "Login de administrador j· cadastrado no sistema";
+				erros += "<br />" + "Login de administrador j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailAlternativoExistente){
-				erros += "<br />" + "E-mail alternativo de administrador j· cadastrado no sistema";
+				erros += "<br />" + "E-mail alternativo de administrador j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailFatecExistente){
-				erros += "<br />" + "E-mail Fatec de administrador j· cadastrado no sistema";
+				erros += "<br />" + "E-mail Fatec de administrador j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(numeroErros > 0){
 				if(numeroErros == 1){
-					erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />" + erros;
 				}else{
-					erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />" + erros;
 				}
 				
 				responseJson.setStatus("FAIL");
@@ -95,18 +95,18 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 			
 			if (administradorDeConteudoDAO.cadastrar(entidade)) {
 				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Administrador de conte˙do cadastrado com sucesso.");
+				responseJson.setResult("Administrador de conte√∫do cadastrado com sucesso.");
 			} else {
 				responseJson.setStatus("FAIL");
-				responseJson.setResult("Erro ao cadastrar o administrador de conte˙do. Por gentileza contate o administrador do sistema.");
+				responseJson.setResult("Erro ao cadastrar o administrador de conte√∫do. Por gentileza contate o administrador do sistema.");
 			}			
 		} else {
 			responseJson.setStatus("FAIL");
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -129,7 +129,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 
 		if (!result.hasErrors()) {			
 			
-			//Valida dados que n„o podem ser repetidos na base
+			//Valida dados que n√£o podem ser repetidos na base
 			boolean loginExistente = administradorDeConteudoDAO.verificarLoginExistente(entidade);
 			boolean emailAlternativoExistente = administradorDeConteudoDAO.verificarEmailAlternativoExistente(entidade);
 			boolean emailFatecExistente = administradorDeConteudoDAO.verificarEmailFatecExistente(entidade);
@@ -137,25 +137,25 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 			int numeroErros = 0;
 			
 			if(loginExistente){
-				erros += "<br />" + "Login de administrador j· cadastrado no sistema";
+				erros += "<br />" + "Login de administrador j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailAlternativoExistente){
-				erros += "<br />" + "E-mail alternativo de administrador j· cadastrado no sistema";
+				erros += "<br />" + "E-mail alternativo de administrador j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailFatecExistente){
-				erros += "<br />" + "E-mail Fatec de administrador j· cadastrado no sistema";
+				erros += "<br />" + "E-mail Fatec de administrador j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(numeroErros > 0){
 				if(numeroErros == 1){
-					erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />" + erros;
 				}else{
-					erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />" + erros;
 				}
 				
 				responseJson.setStatus("FAIL");
@@ -171,18 +171,18 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 			
 			if (administradorDeConteudoDAO.alterar(entidade)) {
 				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Administrador de conte˙do alterado com sucesso.");
+				responseJson.setResult("Administrador de conte√∫do alterado com sucesso.");
 			} else {
 				responseJson.setStatus("FAIL");
-				responseJson.setResult("Erro ao alterar o administrador de conte˙do. Por gentileza contate o administrador do sistema.");
+				responseJson.setResult("Erro ao alterar o administrador de conte√∫do. Por gentileza contate o administrador do sistema.");
 			}
 		} else {
 			responseJson.setStatus("FAIL");
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -216,19 +216,19 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do administradorDeConteudo que ser· excluido
+		// Pega o c√≥digo do administradorDeConteudo que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de administradorDeConteudo para pesquisar no banco
 		AdministradorDeConteudo administradorDeConteudo = administradorDeConteudoDAO.pesquisarPorId(Integer.parseInt(id));
 
-		// Realiza a exclus„o do administradorDeConteudo
+		// Realiza a exclus√£o do administradorDeConteudo
 		if (administradorDeConteudoDAO.excluir(administradorDeConteudo)) {
 			responseJson.setStatus("SUCCESS");
-			responseJson.setResult("Administrador de conte˙do excluÌdo com sucesso.");
+			responseJson.setResult("Administrador de conte√∫do exclu√≠do com sucesso.");
 		} else {
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("Erro ao excluir o administrador de conte˙do. Por gentileza contate o administrador do sistema.");
+			responseJson.setResult("Erro ao excluir o administrador de conte√∫do. Por gentileza contate o administrador do sistema.");
 		}
 
 		return responseJson;
@@ -241,7 +241,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do administradorDeConteudo que ser· inativado
+		// Pega o c√≥digo do administradorDeConteudo que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de administradorDeConteudo para alterar o status
@@ -254,18 +254,18 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 			administradorDeConteudo.setAtivo(true);
 		}
 
-		// Grava as alteraÁıes realizadas com o administradorDeConteudo
+		// Grava as altera√ß√µes realizadas com o administradorDeConteudo
 		if (administradorDeConteudoDAO.alterar(administradorDeConteudo)) {
 			responseJson.setStatus("SUCCESS");
 
 			if (administradorDeConteudo.isAtivo()) {
-				responseJson.setResult("Administrador de conte˙do ativado com sucesso.");
+				responseJson.setResult("Administrador de conte√∫do ativado com sucesso.");
 			} else {
-				responseJson.setResult("Administrador de conte˙do inativado com sucesso.");
+				responseJson.setResult("Administrador de conte√∫do inativado com sucesso.");
 			}
 		} else {
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("Erro ao ativar/inativar o administrador de conte˙do. Por gentileza contate o administrador do sistema.");
+			responseJson.setResult("Erro ao ativar/inativar o administrador de conte√∫do. Por gentileza contate o administrador do sistema.");
 		}
 		
 		return responseJson;
@@ -275,7 +275,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 	@ResponseBody
 	@RequestMapping(value = "rest/json/administrador_de_conteudo", method = RequestMethod.POST)
 	public AdministradorDeConteudo entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo do AdministradorDeConteudo que ser· inativado
+		// Pega o c√≥digo do AdministradorDeConteudo que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de administradorDeConteudo para alterar o status
@@ -288,10 +288,10 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<AdministradorDeConteudo> listaAdministradorDeConteudo = administradorDeConteudoDAO.listar(" ORDER BY a.nome");
 
-		//CriaÁ„o da DataSouce do iReport
+		//Cria√ß√£o da DataSouce do iReport
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(listaAdministradorDeConteudo, false);
 		
-		//Map de par‚metros a serem passados para o iReport
+		//Map de par√¢metros a serem passados para o iReport
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", JRdataSource);
 		parameterMap.put("path", servletContext.getRealPath("/images/reports/"));
@@ -301,8 +301,8 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 		//Propriedades do Header da Response
 		Properties header = new Properties();
 		
-		//Nome do arquivo caso o usu·rio de Ctrl+S (Salvar)
-		header.put("Content-Disposition", "inline; filename=Administradores de Conte˙do.pdf");
+		//Nome do arquivo caso o usu√°rio de Ctrl+S (Salvar)
+		header.put("Content-Disposition", "inline; filename=Administradores de Conte√∫do.pdf");
 		
 		JasperReportsPdfView view = new JasperReportsPdfView();
 		view.setUrl("/WEB-INF/reports/pdf/administrador_de_conteudo.jrxml");
@@ -311,7 +311,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 		view.setApplicationContext(applicationContext);
 		view.setHeaders(header);
 		
-		// Gera o relatÛrio de acordo com a extensao enviada por par‚metro de URL
+		// Gera o relat√≥rio de acordo com a extensao enviada por par√¢metro de URL
 		modelAndView = new ModelAndView(view, parameterMap);
 		return modelAndView;
 	}

@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -69,9 +69,9 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -108,9 +108,9 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -145,7 +145,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 		// Cria objeto de retorno do JSON
 		ResponseJson response = new ResponseJson();
 
-		// Pega o cÛdigo do linhaDePesquisa que ser· excluido
+		// Pega o c√≥digo do linhaDePesquisa que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para pesquisar no banco
@@ -160,15 +160,15 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 
 		if (listaProfessores.size() > 0) {
 			response.setStatus("FAIL");
-			response.setResult("N„o È possÌvel excluir a linha de pesquisa selecionada porque existe(m) "
+			response.setResult("N√£o √© poss√≠vel excluir a linha de pesquisa selecionada porque existe(m) "
 					+ "professor(es) associado(s) a esta linha de pesquisa. <br /><br />"
-					+ "Por gentileza realize as desassociaÁıes antes de excluir a linha de pesquisa.");
+					+ "Por gentileza realize as desassocia√ß√µes antes de excluir a linha de pesquisa.");
 		} else {
 
-			// Realiza a exclus„o do linhaDePesquisa
+			// Realiza a exclus√£o do linhaDePesquisa
 			if (linhaDePesquisaDAO.excluir(linhaDePesquisa)) {
 				response.setStatus("SUCCESS");
-				response.setResult("Linha de pesquisa excluÌda com sucesso.");
+				response.setResult("Linha de pesquisa exclu√≠da com sucesso.");
 			} else {
 				response.setStatus("FAIL");
 				response.setResult("Erro ao excluir a linha de pesquisa. Por gentileza contate o administrador do sistema.");
@@ -186,7 +186,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 		// Cria objeto de retorno do JSON
 		ResponseJson response = new ResponseJson();
 
-		// Pega o cÛdigo do linhaDePesquisa que ser· inativado
+		// Pega o c√≥digo do linhaDePesquisa que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para alterar o status
@@ -203,9 +203,9 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 
 		if (listaProfessores.size() > 0) {
 			response.setStatus("FAIL");
-			response.setResult("N„o È possÌvel inativar essa linha de pesquisa selecionada porque existe(m) "
+			response.setResult("N√£o √© poss√≠vel inativar essa linha de pesquisa selecionada porque existe(m) "
 					+ "professor(es) ativo(s) associado(s) a esta linha de pesquisa. <br /><br />"
-					+ "Por gentileza realize as desassociaÁıes antes de inativar a linha de pesquisa.");
+					+ "Por gentileza realize as desassocia√ß√µes antes de inativar a linha de pesquisa.");
 		} else {
 
 			// Altera o status do linhaDePesquisa
@@ -215,7 +215,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 				linhaDePesquisa.setAtivo(true);
 			}
 
-			// Grava as alteraÁıes realizadas com o linhaDePesquisa
+			// Grava as altera√ß√µes realizadas com o linhaDePesquisa
 			if (linhaDePesquisaDAO.alterar(linhaDePesquisa)) {
 				response.setStatus("SUCCESS");
 
@@ -237,7 +237,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 	@ResponseBody
 	@RequestMapping(value = "rest/json/linha_de_pesquisa", method = RequestMethod.POST)
 	public LinhaDePesquisa entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo do LinhaDePesquisa que ser· inativado
+		// Pega o c√≥digo do LinhaDePesquisa que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para alterar o status
@@ -250,10 +250,10 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<LinhaDePesquisa> listaLinhaDePesquisa = linhaDePesquisaDAO.listar(" ORDER BY l.nome");
 
-		//CriaÁ„o da DataSouce do iReport
+		//Cria√ß√£o da DataSouce do iReport
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(listaLinhaDePesquisa, false);
 		
-		//Map de par‚metros a serem passados para o iReport
+		//Map de par√¢metros a serem passados para o iReport
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", JRdataSource);
 		parameterMap.put("path", servletContext.getRealPath("/images/reports/"));
@@ -263,7 +263,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 		//Propriedades do Header da Response
 		Properties header = new Properties();
 		
-		//Nome do arquivo caso o usu·rio de Ctrl+S (Salvar)
+		//Nome do arquivo caso o usu√°rio de Ctrl+S (Salvar)
 		header.put("Content-Disposition", "inline; filename=Linha De Pesquisa.pdf");
 		
 		JasperReportsPdfView view = new JasperReportsPdfView();
@@ -273,7 +273,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 		view.setApplicationContext(applicationContext);
 		view.setHeaders(header);
 		
-		// Gera o relatÛrio de acordo com a extensao enviada por par‚metro de URL
+		// Gera o relat√≥rio de acordo com a extensao enviada por par√¢metro de URL
 		modelAndView = new ModelAndView(view, parameterMap);
 		return modelAndView;
 	}

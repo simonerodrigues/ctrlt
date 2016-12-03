@@ -1,11 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
 	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
 	
-	<!-- Informações de Autor do projeto -->
+	<!-- InformaÃ§Ãµes de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -36,7 +36,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Profile <small>Você no Ctrl+T</small>
+							Profile <small>VocÃª no Ctrl+T</small>
 						</h1>
 						<ol class="breadcrumb">
 							<li class="active"><i class="fa fa-user"></i> Profile
@@ -47,7 +47,7 @@
 				<!-- /.row -->
 
 				<div class="row">
-					<!-- Conteúdo futuro -->
+					<!-- ConteÃºdo futuro -->
 				</div>
 				<!-- /.row -->
 

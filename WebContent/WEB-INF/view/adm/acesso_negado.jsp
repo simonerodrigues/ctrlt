@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,7 +7,7 @@
 	<c:url value="includes/meta_informations.jsp"
 		var="metainformations"></c:url>
 	
-	<!-- Informações de Autor do projeto -->
+	<!-- InformaÃ§Ãµes de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -27,11 +27,11 @@
 		
 		<div class="col-lg-12">
 			<center>
-				<p>Você não possui permissão para acessar a página em questão, caso possua dúvidas, entre em contato com o administrador do Sistema.</p>
+				<p>VocÃª nÃ£o possui permissÃ£o para acessar a pÃ¡gina em questÃ£o, caso possua dÃºvidas, entre em contato com o administrador do Sistema.</p>
 				
 				<br /><br />
 				
-				<p><strong>Ctrl+T - Controle de Trabalhos Acadêmicos. Fatec São Caetano do Sul - ${ano}</strong></p>
+				<p><strong>Ctrl+T - Controle de Trabalhos AcadÃªmicos. Fatec SÃ£o Caetano do Sul - ${ano}</strong></p>
 			</center>
 		</div>
 	</div>

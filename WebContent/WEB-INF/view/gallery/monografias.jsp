@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
@@ -7,7 +7,7 @@
 <html lang="pt-br">
 
 <head>
-	<!-- Informações de Autor do projeto --> 
+	<!-- InformaÃ§Ãµes de Autor do projeto --> 
 	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
 	<c:import url="${metainformations}"></c:import>
 	
@@ -31,7 +31,7 @@
 			<h2 class="row text-center">Monografias do Ctrl+T</h2>
 			<hr />
 
-			<!-- Trabalhos acadêmicos -->
+			<!-- Trabalhos acadÃªmicos -->
 			<c:if test="${not empty trabalhosDeConclusao}">
 				<div class="row">			
 					<div class="col-lg-12 line">		
@@ -51,7 +51,7 @@
 									</div>
 									
 									<div class="book-footer">
-										São Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
+										SÃ£o Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
 									</div>
 								</div>
 							</a>

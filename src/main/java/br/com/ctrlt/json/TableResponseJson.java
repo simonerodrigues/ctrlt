@@ -1,7 +1,7 @@
-package br.com.ctrlt.json;
+ï»¿package br.com.ctrlt.json;
 
 /**
- * Classe de modelo para resposta de dados para DataTable em JSON de requisição
+ * Classe de modelo para resposta de dados para DataTable em JSON de requisiÃ§Ã£o
  * JavaScript
  * 
  * @author Simone Santos Rodrigues
@@ -15,22 +15,22 @@ public class TableResponseJson {
 	private Object data;
 
 	/**
-	 * Getter do número de comparação da DataTable
+	 * Getter do nÃºmero de comparaÃ§Ã£o da DataTable
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @return draw Número de comparação fornecido pela DataTable
+	 * @return draw NÃºmero de comparaÃ§Ã£o fornecido pela DataTable
 	 */
 	public int getDraw() {
 		return draw;
 	}
 
 	/**
-	 * Setter do número de comparação da DataTable
+	 * Setter do nÃºmero de comparaÃ§Ã£o da DataTable
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @param draw Número de comparação fornecido pela DataTable
+	 * @param draw NÃºmero de comparaÃ§Ã£o fornecido pela DataTable
 	 * @return void
 	 */
 	public void setDraw(int draw) {
@@ -42,18 +42,18 @@ public class TableResponseJson {
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @return recordsTotal Número total de resgistros da DataTable
+	 * @return recordsTotal NÃºmero total de resgistros da DataTable
 	 */
 	public int getRecordsTotal() {
 		return recordsTotal;
 	}
 
 	/**
-	 * Setter do número de registros na DataTable
+	 * Setter do nÃºmero de registros na DataTable
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @param recordsTotal Número de registros na DataTable
+	 * @param recordsTotal NÃºmero de registros na DataTable
 	 * @return void
 	 */
 	public void setRecordsTotal(int recordsTotal) {
@@ -65,18 +65,18 @@ public class TableResponseJson {
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @return recordsFiltered Número total de resgistros filtrados da DataTable
+	 * @return recordsFiltered NÃºmero total de resgistros filtrados da DataTable
 	 */
 	public int getRecordsFiltered() {
 		return recordsFiltered;
 	}
 
 	/**
-	 * Setter do número de registros filtrados na DataTable
+	 * Setter do nÃºmero de registros filtrados na DataTable
 	 * 
 	 * @author Simone Santos Rodrigues
 	 * @version 1.0
-	 * @param recordsFiltered Número de registros filtrados na DataTable
+	 * @param recordsFiltered NÃºmero de registros filtrados na DataTable
 	 * @return void
 	 */
 	public void setRecordsFiltered(int recordsFiltered) {

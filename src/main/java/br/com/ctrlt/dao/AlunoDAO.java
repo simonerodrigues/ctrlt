@@ -1,4 +1,4 @@
-package br.com.ctrlt.dao;
+﻿package br.com.ctrlt.dao;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class AlunoDAO implements DAO<Aluno> {
 
 	@Override
 	public Aluno pesquisarPorId(long id) {
-		// O metodo find do hibernate ja pesquisa pela chave prim�ria.
+		// O metodo find do hibernate ja pesquisa pela chave primária.
 		Aluno aluno = manager.find(Aluno.class, id);
 
 		return aluno;

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+Ôªø<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -6,7 +6,7 @@
 <html lang="pt-br">
 
 <head>
-	<!-- InformaÁıes de Autor do projeto --> 
+	<!-- Informa√ß√µes de Autor do projeto --> 
 	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
 	<c:import url="${metainformations}"></c:import>
 	
@@ -35,8 +35,8 @@
 				</div>
 				
 				<div class="col-lg-12 text-center">
-					<p>Ctrl+T È um software desenvolvido como trabalho de conclus„o de curso para a Fatec S„o Caetano do Sul - Antonio Russo com o intuito de auxiliar 
-						a faculdade a dar maior publicidade aos trabalhos realizados, assim como garantir maior seguranÁa em relaÁ„o ao armazenamento destes.</p>
+					<p>Ctrl+T √© um software desenvolvido como trabalho de conclus√£o de curso para a Fatec S√£o Caetano do Sul - Antonio Russo com o intuito de auxiliar 
+						a faculdade a dar maior publicidade aos trabalhos realizados, assim como garantir maior seguran√ßa em rela√ß√£o ao armazenamento destes.</p>
 					
 					<br />
 					

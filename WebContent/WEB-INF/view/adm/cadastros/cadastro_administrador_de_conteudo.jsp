@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -9,7 +9,7 @@
 	<c:url value="../includes/meta_informations.jsp"
 		var="metainformations"></c:url>
 	
-	<!-- Informações de Autor do projeto -->
+	<!-- InformaÃ§Ãµes de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -44,7 +44,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Cadastro de ADM de Conteúdo
+							Cadastro de ADM de ConteÃºdo
 						</h1>
 						<ol class="breadcrumb">
 							<li>
@@ -52,7 +52,7 @@
 							</li>
 							
 							<li class="active">
-								<i class="fa fa-user-plus"></i> Cadastro de ADM de Conteúdo
+								<i class="fa fa-user-plus"></i> Cadastro de ADM de ConteÃºdo
 							</li>
 						</ol>
 					</div>
@@ -103,7 +103,7 @@
 								
 								<div class="col-lg-4">
 									<div class="form-group">
-										<label>Confirmação Senha: (*)</label> <input type="password" id="confirmacaoSenha"
+										<label>ConfirmaÃ§Ã£o Senha: (*)</label> <input type="password" id="confirmacaoSenha"
 											name="confirmacaoSenha" class="form-control" />
 									</div>
 								</div>
@@ -128,7 +128,7 @@
 							
 							<div class="col-lg-12">
 								<div class="col-lg-12">
-									<label>Permissões:</label>
+									<label>PermissÃµes:</label>
 								</div> 
 								<div class="col-lg-12">
 									<div class="panel panel-default">
@@ -196,8 +196,8 @@
 						</fieldset>
 
 						<div class="col-lg-6">
-							<p class="help-block">Todos os campos com (*) são de
-								preenchimento obrigatório</p>
+							<p class="help-block">Todos os campos com (*) sÃ£o de
+								preenchimento obrigatÃ³rio</p>
 						</div>
 
 						<div class="col-lg-6">
@@ -260,7 +260,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			//Marca no menu a opção correta sobre a página
+			//Marca no menu a opÃ§Ã£o correta sobre a pÃ¡gina
 			marcaMenu("#cadastros", "#cadastroADM");
 			
 			dataTable(
@@ -358,7 +358,7 @@
 		});
 		
 		function carregarAlteracao(id) {
-			//Função que habilita os campos
+			//FunÃ§Ã£o que habilita os campos
 			alterar();
 			
 			$.post("${baseURL}/rest/json/administrador_de_conteudo", {"id" : id}).done(function(response) {
@@ -412,7 +412,7 @@
 					$(".modal-backdrop").fadeOut("slow");
 					$(".modal-backdrop").remove();
 				});
-				$("#texto-modal").html("Erro ao tentar carregar os dados do administrador de conteúdo para serem alterados. Por gentileza tente novamente!");
+				$("#texto-modal").html("Erro ao tentar carregar os dados do administrador de conteÃºdo para serem alterados. Por gentileza tente novamente!");
 				$("#modal").modal("show");
 			});
 		}

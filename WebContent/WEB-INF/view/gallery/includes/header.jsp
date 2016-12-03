@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -32,10 +32,10 @@
 						</ul></li>
 					<li id="menuInformacoes" class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Informações <span class="caret"></span></a>
+						aria-expanded="false">InformaÃ§Ãµes <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a target="_blank"
-								href="http://www.fatecsaocaetano.edu.br/">FATEC São Caetano
+								href="http://www.fatecsaocaetano.edu.br/">FATEC SÃ£o Caetano
 									- Antonio Russo</a></li>
 							<li><a href="${baseURL}/galeria/sobre">Sobre</a></li>
 						</ul>

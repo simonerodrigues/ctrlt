@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -72,7 +72,7 @@ public class AlunoController implements Control<Aluno> {
 		
 		if (!result.hasErrors()) {
 			
-			//Valida dados que n„o podem ser repetidos na base
+			//Valida dados que n√£o podem ser repetidos na base
 			boolean raExistente = alunoDAO.verificarRaExistente(entidade);
 			boolean loginExistente = alunoDAO.verificarLoginExistente(entidade);
 			boolean emailAlternativoExistente = alunoDAO.verificarEmailAlternativoExistente(entidade);
@@ -81,30 +81,30 @@ public class AlunoController implements Control<Aluno> {
 			int numeroErros = 0;
 			
 			if(raExistente){
-				erros += "<br />" + "RA de aluno j· cadastrado no sistema";
+				erros += "<br />" + "RA de aluno j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(loginExistente){
-				erros += "<br />" + "Login de aluno j· cadastrado no sistema";
+				erros += "<br />" + "Login de aluno j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailAlternativoExistente){
-				erros += "<br />" + "E-mail alternativo de aluno j· cadastrado no sistema";
+				erros += "<br />" + "E-mail alternativo de aluno j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailFatecExistente){
-				erros += "<br />" + "E-mail Fatec de aluno j· cadastrado no sistema";
+				erros += "<br />" + "E-mail Fatec de aluno j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(numeroErros > 0){
 				if(numeroErros == 1){
-					erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />" + erros;
 				}else{
-					erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />" + erros;
 				}
 				
 				responseJson.setStatus("FAIL");
@@ -126,9 +126,9 @@ public class AlunoController implements Control<Aluno> {
 			responseJson.setStatus("FAIL");
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -151,7 +151,7 @@ public class AlunoController implements Control<Aluno> {
 		
 		if (!result.hasErrors()) {
 			
-			//Valida dados que n„o podem ser repetidos na base
+			//Valida dados que n√£o podem ser repetidos na base
 			boolean raExistente = alunoDAO.verificarRaExistente(entidade);
 			boolean loginExistente = alunoDAO.verificarLoginExistente(entidade);
 			boolean emailAlternativoExistente = alunoDAO.verificarEmailAlternativoExistente(entidade);
@@ -160,30 +160,30 @@ public class AlunoController implements Control<Aluno> {
 			int numeroErros = 0;
 			
 			if(raExistente){
-				erros += "<br />" + "RA de aluno j· cadastrado no sistema";
+				erros += "<br />" + "RA de aluno j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(loginExistente){
-				erros += "<br />" + "Login de aluno j· cadastrado no sistema";
+				erros += "<br />" + "Login de aluno j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailAlternativoExistente){
-				erros += "<br />" + "E-mail alternativo de aluno j· cadastrado no sistema";
+				erros += "<br />" + "E-mail alternativo de aluno j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(emailFatecExistente){
-				erros += "<br />" + "E-mail Fatec de aluno j· cadastrado no sistema";
+				erros += "<br />" + "E-mail Fatec de aluno j√° cadastrado no sistema";
 				numeroErros++;
 			}
 			
 			if(numeroErros > 0){
 				if(numeroErros == 1){
-					erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />" + erros;
 				}else{
-					erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />" + erros;
+					erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />" + erros;
 				}
 				
 				responseJson.setStatus("FAIL");
@@ -209,9 +209,9 @@ public class AlunoController implements Control<Aluno> {
 			responseJson.setStatus("FAIL");
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -245,24 +245,24 @@ public class AlunoController implements Control<Aluno> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do aluno que ser· excluido
+		// Pega o c√≥digo do aluno que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de aluno para pesquisar no banco
 		Aluno aluno = alunoDAO.pesquisarPorId(Integer.parseInt(id));
 
 		if(aluno.getTrabalhoDeConclusao() == null){
-			// Realiza a exclus„o do aluno
+			// Realiza a exclus√£o do aluno
 			if (alunoDAO.excluir(aluno)) {
 				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Aluno excluÌdo com sucesso.");
+				responseJson.setResult("Aluno exclu√≠do com sucesso.");
 			} else {
 				responseJson.setStatus("FAIL");
 				responseJson.setResult("Erro ao excluir o aluno. Por gentileza contate o administrador do sistema.");
 			}
 		}else{
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("N„o È possÌve exluir o aluno, o memso est· vinculado a um trabalho de conclus„o. Por gentileza realize a desassociaÁ„o antes de excluÌ-lo.");
+			responseJson.setResult("N√£o √© poss√≠ve exluir o aluno, o memso est√° vinculado a um trabalho de conclus√£o. Por gentileza realize a desassocia√ß√£o antes de exclu√≠-lo.");
 		}
 
 		return responseJson;
@@ -275,7 +275,7 @@ public class AlunoController implements Control<Aluno> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do aluno que ser· inativado
+		// Pega o c√≥digo do aluno que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de aluno para alterar o status
@@ -288,7 +288,7 @@ public class AlunoController implements Control<Aluno> {
 			aluno.setAtivo(true);
 		}
 
-		// Grava as alteraÁıes realizadas com o aluno
+		// Grava as altera√ß√µes realizadas com o aluno
 		if (alunoDAO.alterar(aluno)) {
 			responseJson.setStatus("SUCCESS");
 
@@ -309,7 +309,7 @@ public class AlunoController implements Control<Aluno> {
 	@ResponseBody
 	@RequestMapping(value = "rest/json/aluno", method = RequestMethod.POST)
 	public Aluno entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo do Aluno que ser· inativado
+		// Pega o c√≥digo do Aluno que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de aluno para alterar o status
@@ -322,10 +322,10 @@ public class AlunoController implements Control<Aluno> {
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<Aluno> listaAluno = alunoDAO.listar(" ORDER BY a.nome");
 
-		//CriaÁ„o da DataSouce do iReport
+		//Cria√ß√£o da DataSouce do iReport
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(listaAluno, false);
 		
-		//Map de par‚metros a serem passados para o iReport
+		//Map de par√¢metros a serem passados para o iReport
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", JRdataSource);
 		parameterMap.put("path", servletContext.getRealPath("/images/reports/"));
@@ -335,7 +335,7 @@ public class AlunoController implements Control<Aluno> {
 		//Propriedades do Header da Response
 		Properties header = new Properties();
 		
-		//Nome do arquivo caso o usu·rio de Ctrl+S (Salvar)
+		//Nome do arquivo caso o usu√°rio de Ctrl+S (Salvar)
 		header.put("Content-Disposition", "inline; filename=Alunos.pdf");
 		
 		JasperReportsPdfView view = new JasperReportsPdfView();
@@ -345,7 +345,7 @@ public class AlunoController implements Control<Aluno> {
 		view.setApplicationContext(applicationContext);
 		view.setHeaders(header);
 		
-		// Gera o relatÛrio de acordo com a extensao enviada por par‚metro de URL
+		// Gera o relat√≥rio de acordo com a extensao enviada por par√¢metro de URL
 		modelAndView = new ModelAndView(view, parameterMap);
 		return modelAndView;
 	}

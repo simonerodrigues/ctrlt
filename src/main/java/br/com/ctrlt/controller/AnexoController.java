@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -70,9 +70,9 @@ public class AnexoController implements Control<Anexo> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -92,7 +92,7 @@ public class AnexoController implements Control<Anexo> {
 		
 		TrabalhoDeConclusao trabalhoDeConclusaoBanco = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
 		
-		//Caminho absoluto do caminho atÈ a pasta da monografia
+		//Caminho absoluto do caminho at√© a pasta da monografia
 		String path = servletContext.getRealPath("/anexos/" + String.valueOf(idTcc) + "/");
 		
 		if(! arquivos.isEmpty()){
@@ -101,7 +101,7 @@ public class AnexoController implements Control<Anexo> {
 			
 				File file = new File(path);
 				
-				//Cria o diretÛrio caso n„o exista
+				//Cria o diret√≥rio caso n√£o exista
 				if(! file.exists()){
 					file.mkdirs();
 				}
@@ -130,7 +130,7 @@ public class AnexoController implements Control<Anexo> {
 					
 					file = new File(path + "/" + String.valueOf(anexo.getId()) + "/");
 					
-					//Cria o diretÛrio caso n„o exista
+					//Cria o diret√≥rio caso n√£o exista
 					if(! file.exists()){
 						file.mkdirs();
 					}
@@ -142,8 +142,8 @@ public class AnexoController implements Control<Anexo> {
 					trabalhoDeConclusaoBanco.getListaAnexos().add(anexo);							
 				} catch (IOException e) {
 					responseJson.setStatus("FAIL");
-					responseJson.setResult("O anexo " + arquivos.get(i).getName() + " foi carregado, porÈm ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
-							+ " de conclus„o e tente realizar o upload novamente.");
+					responseJson.setResult("O anexo " + arquivos.get(i).getName() + " foi carregado, por√©m ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+							+ " de conclus√£o e tente realizar o upload novamente.");
 				}
 			}
 			
@@ -157,16 +157,16 @@ public class AnexoController implements Control<Anexo> {
 			}else{
 				responseJson.setStatus("FAIL");
 				if(arquivos.size() > 0){
-					responseJson.setResult("O anexo foi carregado, porÈm ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
-							+ " de conclus„o e tente realizar o upload novamente.");
+					responseJson.setResult("O anexo foi carregado, por√©m ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+							+ " de conclus√£o e tente realizar o upload novamente.");
 				}else{
-					responseJson.setResult("Os anexos foram carregados, porÈm ocorreu um erro ao realizar o upload dos arquivos. Por gentileza altere o registro do trabalho"
-							+ " de conclus„o e tente realizar o upload novamente.");
+					responseJson.setResult("Os anexos foram carregados, por√©m ocorreu um erro ao realizar o upload dos arquivos. Por gentileza altere o registro do trabalho"
+							+ " de conclus√£o e tente realizar o upload novamente.");
 				}
 			}
 		}else{
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("N„o existem anexos a serem enviados para o servidor");
+			responseJson.setResult("N√£o existem anexos a serem enviados para o servidor");
 		}
 		
 		return responseJson;
@@ -192,9 +192,9 @@ public class AnexoController implements Control<Anexo> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -220,13 +220,13 @@ public class AnexoController implements Control<Anexo> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do anexo que ser· excluido
+		// Pega o c√≥digo do anexo que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de anexo para pesquisar no banco
 		Anexo anexo = anexoDAO.pesquisarPorId(Integer.parseInt(id));
 
-		// Realiza a exclus„o do anexo
+		// Realiza a exclus√£o do anexo
 		if (anexoDAO.excluir(anexo)) {
 			File arquivo = new File(anexo.getCaminho());
 			try {
@@ -237,7 +237,7 @@ public class AnexoController implements Control<Anexo> {
 			}
 			
 			responseJson.setStatus("SUCCESS");
-			responseJson.setResult("Anexo excluÌdo com sucesso.");
+			responseJson.setResult("Anexo exclu√≠do com sucesso.");
 		} else {
 			responseJson.setStatus("FAIL");
 			responseJson.setResult("Erro ao excluir o anexo. Por gentileza contate o administrador do sistema.");
@@ -253,7 +253,7 @@ public class AnexoController implements Control<Anexo> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do anexo que ser· inativado
+		// Pega o c√≥digo do anexo que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de anexo para alterar o status
@@ -266,7 +266,7 @@ public class AnexoController implements Control<Anexo> {
 			anexo.setAtivo(true);
 		}
 
-		// Grava as alteraÁıes realizadas com o anexo
+		// Grava as altera√ß√µes realizadas com o anexo
 		if (anexoDAO.alterar(anexo)) {
 			responseJson.setStatus("SUCCESS");
 
@@ -289,7 +289,7 @@ public class AnexoController implements Control<Anexo> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do anexo que ser· inativado
+		// Pega o c√≥digo do anexo que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de anexo para alterar o status
@@ -302,7 +302,7 @@ public class AnexoController implements Control<Anexo> {
 			anexo.setVisivel(true);
 		}
 
-		// Grava as alteraÁıes realizadas com o anexo
+		// Grava as altera√ß√µes realizadas com o anexo
 		if (anexoDAO.alterar(anexo)) {
 			responseJson.setStatus("SUCCESS");
 
@@ -323,7 +323,7 @@ public class AnexoController implements Control<Anexo> {
 	@ResponseBody
 	@RequestMapping(value = "rest/json/anexo", method = RequestMethod.POST)
 	public Anexo entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo da Anexo que ser· inativado
+		// Pega o c√≥digo da Anexo que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de anexo para alterar o status

@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -99,9 +99,9 @@ public class CursoController implements Control<Curso> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -155,9 +155,9 @@ public class CursoController implements Control<Curso> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -194,7 +194,7 @@ public class CursoController implements Control<Curso> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do curso que ser· excluido
+		// Pega o c√≥digo do curso que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de curso para pesquisar no banco
@@ -209,14 +209,14 @@ public class CursoController implements Control<Curso> {
 
 		if (listaAlunos.size() > 0) {
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("N„o È possÌvel excluir o curso selecionado porque existe(m) alunos(s) "
+			responseJson.setResult("N√£o √© poss√≠vel excluir o curso selecionado porque existe(m) alunos(s) "
 					+ "associado(s) a este curso. <br /><br />"
-					+ "Por gentileza realize as desassociaÁıes antes de excluir o curso.");
+					+ "Por gentileza realize as desassocia√ß√µes antes de excluir o curso.");
 		} else {
-			// Realiza a exclus„o do curso
+			// Realiza a exclus√£o do curso
 			if (cursoDAO.excluir(curso)) {
 				responseJson.setStatus("SUCCESS");
-				responseJson.setResult("Curso excluÌdo com sucesso!");
+				responseJson.setResult("Curso exclu√≠do com sucesso!");
 			} else {
 				responseJson.setStatus("FAIL");
 				responseJson.setResult("Erro ao excluir o curso. Por gentileza contate o administrador do sistema.");
@@ -235,7 +235,7 @@ public class CursoController implements Control<Curso> {
 		// Cria objeto de retorno do JSON
 		ResponseJson responseJson = new ResponseJson();
 
-		// Pega o cÛdigo do curso que ser· inativado
+		// Pega o c√≥digo do curso que ser√° inativado
 		String id = req.getParameter("id");
 		
 		// Pega o objeto de curso para alterar o status
@@ -252,9 +252,9 @@ public class CursoController implements Control<Curso> {
 
 		if (listaAlunos.size() > 0) {
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("N„o È possÌvel inativar este curso seleciono porque existe(m) "
+			responseJson.setResult("N√£o √© poss√≠vel inativar este curso seleciono porque existe(m) "
 					+ "alunos(s) ativo(s) associado(s) a este curso. <br /><br />"
-					+ "Por gentileza realize as desassociaÁıes antes de inativar o curso.");
+					+ "Por gentileza realize as desassocia√ß√µes antes de inativar o curso.");
 		}else{
 			// Altera o status do curso
 			if (curso.isAtivo()) {
@@ -263,7 +263,7 @@ public class CursoController implements Control<Curso> {
 				curso.setAtivo(true);
 			}
 	
-			// Grava as alteraÁıes realizadas com o curso
+			// Grava as altera√ß√µes realizadas com o curso
 			if (cursoDAO.alterar(curso)) {
 				responseJson.setStatus("SUCCESS");
 	
@@ -286,7 +286,7 @@ public class CursoController implements Control<Curso> {
 	@Transactional
 	@RequestMapping(value = "rest/json/curso", method = RequestMethod.POST)
 	public Curso entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo do Curso que ser· inativado
+		// Pega o c√≥digo do Curso que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de curso para alterar o status
@@ -300,10 +300,10 @@ public class CursoController implements Control<Curso> {
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<Curso> listaCurso = cursoDAO.listar(" ORDER BY c.nome");
 
-		//CriaÁ„o da DataSouce do iReport
+		//Cria√ß√£o da DataSouce do iReport
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(listaCurso, false);
 		
-		//Map de par‚metros a serem passados para o iReport
+		//Map de par√¢metros a serem passados para o iReport
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", JRdataSource);
 		parameterMap.put("path", servletContext.getRealPath("/images/reports/"));
@@ -313,7 +313,7 @@ public class CursoController implements Control<Curso> {
 		//Propriedades do Header da Response
 		Properties header = new Properties();
 		
-		//Nome do arquivo caso o usu·rio de Ctrl+S (Salvar)
+		//Nome do arquivo caso o usu√°rio de Ctrl+S (Salvar)
 		header.put("Content-Disposition", "inline; filename=Cursos.pdf");
 		
 		JasperReportsPdfView view = new JasperReportsPdfView();
@@ -323,7 +323,7 @@ public class CursoController implements Control<Curso> {
 		view.setApplicationContext(applicationContext);
 		view.setHeaders(header);
 		
-		// Gera o relatÛrio de acordo com a extensao enviada por par‚metro de URL
+		// Gera o relat√≥rio de acordo com a extensao enviada por par√¢metro de URL
 		modelAndView = new ModelAndView(view, parameterMap);
 		return modelAndView;
 	}

@@ -1,11 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
 	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
 	
-	<!-- Informações de Autor do projeto -->
+	<!-- InformaÃ§Ãµes de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -25,11 +25,11 @@
 		
 		<div class="col-lg-12">
 			<center>
-				<p>O arquivo solicitado está não foi encontrado no servidor. Por gentileza entre em contato com o administrador do sistema.</p>
+				<p>O arquivo solicitado estÃ¡ nÃ£o foi encontrado no servidor. Por gentileza entre em contato com o administrador do sistema.</p>
 				
 				<br /><br />
 				
-				<p><strong>Ctrl+T - Controle de Trabalhos Acadêmicos. Fatec São Caetano do Sul - ${ano}</strong></p>
+				<p><strong>Ctrl+T - Controle de Trabalhos AcadÃªmicos. Fatec SÃ£o Caetano do Sul - ${ano}</strong></p>
 			</center>
 		</div>
 	</div>

@@ -1,15 +1,15 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+Ôªø<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Sistema de controle de trabalho de Conclus„o de curso">
+<meta name="description" content="Sistema de controle de trabalho de Conclus√£o de curso">
 <meta name="author" content="Simone Santos Rodrigues">
 
-<!-- Õcone da p·gina -->
+<!-- √çcone da p√°gina -->
 <link rel="icon" type="image/png" href="${baseURL}/images/icons/favicon.png">
 
 <!-- Title -->
-<title>Ctrl+T - Galeria de Trabalhos de Conclus„o</title>
+<title>Ctrl+T - Galeria de Trabalhos de Conclus√£o</title>

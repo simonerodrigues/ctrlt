@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +54,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @Controller
 public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusao>, TrabalhoDeConclusaoService {
 	
-	//N˙mero de p·ginas a serem exibidas por p·gina
+	//N√∫mero de p√°ginas a serem exibidas por p√°gina
 	private static final int PAGE_SIZE = 12;
 
 	@Autowired
@@ -111,7 +111,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	public ResponseJsonWithId cadastrarComRetornoDeId(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
 		ResponseJsonWithId responseJsonWithId = new ResponseJsonWithId();
 
-		//Seta a data de publicaÁ„o
+		//Seta a data de publica√ß√£o
 		entidade.setDataPublicacao(Calendar.getInstance());
 		
 		if(entidade.getListaProfessores() != null){
@@ -135,7 +135,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 					entidade.getListaAlunos().set(i, alunoDAO.pesquisarPorId(entidade.getListaAlunos().get(i).getId()));
 					
 					if(entidade.getListaAlunos().get(i).getTrabalhoDeConclusao() != null){
-						validacaoAlunos += "<br />Aluno " + entidade.getListaAlunos().get(i).getNome() + " j· est· associado a outro trabalho de conclus„o";
+						validacaoAlunos += "<br />Aluno " + entidade.getListaAlunos().get(i).getNome() + " j√° est√° associado a outro trabalho de conclus√£o";
 					}
 				}
 			}
@@ -143,7 +143,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		
 		if(! validacaoAlunos.isEmpty()){
 			responseJsonWithId.setStatus("FAIL");
-			responseJsonWithId.setResult("O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />" + validacaoAlunos);
+			responseJsonWithId.setResult("O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />" + validacaoAlunos);
 			responseJsonWithId.setId(0l);
 			
 			return responseJsonWithId;
@@ -171,11 +171,11 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				trabalhoDeConclusaoDAO.alterar(entidade);
 				
 				responseJsonWithId.setStatus("SUCCESS");
-				responseJsonWithId.setResult("Trabalho de conclus„o cadastrado com sucesso.");
+				responseJsonWithId.setResult("Trabalho de conclus√£o cadastrado com sucesso.");
 				responseJsonWithId.setId(entidade.getId());
 			} else {
 				responseJsonWithId.setStatus("FAIL");
-				responseJsonWithId.setResult("Erro ao cadastrar o trabalho de conclus„o. Por gentileza contate o administrador do sistema.");
+				responseJsonWithId.setResult("Erro ao cadastrar o trabalho de conclus√£o. Por gentileza contate o administrador do sistema.");
 				responseJsonWithId.setId(0l);
 			}
 		} else {
@@ -184,9 +184,9 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -208,7 +208,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		
 		if(! arquivo.isEmpty()){
 			if(trabalhoDeConclusaoBanco.getMonografia() != null){
-				//Exclui o arquivo de monografia ao excluir o Trabalho de Conclus„o
+				//Exclui o arquivo de monografia ao excluir o Trabalho de Conclus√£o
 				File monografia = new File(trabalhoDeConclusaoBanco.getMonografia().getCaminho());
 				try {
 					FileUtils.deleteDirectory(monografia);
@@ -218,12 +218,12 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				}
 			}
 			
-			//Caminho absoluto do caminho atÈ a pasta da monografia
+			//Caminho absoluto do caminho at√© a pasta da monografia
 			String path = servletContext.getRealPath("/monografias/" + String.valueOf(idTcc) + "/");
 			
 			File file = new File(path);
 			
-			//Cria o diretÛrio caso n„o exista
+			//Cria o diret√≥rio caso n√£o exista
 			if(! file.exists()){
 				file.mkdirs();
 			}
@@ -251,24 +251,24 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				
 				if(trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusaoBanco)){
 					responseJson.setStatus("SUCCESS");
-					responseJson.setResult("Trabalho de conclus„o de curso cadastrado com sucesso!");
+					responseJson.setResult("Trabalho de conclus√£o de curso cadastrado com sucesso!");
 				}else{
 					responseJson.setStatus("FAIL");
-					responseJson.setResult("A monografia foi carregada, porÈm ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
-							+ " de conclus„o e tente realizar o upload novamente.");
+					responseJson.setResult("A monografia foi carregada, por√©m ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+							+ " de conclus√£o e tente realizar o upload novamente.");
 				}
 				
 				
 				
 			} catch (IOException e) {
 				responseJson.setStatus("FAIL");
-				responseJson.setResult("A monografia foi carregada, porÈm ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
-						+ " de conclus„o e tente realizar o upload novamente.");
+				responseJson.setResult("A monografia foi carregada, por√©m ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+						+ " de conclus√£o e tente realizar o upload novamente.");
 			}
 		}else{
 			responseJson.setStatus("FAIL");
-			responseJson.setResult("A monografia foi carregada, porÈm ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
-					+ " de conclus„o e tente realizar o upload novamente.");
+			responseJson.setResult("A monografia foi carregada, por√©m ocorreu um erro ao realizar o upload do arquivo. Por gentileza altere o registro do trabalho"
+					+ " de conclus√£o e tente realizar o upload novamente.");
 		}
 		
 		return responseJson;
@@ -297,7 +297,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 					
 					if(entidade.getListaAlunos().get(i).getTrabalhoDeConclusao() != null){
 						if(entidade.getListaAlunos().get(i).getTrabalhoDeConclusao().getId() != trabalhoDeConclusaoBanco.getId()){
-							validacaoAlunos += "<br />Aluno " + entidade.getListaAlunos().get(i).getNome() + " j· est· associado a outro trabalho de conclus„o";
+							validacaoAlunos += "<br />Aluno " + entidade.getListaAlunos().get(i).getNome() + " j√° est√° associado a outro trabalho de conclus√£o";
 						}
 					}
 				}
@@ -306,13 +306,13 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		
 		if(! validacaoAlunos.isEmpty()){
 			responseJsonWithId.setStatus("FAIL");
-			responseJsonWithId.setResult("O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />" + validacaoAlunos);
+			responseJsonWithId.setResult("O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />" + validacaoAlunos);
 			responseJsonWithId.setId(0l);
 			
 			return responseJsonWithId;
 		}
 
-		//Remove as associaÁıes dos Alunos j· associados ao trabalho de conclus„o
+		//Remove as associa√ß√µes dos Alunos j√° associados ao trabalho de conclus√£o
 		if(trabalhoDeConclusaoBanco.getListaAlunos() != null){
 			for(int i = 0; i < trabalhoDeConclusaoBanco.getListaAlunos().size(); i++){
 				trabalhoDeConclusaoBanco.getListaAlunos().get(i).setTrabalhoDeConclusao(null);
@@ -355,11 +355,11 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			
 			if (trabalhoDeConclusaoDAO.alterar(entidade)) {				
 				responseJsonWithId.setStatus("SUCCESS");
-				responseJsonWithId.setResult("Trabalho de conclus„o alterado com sucesso.");
+				responseJsonWithId.setResult("Trabalho de conclus√£o alterado com sucesso.");
 				responseJsonWithId.setId(entidade.getId());
 			} else {
 				responseJsonWithId.setStatus("FAIL");
-				responseJsonWithId.setResult("Erro ao cadastrar o trabalho de conclus„o. Por gentileza contate o administrador do sistema.");
+				responseJsonWithId.setResult("Erro ao cadastrar o trabalho de conclus√£o. Por gentileza contate o administrador do sistema.");
 				responseJsonWithId.setId(0l);
 			}
 		} else {
@@ -368,9 +368,9 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -423,7 +423,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		// Cria objeto de retorno do JSON
 		ResponseJson response = new ResponseJson();
 
-		// Pega o cÛdigo do linhaDePesquisa que ser· excluido
+		// Pega o c√≥digo do linhaDePesquisa que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para pesquisar no banco
@@ -434,7 +434,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		}
 		
 		for(int i = 0; i < trabalhoDeConclusao.getListaAnexos().size(); i++){
-			//Exclui o arquivo anexo ao excluir o Trabalho de Conclus„o
+			//Exclui o arquivo anexo ao excluir o Trabalho de Conclus√£o
 			File anexo = new File(trabalhoDeConclusao.getListaAnexos().get(i).getCaminho());
 			try {
 				FileUtils.deleteDirectory(anexo);
@@ -449,11 +449,11 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		trabalhoDeConclusao.setListaAnexos(new ArrayList<>());
 		
 		if(trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusao)){
-			// Realiza a exclus„o do linhaDePesquisa
+			// Realiza a exclus√£o do linhaDePesquisa
 			if (trabalhoDeConclusaoDAO.excluir(trabalhoDeConclusao)) {
 				
 				if(trabalhoDeConclusao.getMonografia() != null){
-					//Exclui o arquivo de monografia ao excluir o Trabalho de Conclus„o
+					//Exclui o arquivo de monografia ao excluir o Trabalho de Conclus√£o
 					File monografia = new File(trabalhoDeConclusao.getMonografia().getCaminho());
 					try {
 						FileUtils.deleteDirectory(monografia);
@@ -464,14 +464,14 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 				}
 				
 				response.setStatus("SUCCESS");
-				response.setResult("Trabalho de conclus„o excluÌdo com sucesso.");
+				response.setResult("Trabalho de conclus√£o exclu√≠do com sucesso.");
 			} else {
 				response.setStatus("FAIL");
-				response.setResult("Erro ao excluir o trabalho de conclus„o. Por gentileza contate o administrador do sistema.");
+				response.setResult("Erro ao excluir o trabalho de conclus√£o. Por gentileza contate o administrador do sistema.");
 			}
 		}else{
 			response.setStatus("FAIL");
-			response.setResult("Erro ao excluir o trabalho de conclus„o. Por gentileza contate o administrador do sistema.");
+			response.setResult("Erro ao excluir o trabalho de conclus√£o. Por gentileza contate o administrador do sistema.");
 		}
 		
 		return response;
@@ -484,7 +484,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		// Cria objeto de retorno do JSON
 		ResponseJson response = new ResponseJson();
 
-		// Pega o cÛdigo do linhaDePesquisa que ser· inativado
+		// Pega o c√≥digo do linhaDePesquisa que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para alterar o status
@@ -492,8 +492,8 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		
 		if(trabalhoDeConclusao.getMonografia() == null){
 			response.setStatus("FAIL");
-			response.setResult("N„o È possÌvel ativar o trabalho de conclus„o para visualizaÁ„o. N„o existe arquivo de monografia associado para exibiÁ„o. "
-					+ "Por gentileza associe um arquivo de monografia para ativar a visualizaÁ„o.");
+			response.setResult("N√£o √© poss√≠vel ativar o trabalho de conclus√£o para visualiza√ß√£o. N√£o existe arquivo de monografia associado para exibi√ß√£o. "
+					+ "Por gentileza associe um arquivo de monografia para ativar a visualiza√ß√£o.");
 			
 			return response;
 		}
@@ -505,18 +505,18 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 			trabalhoDeConclusao.setAtivo(true);
 		}
 
-		// Grava as alteraÁıes realizadas com o linhaDePesquisa
+		// Grava as altera√ß√µes realizadas com o linhaDePesquisa
 		if (trabalhoDeConclusaoDAO.alterar(trabalhoDeConclusao)) {
 			response.setStatus("SUCCESS");
 
 			if (trabalhoDeConclusao.isAtivo()) {
-				response.setResult("Trabalho de conclus„o ativada com sucesso.");
+				response.setResult("Trabalho de conclus√£o ativada com sucesso.");
 			} else {
-				response.setResult("Trabalho de conclus„o inativada com sucesso.");
+				response.setResult("Trabalho de conclus√£o inativada com sucesso.");
 			}
 		} else {
 			response.setStatus("FAIL");
-			response.setResult("Erro ao ativar/inativar o trabalho de conclus„o. Por gentileza contate o administrador do sistema.");
+			response.setResult("Erro ao ativar/inativar o trabalho de conclus√£o. Por gentileza contate o administrador do sistema.");
 		}
 		
 		return response;
@@ -526,7 +526,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	@ResponseBody
 	@RequestMapping(value = "rest/json/trabalho_de_conclusao", method = RequestMethod.POST)
 	public TrabalhoDeConclusao entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo do TrabalhoDeConclusao que ser· inativado
+		// Pega o c√≥digo do TrabalhoDeConclusao que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de linhaDePesquisa para alterar o status
@@ -539,10 +539,10 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<TrabalhoDeConclusao> listaTrabalhoDeConclusao = trabalhoDeConclusaoDAO.listar(" ORDER BY t.titulo");
 
-		//CriaÁ„o da DataSouce do iReport
+		//Cria√ß√£o da DataSouce do iReport
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(listaTrabalhoDeConclusao, false);
 		
-		//Map de par‚metros a serem passados para o iReport
+		//Map de par√¢metros a serem passados para o iReport
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", JRdataSource);
 		parameterMap.put("path", servletContext.getRealPath("/images/reports/"));
@@ -552,7 +552,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		//Propriedades do Header da Response
 		Properties header = new Properties();
 		
-		//Nome do arquivo caso o usu·rio de Ctrl+S (Salvar)
+		//Nome do arquivo caso o usu√°rio de Ctrl+S (Salvar)
 		header.put("Content-Disposition", "inline; filename=Trabalho de Conclusao.pdf");
 		
 		JasperReportsPdfView view = new JasperReportsPdfView();
@@ -562,7 +562,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		view.setApplicationContext(applicationContext);
 		view.setHeaders(header);
 		
-		// Gera o relatÛrio de acordo com a extensao enviada por par‚metro de URL
+		// Gera o relat√≥rio de acordo com a extensao enviada por par√¢metro de URL
 		modelAndView = new ModelAndView(view, parameterMap);
 		return modelAndView;
 	}

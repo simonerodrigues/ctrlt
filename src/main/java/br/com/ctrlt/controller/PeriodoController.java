@@ -1,4 +1,4 @@
-package br.com.ctrlt.controller;
+Ôªøpackage br.com.ctrlt.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -75,9 +75,9 @@ public class PeriodoController implements Control<Periodo> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -115,9 +115,9 @@ public class PeriodoController implements Control<Periodo> {
 			String erros = "";
 
 			if (result.getErrorCount() == 1) {
-				erros = "O seguinte erro foi apresentado durante a validaÁ„o dos dados: <br />";
+				erros = "O seguinte erro foi apresentado durante a valida√ß√£o dos dados: <br />";
 			} else {
-				erros = "Os seguintes erros foram apresentados durante a validaÁ„o dos dados: <br />";
+				erros = "Os seguintes erros foram apresentados durante a valida√ß√£o dos dados: <br />";
 			}
 
 			for (ObjectError erro : result.getAllErrors()) {
@@ -154,7 +154,7 @@ public class PeriodoController implements Control<Periodo> {
 		// Cria objeto de retorno do JSON
 		ResponseJson response = new ResponseJson();
 
-		// Pega o cÛdigo do periodo que ser· excluido
+		// Pega o c√≥digo do periodo que ser√° excluido
 		String id = req.getParameter("id");
 
 		// Pega o objeto de periodo para pesquisar no banco
@@ -169,14 +169,14 @@ public class PeriodoController implements Control<Periodo> {
 
 		if (listaCursos.size() > 0) {
 			response.setStatus("FAIL");
-			response.setResult("N„o È possÌvel excluir o perÌodo selecionado porque existe(m) cursos(s) "
-					+ "associado(s) a este perÌodo. <br /><br />"
-					+ "Por gentileza realize as desassociaÁıes antes de excluir o perÌodo.");
+			response.setResult("N√£o √© poss√≠vel excluir o per√≠odo selecionado porque existe(m) cursos(s) "
+					+ "associado(s) a este per√≠odo. <br /><br />"
+					+ "Por gentileza realize as desassocia√ß√µes antes de excluir o per√≠odo.");
 		} else {
-			// Realiza a exclus„o do periodo
+			// Realiza a exclus√£o do periodo
 			if (periodoDAO.excluir(periodo)) {
 				response.setStatus("SUCCESS");
-				response.setResult("Periodo excluÌdo com sucesso.");
+				response.setResult("Periodo exclu√≠do com sucesso.");
 			} else {
 				response.setStatus("FAIL");
 				response.setResult("Erro ao excluir o periodo. Por gentileza contate o administrador do sistema.");
@@ -195,7 +195,7 @@ public class PeriodoController implements Control<Periodo> {
 		// Cria objeto de retorno do JSON
 		ResponseJson response = new ResponseJson();
 
-		// Pega o cÛdigo do periodo que ser· inativado
+		// Pega o c√≥digo do periodo que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de periodo para alterar o status
@@ -212,9 +212,9 @@ public class PeriodoController implements Control<Periodo> {
 
 		if (listaCursos.size() > 0) {
 			response.setStatus("FAIL");
-			response.setResult("N„o È possÌvel inativar este perÌodo selecionada porque existe(m) "
-					+ "curso(s) ativo(s) associado(s) a este perÌodo. <br /><br />"
-					+ "Por gentileza realize as desassociaÁıes antes de inativar o perÌodo.");
+			response.setResult("N√£o √© poss√≠vel inativar este per√≠odo selecionada porque existe(m) "
+					+ "curso(s) ativo(s) associado(s) a este per√≠odo. <br /><br />"
+					+ "Por gentileza realize as desassocia√ß√µes antes de inativar o per√≠odo.");
 		}else{
 			// Altera o status do periodo
 			if (periodo.isAtivo()) {
@@ -223,7 +223,7 @@ public class PeriodoController implements Control<Periodo> {
 				periodo.setAtivo(true);
 			}
 	
-			// Grava as alteraÁıes realizadas com o periodo
+			// Grava as altera√ß√µes realizadas com o periodo
 			if (periodoDAO.alterar(periodo)) {
 				response.setStatus("SUCCESS");
 	
@@ -246,7 +246,7 @@ public class PeriodoController implements Control<Periodo> {
 	@Transactional
 	@RequestMapping(value = "rest/json/periodo", method = RequestMethod.POST)
 	public Periodo entidadeJSON(HttpServletRequest req) {
-		// Pega o cÛdigo do Periodo que ser· inativado
+		// Pega o c√≥digo do Periodo que ser√° inativado
 		String id = req.getParameter("id");
 
 		// Pega o objeto de periodo para alterar o status
@@ -260,10 +260,10 @@ public class PeriodoController implements Control<Periodo> {
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<Periodo> listaPeriodo = periodoDAO.listar(" ORDER BY p.nome");
 
-		//CriaÁ„o da DataSouce do iReport
+		//Cria√ß√£o da DataSouce do iReport
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(listaPeriodo, false);
 		
-		//Map de par‚metros a serem passados para o iReport
+		//Map de par√¢metros a serem passados para o iReport
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", JRdataSource);
 		parameterMap.put("path", servletContext.getRealPath("/images/reports/"));
@@ -273,8 +273,8 @@ public class PeriodoController implements Control<Periodo> {
 		//Propriedades do Header da Response
 		Properties header = new Properties();
 		
-		//Nome do arquivo caso o usu·rio de Ctrl+S (Salvar)
-		header.put("Content-Disposition", "inline; filename=PerÌodos.pdf");
+		//Nome do arquivo caso o usu√°rio de Ctrl+S (Salvar)
+		header.put("Content-Disposition", "inline; filename=Per√≠odos.pdf");
 		
 		JasperReportsPdfView view = new JasperReportsPdfView();
 		view.setUrl("/WEB-INF/reports/pdf/periodo.jrxml");
@@ -283,7 +283,7 @@ public class PeriodoController implements Control<Periodo> {
 		view.setApplicationContext(applicationContext);
 		view.setHeaders(header);
 		
-		// Gera o relatÛrio de acordo com a extensao enviada por par‚metro de URL
+		// Gera o relat√≥rio de acordo com a extensao enviada por par√¢metro de URL
 		modelAndView = new ModelAndView(view, parameterMap);
 		return modelAndView;
 	}

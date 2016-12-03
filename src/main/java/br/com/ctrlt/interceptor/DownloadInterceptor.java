@@ -1,4 +1,4 @@
-package br.com.ctrlt.interceptor;
+Ôªøpackage br.com.ctrlt.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +12,7 @@ import br.com.ctrlt.model.Anexo;
 import br.com.ctrlt.model.TrabalhoDeConclusao;
 
 /**
- * Classe de controle de permiss„o de download
+ * Classe de controle de permiss√£o de download
  * 
  * @author Simone Santos Rodrigues
  * @version 1.0
@@ -27,10 +27,10 @@ public class DownloadInterceptor extends HandlerInterceptorAdapter {
 	AnexoDAO anexoDAO;
 
 	/**
-	 * MÈtodo que faz a verificaÁ„o de acesso direto ao link do arquivo (Realiza o bloqueio)
+	 * M√©todo que faz a verifica√ß√£o de acesso direto ao link do arquivo (Realiza o bloqueio)
 	 * 
-	 * @param request Request da p·gina
-	 * @param response Response da p·gina
+	 * @param request Request da p√°gina
+	 * @param response Response da p√°gina
 	 * @param controller Controlador
 	 */
 	
