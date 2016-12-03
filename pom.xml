@@ -237,6 +237,14 @@
 			<version>1.7.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>verdana</groupId>
+			<artifactId>verdana</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/lib/verdana.jar</systemPath>
+		</dependency>
+
 	</dependencies>
 </project>
 

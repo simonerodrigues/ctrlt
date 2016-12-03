@@ -28,7 +28,7 @@
 			<staticText>
 				<reportElement x="38" y="11" width="352" height="26" forecolor="#FFFFFF" uuid="3e34d94f-5408-4419-89d6-602d9440007c"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="14" isBold="true"/>
+					<font fontName="Verdana" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relatório de Trabalho de Conclusão]]></text>
 			</staticText>
@@ -189,14 +189,14 @@
 			<textField>
 				<reportElement x="532" y="6" width="32" height="20" forecolor="#FFFFFF" uuid="2ce09036-b294-4880-bef1-e382a5f20b3d"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="32" y="17" width="64" height="20" uuid="2790bba1-d855-4404-93c5-55810734574d"/>
 				<textElement>
-					<font fontName="Arial" isItalic="true"/>
+					<font fontName="Verdana" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
 			</textField>
@@ -207,14 +207,14 @@
 			<staticText>
 				<reportElement x="3" y="16" width="35" height="16" uuid="547c5fe9-d6e1-4b76-a848-19aa87df6f33"/>
 				<textElement textAlignment="Left">
-					<font fontName="Arial" size="11" isBold="true"/>
+					<font fontName="Verdana" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="98" y="16" width="154" height="16" uuid="23bbcaba-36f3-49a8-b9ee-26303d94081b"/>
 				<textElement textAlignment="Left">
-					<font fontName="Arial" size="11" isBold="true"/>
+					<font fontName="Verdana" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Quantidade da página:]]></text>
 			</staticText>
