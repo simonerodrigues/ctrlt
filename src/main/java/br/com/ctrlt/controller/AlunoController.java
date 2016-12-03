@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -50,6 +51,7 @@ public class AlunoController implements Control<Aluno> {
 	private PeriodoDAO periodoDAO;
 	
 	@Override
+	@Transactional
 	@RequestMapping(value = "adm/cadastro/aluno", method = RequestMethod.GET)
 	public String carregarPagina(Model model) {
 		List<Curso> listaCurso = cursoDAO.listar(" WHERE c.ativo = true ORDER BY c.nome ASC");
@@ -61,6 +63,7 @@ public class AlunoController implements Control<Aluno> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/aluno", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid Aluno entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -143,6 +146,7 @@ public class AlunoController implements Control<Aluno> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/aluno", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid Aluno entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -226,6 +230,7 @@ public class AlunoController implements Control<Aluno> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/lista/aluno", method = RequestMethod.POST)
 	public TableResponseJson listar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -270,6 +275,7 @@ public class AlunoController implements Control<Aluno> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/inativa/aluno", method = RequestMethod.POST)
 	public ResponseJson inativar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -307,6 +313,7 @@ public class AlunoController implements Control<Aluno> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/json/aluno", method = RequestMethod.POST)
 	public Aluno entidadeJSON(HttpServletRequest req) {
 		// Pega o código do Aluno que será inativado
@@ -318,6 +325,7 @@ public class AlunoController implements Control<Aluno> {
 		return aluno;
 	}
 
+	@Transactional
 	@RequestMapping(value = "adm/relatorio/pdf/aluno", method = RequestMethod.GET)
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<Aluno> listaAluno = alunoDAO.listar(" ORDER BY a.nome");

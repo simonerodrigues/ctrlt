@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -49,6 +50,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/linha_de_pesquisa", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid LinhaDePesquisa entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -86,6 +88,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/linha_de_pesquisa", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid LinhaDePesquisa entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -140,6 +143,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 	@Override
 	@SuppressWarnings("unchecked")
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/exclui/linha_de_pesquisa")
 	public ResponseJson excluir(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -181,6 +185,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 	@Override
 	@SuppressWarnings("unchecked")
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/inativa/linha_de_pesquisa", method = RequestMethod.POST)
 	public ResponseJson inativar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -235,6 +240,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/json/linha_de_pesquisa", method = RequestMethod.POST)
 	public LinhaDePesquisa entidadeJSON(HttpServletRequest req) {
 		// Pega o código do LinhaDePesquisa que será inativado
@@ -246,6 +252,7 @@ public class LinhaDePesquisaController implements Control<LinhaDePesquisa> {
 		return linhaDePesquisa;
 	}
 
+	@Transactional
 	@RequestMapping(value = "adm/relatorio/pdf/linha_de_pesquisa", method = RequestMethod.GET)
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<LinhaDePesquisa> listaLinhaDePesquisa = linhaDePesquisaDAO.listar(" ORDER BY l.nome");

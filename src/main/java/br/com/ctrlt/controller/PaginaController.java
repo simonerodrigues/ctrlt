@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,7 @@ public class PaginaController {
 		return "adm/profile";
 	}
 	
+	@Transactional
 	@RequestMapping(value = "galeria")
 	public String indexGallery(Model model){
 		
@@ -59,6 +61,7 @@ public class PaginaController {
 		return "gallery/index";
 	}	
 	
+	@Transactional
 	@RequestMapping(value = "galeria/monografias/{pageNumber}")
 	public String monografias(@PathVariable Integer pageNumber, HttpServletRequest request, Model model){
 		
@@ -109,6 +112,7 @@ public class PaginaController {
 		return "adm/sobre";
 	}	
 	
+	@Transactional
 	@RequestMapping(value="galeria/sobre")
 	public String sobreGaleria(Model model){
 		model.addAttribute("ano", new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime()));

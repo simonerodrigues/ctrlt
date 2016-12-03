@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,7 @@ public class DashboardController {
 	private EntityManager manager; // gerenciar as conexoes de banco de dados.
 
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/dashboard", method = RequestMethod.POST)
 	public Dashboard carregarInformacoes() {
 		Dashboard dashboard = new Dashboard();

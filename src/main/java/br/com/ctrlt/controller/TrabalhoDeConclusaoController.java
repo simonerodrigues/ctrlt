@@ -22,6 +22,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -82,6 +83,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
     private TrabalhoDeConclusaoRepository trabalhoDeConclusaoRepository;
 	
 	@Override
+	@Transactional
 	@RequestMapping(value = "adm/cadastro/trabalho_de_conclusao", method = RequestMethod.GET)
 	public String carregarPagina(Model model) {
 		model.addAttribute("alunos", alunoDAO.listar(" WHERE a.ativo = true"));
@@ -90,6 +92,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		return "adm/cadastros/cadastro_trabalho_de_conclusao";
 	}
 	
+	@Transactional
 	@RequestMapping(value = "trabalho_de_conclusao/{id}", method = RequestMethod.GET)
 	public String carregarTrabalhoDeConclusao(@PathVariable("id") Long idTcc, Model model) {
 		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
@@ -107,6 +110,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/trabalho_de_conclusao", method = RequestMethod.POST)
 	public ResponseJsonWithId cadastrarComRetornoDeId(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
 		ResponseJsonWithId responseJsonWithId = new ResponseJsonWithId();
@@ -200,6 +204,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/upload_monografia", method = RequestMethod.POST)
 	public ResponseJson uploadMonografia(@RequestParam("monografia") MultipartFile arquivo, @RequestParam("id") Long idTcc){
 		ResponseJson responseJson = new ResponseJson();
@@ -281,6 +286,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/trabalho_de_conclusao", method = RequestMethod.POST)
 	public ResponseJsonWithId alteraComRetornoDeId(@Valid TrabalhoDeConclusao entidade, BindingResult result) {
 		ResponseJsonWithId responseJsonWithId = new ResponseJsonWithId();
@@ -385,6 +391,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/lista/trabalho_de_conclusao", method = RequestMethod.POST)
 	public TableResponseJson listar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -398,6 +405,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/lista/anexo/{id_tcc}", method = RequestMethod.POST)
 	public TableResponseJson listarAnexo(HttpServletRequest req, @PathVariable("id_tcc") Long idTCC) {
 		// Cria objeto de retorno do JSON
@@ -418,6 +426,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/exclui/trabalho_de_conclusao")
 	public ResponseJson excluir(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -479,6 +488,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/inativa/trabalho_de_conclusao", method = RequestMethod.POST)
 	public ResponseJson inativar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -524,6 +534,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/json/trabalho_de_conclusao", method = RequestMethod.POST)
 	public TrabalhoDeConclusao entidadeJSON(HttpServletRequest req) {
 		// Pega o código do TrabalhoDeConclusao que será inativado
@@ -535,6 +546,7 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 		return trabalhoDeConclusao;
 	}
 
+	@Transactional
 	@RequestMapping(value = "adm/relatorio/pdf/trabalho_de_conclusao", method = RequestMethod.GET)
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<TrabalhoDeConclusao> listaTrabalhoDeConclusao = trabalhoDeConclusaoDAO.listar(" ORDER BY t.titulo");
@@ -568,18 +580,21 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	}
 
 	@Override
+	@Transactional
 	public Page<TrabalhoDeConclusao> obterMonografias(Integer pageNumber) {
 		PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "titulo");
         return trabalhoDeConclusaoRepository.findAll(request);
 	}
 
 	@Override
+	@Transactional
 	public Page<TrabalhoDeConclusao> pesquisarMonografia(Integer pageNumber, String titulo) {
 		PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "titulo");
         return trabalhoDeConclusaoRepository.pesquisarTcc(titulo, request);
 	}
 
 	@Override
+	@Transactional
 	public Page<TrabalhoDeConclusao> obeterMonografiasPorCurso(Integer pageNumber, String curso) {
 		
 		Long idCurso = 0l;

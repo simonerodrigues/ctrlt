@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -47,6 +48,7 @@ public class ProfessorController implements Control<Professor> {
 	private LinhaDePesquisaDAO linhaDePesquisaDAO;
 	
 	@Override
+	@Transactional
 	@RequestMapping(value = "adm/cadastro/professor", method = RequestMethod.GET)
 	public String carregarPagina(Model model) {
 		model.addAttribute("linhasDePesquisa", linhaDePesquisaDAO.listar(" WHERE l.ativo = true ORDER BY nome ASC"));
@@ -60,6 +62,7 @@ public class ProfessorController implements Control<Professor> {
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/professor", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid Professor entidade, Long[] linhasDePesquisa, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -148,6 +151,7 @@ public class ProfessorController implements Control<Professor> {
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/professor", method = RequestMethod.POST)
 	public ResponseJson alterarCustom(@Valid Professor entidade, Long[] linhasDePesquisa, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -327,6 +331,7 @@ public class ProfessorController implements Control<Professor> {
 		return professor;
 	}
 
+	@Transactional
 	@RequestMapping(value = "adm/relatorio/pdf/professor", method = RequestMethod.GET)
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<Professor> listaProfessores = professorDAO.listar(" ORDER BY p.nome");

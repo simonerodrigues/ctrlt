@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -33,6 +34,7 @@ public class PermissaoController implements Control<Permissao> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/permissao", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid Permissao entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -68,6 +70,7 @@ public class PermissaoController implements Control<Permissao> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/permissao", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid Permissao entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -103,6 +106,7 @@ public class PermissaoController implements Control<Permissao> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/lista/permissaoe", method = RequestMethod.POST)
 	public TableResponseJson listar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -117,6 +121,7 @@ public class PermissaoController implements Control<Permissao> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/exclui/permissaoes")
 	public ResponseJson excluir(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -148,6 +153,7 @@ public class PermissaoController implements Control<Permissao> {
 	
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/json/permissao", method = RequestMethod.POST)
 	public Permissao entidadeJSON(HttpServletRequest req) {
 		// Pega o código do Permissao que será inativado

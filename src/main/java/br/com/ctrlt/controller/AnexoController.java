@@ -14,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -50,6 +51,7 @@ public class AnexoController implements Control<Anexo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/anexo", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid Anexo entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -86,6 +88,7 @@ public class AnexoController implements Control<Anexo> {
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/upload_anexo", method = RequestMethod.POST)
 	public ResponseJson uploadAnexo(@RequestParam("anexo") List<MultipartFile> arquivos, @RequestParam("download") List<Boolean> permissao, @RequestParam("id") Long idTcc){
 		ResponseJson responseJson = new ResponseJson();
@@ -174,6 +177,7 @@ public class AnexoController implements Control<Anexo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/anexo", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid Anexo entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -209,12 +213,14 @@ public class AnexoController implements Control<Anexo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	public TableResponseJson listar(HttpServletRequest req) {
 		return null;
 	}
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/exclui/anexo", method = RequestMethod.POST)
 	public ResponseJson excluir(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -248,6 +254,7 @@ public class AnexoController implements Control<Anexo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/inativa/anexo", method = RequestMethod.POST)
 	public ResponseJson inativar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -284,6 +291,7 @@ public class AnexoController implements Control<Anexo> {
 	}
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/status_download/anexo", method = RequestMethod.POST)
 	public ResponseJson statusDownload(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -321,6 +329,7 @@ public class AnexoController implements Control<Anexo> {
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/json/anexo", method = RequestMethod.POST)
 	public Anexo entidadeJSON(HttpServletRequest req) {
 		// Pega o código da Anexo que será inativado

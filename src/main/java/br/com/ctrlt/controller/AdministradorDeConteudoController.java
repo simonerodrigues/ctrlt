@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -48,6 +49,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/cadastra/administrador_de_conteudo", method = RequestMethod.POST)
 	public ResponseJson cadastrar(@Valid AdministradorDeConteudo entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -121,6 +123,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/administrador_de_conteudo", method = RequestMethod.POST)
 	public ResponseJson alterar(@Valid AdministradorDeConteudo entidade, BindingResult result) {
 		ResponseJson responseJson = new ResponseJson();
@@ -197,6 +200,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/lista/administrador_de_conteudo")
 	public TableResponseJson listar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -211,6 +215,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/exclui/administrador_de_conteudo", method = RequestMethod.POST)
 	public ResponseJson excluir(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -236,6 +241,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/inativa/administrador_de_conteudo", method = RequestMethod.POST)
 	public ResponseJson inativar(HttpServletRequest req) {
 		// Cria objeto de retorno do JSON
@@ -273,6 +279,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 
 	@Override
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/json/administrador_de_conteudo", method = RequestMethod.POST)
 	public AdministradorDeConteudo entidadeJSON(HttpServletRequest req) {
 		// Pega o código do AdministradorDeConteudo que será inativado
@@ -284,6 +291,7 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 		return administradorDeConteudo;
 	}
 
+	@Transactional
 	@RequestMapping(value = "adm/relatorio/pdf/administrador_de_conteudo", method = RequestMethod.GET)
 	public ModelAndView gerarRelatorio(ModelAndView modelAndView) {
 		List<AdministradorDeConteudo> listaAdministradorDeConteudo = administradorDeConteudoDAO.listar(" ORDER BY a.nome");

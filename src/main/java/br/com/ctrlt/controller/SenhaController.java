@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,7 @@ public class SenhaController {
 	private AlunoDAO alunoDAO;
 	
 	@ResponseBody
+	@Transactional
 	@RequestMapping(value = "rest/altera/senha", method = RequestMethod.POST)
 	public ResponseJson alterarSenha(@RequestParam("senhaAtual") String senhaAtual, @RequestParam("novaSenha") String novaSenha, HttpServletRequest request){
 		ResponseJson response = new ResponseJson();
