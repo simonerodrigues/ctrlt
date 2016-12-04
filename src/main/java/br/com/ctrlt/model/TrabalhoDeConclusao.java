@@ -40,12 +40,10 @@ public class TrabalhoDeConclusao {
 			@Size(max = 200, message = "{trabalhoDeConclusao.titulo.max}") })
 	private String titulo;
 
-	@Lob
-	@Type(type="org.hibernate.type.MaterializedClobType")
+	@Column(columnDefinition = "text")
 	private String resumo;
 
-	@Lob
-	@Type(type="org.hibernate.type.MaterializedClobType")
+	@Column(columnDefinition = "text")
 	private String palavrasChave;
 
 	@Temporal(TemporalType.TIMESTAMP) // Data e Hora

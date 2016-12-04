@@ -37,8 +37,7 @@ public class Periodo {
 	})
 	private String sigla;
 	
-	@Lob
-	@Type(type="org.hibernate.type.MaterializedClobType")
+	@Column(columnDefinition = "text")
 	private String descricao;
 	
 	@Column(nullable = false)

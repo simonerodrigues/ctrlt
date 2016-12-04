@@ -40,8 +40,7 @@ public class Curso {
 	@JoinTable(name = "curso_periodo", joinColumns = @JoinColumn(name = "id_curso"), inverseJoinColumns = @JoinColumn(name = "id_periodo"))
 	private List<Periodo> listaPeriodo;
 
-	@Lob
-	@Type(type="org.hibernate.type.MaterializedClobType")
+	@Column(columnDefinition = "text")
 	private String descricao;
 
 	@Column(nullable = false)
