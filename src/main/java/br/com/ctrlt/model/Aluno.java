@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.model;
+package br.com.ctrlt.model;
 
 import java.io.Serializable;
 

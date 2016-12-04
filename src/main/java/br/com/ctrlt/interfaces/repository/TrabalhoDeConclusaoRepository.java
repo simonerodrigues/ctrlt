@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.interfaces.repository;
+package br.com.ctrlt.interfaces.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

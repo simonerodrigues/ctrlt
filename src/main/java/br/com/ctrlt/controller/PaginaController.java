@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.controller;
+package br.com.ctrlt.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

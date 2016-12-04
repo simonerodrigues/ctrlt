@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.controller;
+package br.com.ctrlt.controller;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

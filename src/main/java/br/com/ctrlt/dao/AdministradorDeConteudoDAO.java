@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.dao;
+package br.com.ctrlt.dao;
 
 import java.util.List;
 

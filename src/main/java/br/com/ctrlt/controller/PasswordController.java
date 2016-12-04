@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.controller;
+package br.com.ctrlt.controller;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
