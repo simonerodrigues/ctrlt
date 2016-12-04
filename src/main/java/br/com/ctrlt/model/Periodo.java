@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -37,6 +38,7 @@ public class Periodo {
 	private String sigla;
 	
 	@Lob
+	@Type(type="org.hibernate.type.StringClobType")
 	private String descricao;
 	
 	@Column(nullable = false)

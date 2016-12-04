@@ -23,6 +23,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -40,9 +41,11 @@ public class TrabalhoDeConclusao {
 	private String titulo;
 
 	@Lob
+	@Type(type="org.hibernate.type.StringClobType")
 	private String resumo;
 
 	@Lob
+	@Type(type="org.hibernate.type.StringClobType")
 	private String palavrasChave;
 
 	@Temporal(TemporalType.TIMESTAMP) // Data e Hora
