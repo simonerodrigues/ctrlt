@@ -111,6 +111,11 @@ public class Aluno implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = new String(Base64.encodeBase64(senha.getBytes()));
 	}
+	
+	//Recebe a senha já codificada em Base64
+	public void setSenhaCoded(String senha) {
+		this.senha = senha;
+	}
 
 	public String getNome() {
 		return nome;
