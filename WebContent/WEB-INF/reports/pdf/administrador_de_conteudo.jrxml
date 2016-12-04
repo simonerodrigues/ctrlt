@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Administrador de Conteúdo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ada4e7e1-b2e8-4b3b-b3f8-2f0a55f14cb8">
-	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.zoom" value="1.3310000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="66"/>
 	<subDataset name="dataset1" uuid="9a3ad43e-7b7c-4ffa-bdbc-78bea2710ab3"/>
 	<parameter name="path" class="java.lang.String"/>
 	<queryString>
@@ -31,7 +31,7 @@
 			<staticText>
 				<reportElement x="38" y="11" width="352" height="26" forecolor="#FFFFFF" uuid="3e34d94f-5408-4419-89d6-602d9440007c"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="16" isBold="true"/>
+					<font fontName="Verdana" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relatório de ADM de Conteúdo]]></text>
 			</staticText>
@@ -50,7 +50,7 @@
 				<text><![CDATA[ID:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="48" y="36" width="147" height="20" uuid="afca5b38-5068-4214-9a11-920b7cca29fa"/>
+				<reportElement x="48" y="36" width="214" height="20" uuid="afca5b38-5068-4214-9a11-920b7cca29fa"/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -61,11 +61,11 @@
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="66" y="56" width="147" height="20" uuid="19d7ba21-124c-409d-ac1f-b52bdea9900d"/>
+				<reportElement x="66" y="56" width="466" height="20" uuid="19d7ba21-124c-409d-ac1f-b52bdea9900d"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="11" width="375" height="20" uuid="a78669ac-c7bc-4c61-a437-7080d777ac20"/>
+				<reportElement x="15" y="11" width="517" height="20" uuid="a78669ac-c7bc-4c61-a437-7080d777ac20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -79,7 +79,7 @@
 				<text><![CDATA[Status:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="328" y="36" width="147" height="20" uuid="23405504-cb15-4fc0-ac94-60d288a2e5f4"/>
+				<reportElement x="328" y="36" width="204" height="20" uuid="23405504-cb15-4fc0-ac94-60d288a2e5f4"/>
 				<textFieldExpression><![CDATA[$F{ativo} == true?"Ativo":"Inativo"]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -90,7 +90,7 @@
 				<text><![CDATA[E-mail:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="66" y="76" width="147" height="20" uuid="b8b668a3-5d96-494a-86c3-8b44a5d5b01c"/>
+				<reportElement x="66" y="76" width="196" height="20" uuid="b8b668a3-5d96-494a-86c3-8b44a5d5b01c"/>
 				<textFieldExpression><![CDATA[$F{emailAlternativo}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -101,8 +101,8 @@
 				<text><![CDATA[E-mail FATEC:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="361" y="76" width="147" height="20" uuid="9f3c9407-639d-4442-82c2-c563b52cb770"/>
-				<textFieldExpression><![CDATA[$F{emailFatec}]]></textFieldExpression>
+				<reportElement x="361" y="76" width="171" height="20" uuid="9f3c9407-639d-4442-82c2-c563b52cb770"/>
+				<textFieldExpression><![CDATA[$F{emailFatec} == null ? "" : $F{emailFatec}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="31" y="96" width="100" height="20" uuid="7af54e76-a247-488c-9fe0-bb02eb379fda"/>
@@ -112,7 +112,7 @@
 				<text><![CDATA[Telefone:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="81" y="96" width="147" height="20" uuid="fed6f395-152b-40a1-b550-3cfddd2b71c8"/>
+				<reportElement x="81" y="96" width="181" height="20" uuid="fed6f395-152b-40a1-b550-3cfddd2b71c8"/>
 				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -120,14 +120,14 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cecular:]]></text>
+				<text><![CDATA[Celular:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="335" y="96" width="147" height="20" uuid="a6828dad-281c-45df-9a7a-26dec9f7a5ef"/>
+				<reportElement x="335" y="96" width="197" height="20" uuid="a6828dad-281c-45df-9a7a-26dec9f7a5ef"/>
 				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="31" y="151" width="100" height="20" uuid="ac5b64a9-50ae-4c33-860b-ea309db6b25d"/>
+				<reportElement x="31" y="151" width="175" height="20" uuid="ac5b64a9-50ae-4c33-860b-ea309db6b25d"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -138,7 +138,7 @@
 				<textFieldExpression><![CDATA[$F{permissao}.isManterAluno() == true?"Sim":"Não"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="31" y="171" width="100" height="20" uuid="9cbd031a-aa1b-42ef-824c-cccc17c075c1"/>
+				<reportElement x="31" y="171" width="175" height="20" uuid="9cbd031a-aa1b-42ef-824c-cccc17c075c1"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -149,7 +149,7 @@
 				<textFieldExpression><![CDATA[$F{permissao}.isManterProfessor() == true?"Sim":"Não"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="31" y="191" width="137" height="20" uuid="887b5969-c7a5-4e5e-ba47-7fa38612fd5f"/>
+				<reportElement x="31" y="191" width="175" height="20" uuid="887b5969-c7a5-4e5e-ba47-7fa38612fd5f"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -160,7 +160,7 @@
 				<textFieldExpression><![CDATA[$F{permissao}.isManterLinhaDePesquisa() == true?"Sim":"Não"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="31" y="211" width="137" height="20" uuid="57700486-35cd-47d3-aee8-c0c8c0a13f2e"/>
+				<reportElement x="31" y="211" width="175" height="20" uuid="57700486-35cd-47d3-aee8-c0c8c0a13f2e"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -171,36 +171,36 @@
 				<textFieldExpression><![CDATA[$F{permissao}.isManterCurso() == true?"Sim":"Não"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="292" y="151" width="137" height="20" uuid="df57c240-f041-458f-8add-022ec71828ea"/>
+				<reportElement x="292" y="151" width="167" height="20" uuid="df57c240-f041-458f-8add-022ec71828ea"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Manter Período:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="367" y="151" width="147" height="20" uuid="388c0ba5-833a-42ea-a3d7-f1fb4ed610b8"/>
+				<reportElement x="367" y="151" width="165" height="20" uuid="388c0ba5-833a-42ea-a3d7-f1fb4ed610b8"/>
 				<textFieldExpression><![CDATA[$F{permissao}.isManterPeriodo() == true?"Sim":"Não"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="357" y="171" width="157" height="20" uuid="6398a30f-c906-419a-8f54-fbb58e632f7d"/>
+				<reportElement x="357" y="171" width="175" height="20" uuid="6398a30f-c906-419a-8f54-fbb58e632f7d"/>
 				<textFieldExpression><![CDATA[$F{permissao}.isPublicarTCC() == true?"Sim":"Não"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="292" y="171" width="137" height="20" uuid="8da8d8c5-24a4-4be0-a882-41843a472ea9"/>
+				<reportElement x="292" y="171" width="167" height="20" uuid="8da8d8c5-24a4-4be0-a882-41843a472ea9"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Publicar TCC:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="292" y="191" width="137" height="20" uuid="4677b5bb-be76-4cd3-8508-f7bf9c43d8b0"/>
+				<reportElement x="292" y="191" width="167" height="20" uuid="4677b5bb-be76-4cd3-8508-f7bf9c43d8b0"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Extrair Relatório:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="369" y="191" width="139" height="20" uuid="51cf40fe-950a-4092-b465-87a7ca09140f"/>
+				<reportElement x="369" y="191" width="163" height="20" uuid="51cf40fe-950a-4092-b465-87a7ca09140f"/>
 				<textFieldExpression><![CDATA[$F{permissao}.isExtrairRelatorio() == true?"Sim":"Não"]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -219,34 +219,37 @@
 				<imageExpression><![CDATA[$P{path} + "rodape.jpg"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="532" y="6" width="32" height="20" forecolor="#FFFFFF" uuid="2ce09036-b294-4880-bef1-e382a5f20b3d"/>
+				<reportElement x="532" y="7" width="32" height="20" forecolor="#FFFFFF" uuid="2ce09036-b294-4880-bef1-e382a5f20b3d"/>
 				<textElement>
-					<font fontName="Verdana" isBold="true"/>
+					<font fontName="Verdana" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="32" y="17" width="64" height="20" uuid="2790bba1-d855-4404-93c5-55810734574d"/>
+				<reportElement x="32" y="18" width="64" height="20" uuid="2790bba1-d855-4404-93c5-55810734574d"/>
 				<textElement>
-					<font fontName="Verdana" isItalic="true"/>
+					<font fontName="Verdana" size="8" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="211" y="16" width="126" height="20" uuid="86c19d33-8cde-4fbe-9274-7b1332d5fbdc"/>
+				<reportElement x="206" y="18" width="126" height="20" uuid="86c19d33-8cde-4fbe-9274-7b1332d5fbdc"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[java.lang.String.valueOf($V{PAGE_COUNT}) + (java.lang.String.valueOf($V{PAGE_COUNT}).equalsIgnoreCase("1") ? " Registro":" Registros")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="16" width="35" height="16" uuid="547c5fe9-d6e1-4b76-a848-19aa87df6f33"/>
+				<reportElement x="3" y="18" width="35" height="16" uuid="547c5fe9-d6e1-4b76-a848-19aa87df6f33"/>
 				<textElement textAlignment="Left">
-					<font fontName="Verdana" size="11" isBold="true"/>
+					<font fontName="Verdana" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="98" y="16" width="154" height="16" uuid="23bbcaba-36f3-49a8-b9ee-26303d94081b"/>
+				<reportElement x="98" y="18" width="154" height="16" uuid="23bbcaba-36f3-49a8-b9ee-26303d94081b"/>
 				<textElement textAlignment="Left">
-					<font fontName="Verdana" size="11" isBold="true"/>
+					<font fontName="Verdana" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Quantidade da página:]]></text>
 			</staticText>

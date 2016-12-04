@@ -23,9 +23,9 @@
 				<imageExpression><![CDATA[$P{path} + "cabecalho.jpg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="38" y="11" width="352" height="26" forecolor="#FFFFFF" uuid="3e34d94f-5408-4419-89d6-602d9440007c"/>
+				<reportElement x="38" y="11" width="415" height="26" forecolor="#FFFFFF" uuid="3e34d94f-5408-4419-89d6-602d9440007c"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="16" isBold="true"/>
+					<font fontName="Verdana" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relatório de Linha de Pesquisa]]></text>
 			</staticText>
@@ -59,7 +59,7 @@
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="11" width="200" height="20" uuid="a78669ac-c7bc-4c61-a437-7080d777ac20"/>
+				<reportElement x="15" y="11" width="527" height="20" uuid="a78669ac-c7bc-4c61-a437-7080d777ac20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -85,34 +85,37 @@
 				<imageExpression><![CDATA[$P{path} + "rodape.jpg"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="532" y="6" width="32" height="20" forecolor="#FFFFFF" uuid="2ce09036-b294-4880-bef1-e382a5f20b3d"/>
+				<reportElement x="532" y="7" width="32" height="20" forecolor="#FFFFFF" uuid="2ce09036-b294-4880-bef1-e382a5f20b3d"/>
 				<textElement>
-					<font fontName="Verdana" isBold="true"/>
+					<font fontName="Verdana" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="32" y="17" width="64" height="20" uuid="2790bba1-d855-4404-93c5-55810734574d"/>
+				<reportElement x="32" y="18" width="64" height="20" uuid="2790bba1-d855-4404-93c5-55810734574d"/>
 				<textElement>
-					<font fontName="Verdana" isItalic="true"/>
+					<font fontName="Verdana" size="8" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="211" y="16" width="126" height="20" uuid="86c19d33-8cde-4fbe-9274-7b1332d5fbdc"/>
+				<reportElement x="206" y="18" width="126" height="20" uuid="86c19d33-8cde-4fbe-9274-7b1332d5fbdc"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[java.lang.String.valueOf($V{PAGE_COUNT}) + (java.lang.String.valueOf($V{PAGE_COUNT}).equalsIgnoreCase("1") ? " Registro":" Registros")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="16" width="35" height="16" uuid="547c5fe9-d6e1-4b76-a848-19aa87df6f33"/>
+				<reportElement x="3" y="18" width="35" height="16" uuid="547c5fe9-d6e1-4b76-a848-19aa87df6f33"/>
 				<textElement textAlignment="Left">
-					<font fontName="Verdana" size="11" isBold="true"/>
+					<font fontName="Verdana" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="98" y="16" width="154" height="16" uuid="23bbcaba-36f3-49a8-b9ee-26303d94081b"/>
+				<reportElement x="98" y="18" width="154" height="16" uuid="23bbcaba-36f3-49a8-b9ee-26303d94081b"/>
 				<textElement textAlignment="Left">
-					<font fontName="Verdana" size="11" isBold="true"/>
+					<font fontName="Verdana" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Quantidade da página:]]></text>
 			</staticText>
