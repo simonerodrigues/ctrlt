@@ -36,7 +36,7 @@ public class Periodo {
 	})
 	private String sigla;
 	
-	@Column(columnDefinition = "text")
+	@Lob
 	private String descricao;
 	
 	@Column(nullable = false)

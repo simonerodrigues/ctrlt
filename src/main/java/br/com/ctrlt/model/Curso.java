@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -38,7 +39,7 @@ public class Curso {
 	@JoinTable(name = "curso_periodo", joinColumns = @JoinColumn(name = "id_curso"), inverseJoinColumns = @JoinColumn(name = "id_periodo"))
 	private List<Periodo> listaPeriodo;
 
-	@Column(columnDefinition = "text")
+	@Lob
 	private String descricao;
 
 	@Column(nullable = false)
