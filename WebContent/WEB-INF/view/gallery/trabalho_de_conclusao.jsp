@@ -1,4 +1,4 @@
-﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
@@ -51,6 +51,14 @@
 				<c:forEach items="${trabalhoDeConclusao.listaProfessores}" var="professor">
 					${professor.nome} <br />
 				</c:forEach>
+				
+				<br />
+				
+				<h3>Palavras Chave:</h3>
+					
+				<br />
+				
+				<textarea readonly="readonly" cols="65" rows="3">${trabalhoDeConclusao.palavrasChave}</textarea>
 				
 				<br />
 				
