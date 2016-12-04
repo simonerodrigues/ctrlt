@@ -39,10 +39,10 @@ public class TrabalhoDeConclusao {
 			@Size(max = 200, message = "{trabalhoDeConclusao.titulo.max}") })
 	private String titulo;
 
-	@Lob
+	@Column(columnDefinition = "text")
 	private String resumo;
 
-	@Lob
+	@Column(columnDefinition = "text")
 	private String palavrasChave;
 
 	@Temporal(TemporalType.TIMESTAMP) // Data e Hora
