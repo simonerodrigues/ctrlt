@@ -41,7 +41,7 @@ public class Curso {
 	private List<Periodo> listaPeriodo;
 
 	@Lob
-	@Type(type="org.hibernate.type.StringClobType")
+	@Type(type="org.hibernate.type.MaterializedClobType")
 	private String descricao;
 
 	@Column(nullable = false)

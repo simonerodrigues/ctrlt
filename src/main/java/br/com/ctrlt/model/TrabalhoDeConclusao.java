@@ -41,11 +41,11 @@ public class TrabalhoDeConclusao {
 	private String titulo;
 
 	@Lob
-	@Type(type="org.hibernate.type.StringClobType")
+	@Type(type="org.hibernate.type.MaterializedClobType")
 	private String resumo;
 
 	@Lob
-	@Type(type="org.hibernate.type.StringClobType")
+	@Type(type="org.hibernate.type.MaterializedClobType")
 	private String palavrasChave;
 
 	@Temporal(TemporalType.TIMESTAMP) // Data e Hora
