@@ -58,8 +58,8 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost/ctrlt?charSet=LATIN1" />
-		<property name="user" value="root" />
-		<property name="password" value="" />
+		<property name="user" value="#{systemEnvironment['CTRLT_DATABASE_USER']}" />
+		<property name="password" value="#{systemEnvironment['CTRLT_DATABASE_PASSWORD']}" />
 
 		<property name="minPoolSize" value="15" />
 		<property name="maxPoolSize" value="200" />
@@ -94,8 +94,8 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com" />
         <property name="port" value="587" />
-        <property name="username" value="#{systemEnvironment['CTRLT_EMAIL']}" />
-        <property name="password" value="#{systemEnvironment['CTRLT_PASSWORD']}" />
+        <property name="username" value="#{systemEnvironment['CTRLT_EMAIL_USER']}" />
+        <property name="password" value="#{systemEnvironment['CTRLT_EMAIL_PASSWORD']}" />
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>

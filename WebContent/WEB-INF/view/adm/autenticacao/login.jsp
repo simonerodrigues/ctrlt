@@ -41,7 +41,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h4 class="modal-title text-center">
-									<i class="fa fa-book"></i>&nbsp;Ctrl+T - Controle de Trabalhos Acadêmico
+									<i class="fa fa-book"></i>&nbsp;Ctrl+T - Login
 								</h4>
 							</div>
 							<div class="modal-body">

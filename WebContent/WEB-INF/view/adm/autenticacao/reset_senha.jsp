@@ -1,4 +1,4 @@
-ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -9,7 +9,7 @@
 	<c:url value="../includes/meta_informations.jsp"
 		var="metainformations"></c:url>
 		
-	<!-- InformaÃ§Ãµe de Autor do projeto -->
+	<!-- Informaçõe de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -41,7 +41,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h4 class="modal-title text-center">
-									<i class="fa fa-book"></i>&nbsp;Ctrl+T - Controle de Controle de Trabalhos AcadÃªmicos
+									<i class="fa fa-book"></i>&nbsp;Ctrl+T - Reset de Senha
 								</h4>
 							</div>
 							<div class="modal-body">
@@ -55,7 +55,7 @@
 									<div class="form-group">
 										<label><i class="fa fa-tag"></i>&nbsp;Tipo de acesso: </label>
 										<select class="form-control" name="tipo" id="tipo" >
-											<option value="1">Administrador de ConteÃºdo</option>
+											<option value="1">Administrador de Conteúdo</option>
 											<option value="2">Professor</option>
 											<option value="3">Aluno</option>
 										</select>
@@ -63,6 +63,7 @@
 								</fieldset>								
 							</div>
 							<div class="modal-footer">
+								<a href="login"><button id="botao-voltar" type="button" class="btn btn-default left"><i class="fa fa-arrow-circle-left"></i>&nbsp;Voltar</button></a>
 								<button id="botao-enviar" type="submit" class="btn btn-primary">Enviar Senha&nbsp;<i class="fa fa-paper-plane-o"></i></button>
 							</div>	
 						</div>
@@ -94,7 +95,7 @@
 		
 		$.validator.setDefaults({
 			submitHandler :
-				//FunÃ§Ã£o para cadastrar a entidade
+				//Função para cadastrar a entidade
 				function realizarLogin(acao,entidade, data) {	
 					$(".se-pre-con-dark").fadeIn("slow");
 				

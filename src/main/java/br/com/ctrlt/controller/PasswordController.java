@@ -121,14 +121,14 @@ public class PasswordController {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
          
-        String body = "<p>Prezado " + nome + ", <br /><br />"
-        		+ "Sua solicita&ccedil;&atilde;o de reset de senha foi atendida. Segue sua nova senha: " + novaSenha + "<br /><br />"
+        String body = "<p>Prezado(a) " + nome + ", <br /><br />"
+        		+ "&emsp;Sua solicita&ccedil;&atilde;o de reset de senha foi atendida. Sua nova senha &eacute;: " + novaSenha + "<br /><br />"
         		+ "Atenciosamente,<br /><br />"
         		+ "Ctrl+T<p>";
         
         mimeMessage.setContent(body, "text/html");
-        helper.setTo(email);
         helper.setSubject("Ctrl+T - Reset de Senha");
+        helper.setTo(email);
         
         // sends the e-mail
         mailSender.send(mimeMessage);
