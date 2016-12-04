@@ -251,11 +251,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>verdana</groupId>
-			<artifactId>verdana</artifactId>
+			<groupId>ar.com.fdvs</groupId>
+			<artifactId>DynamicJasper-core-fonts</artifactId>
 			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/resources/lib/verdana.jar</systemPath>
 		</dependency>
 
 	</dependencies>
