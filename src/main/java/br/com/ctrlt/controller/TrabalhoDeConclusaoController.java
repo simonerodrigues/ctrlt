@@ -35,6 +35,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
+import com.ibm.icu.text.SimpleDateFormat;
+
 import br.com.ctrlt.dao.AlunoDAO;
 import br.com.ctrlt.dao.AnexoDAO;
 import br.com.ctrlt.dao.CursoDAO;
@@ -95,6 +97,8 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	@Transactional
 	@RequestMapping(value = "trabalho_de_conclusao/{id}", method = RequestMethod.GET)
 	public String carregarTrabalhoDeConclusao(@PathVariable("id") Long idTcc, Model model) {
+		model.addAttribute("ano", new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime()));
+		
 		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
 		model.addAttribute("trabalhoDeConclusao", trabalhoDeConclusao);
 		
