@@ -62,7 +62,7 @@
 								<li><a href="${baseURL}/alterar_senha"><i class="fa fa-key"></i> Alterar Senha</a></li>
 								<li class="divider"></li>
 								<c:if test="${not empty sessionScope.administradorLogado}">
-									<li><a href="${baseURL}/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+									<li><a href="${baseURL}/adm/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 									<li class="divider"></li>
 								</c:if>
 								<li><a onclick="logout()" href="#"><i
