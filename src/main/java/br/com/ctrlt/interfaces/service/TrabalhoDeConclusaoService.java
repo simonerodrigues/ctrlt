@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.interfaces.service;
+package br.com.ctrlt.interfaces.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;

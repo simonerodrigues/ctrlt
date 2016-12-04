@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.interceptor;
+package br.com.ctrlt.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-﻿package br.com.ctrlt.json;
+package br.com.ctrlt.json;
 
 /**
  * Classe de modelo para resposta de dados para DataTable em JSON de requisição
