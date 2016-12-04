@@ -28,7 +28,7 @@
 		<!-- Trabalhos mais procurados -->
 		<div class="container page">
 			
-			<h2>TÃ­tulo: ${trabalhoDeConclusao.titulo} <button onclick="voltar()" class="btn btn-primary right"><i class="fa fa-arrow-circle-left"></i> Voltar</button></h2>
+			<h2>Título: ${trabalhoDeConclusao.titulo} <button onclick="voltar()" class="btn btn-primary right"><i class="fa fa-arrow-circle-left"></i> Voltar</button></h2>
 			<hr />
 			
 			<br />
@@ -70,7 +70,7 @@
 			</div>
 			
 			<div class="col-lg-6">
-				<h3>Capa padrÃ£o Ctrl+T:</h3>
+				<h3>Capa padrão Ctrl+T:</h3>
 				
 				<br />
 				
@@ -89,7 +89,7 @@
 						</div>
 						
 						<div class="book-footer">
-							SÃ£o Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
+							São Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
 						</div>
 					</div>
 				</div>
@@ -104,7 +104,7 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<strong>Nome:</strong> ${trabalhoDeConclusao.monografia.nome} <br />
-						<strong>NÃºmero de Downloads:</strong> ${trabalhoDeConclusao.monografia.numeroDownloads}
+						<strong>Número de Downloads:</strong> ${trabalhoDeConclusao.monografia.numeroDownloads}
 					</div>
 					
 					<div class="col-lg-4">
@@ -129,7 +129,7 @@
 							<div class="row">
 								<div class="col-lg-8">
 									<strong>Nome:</strong> ${anexo.nome} <br />
-									<strong>NÃºmero de Downloads:</strong> ${anexo.numeroDownloads}
+									<strong>Número de Downloads:</strong> ${anexo.numeroDownloads}
 								</div>
 								
 								<div class="col-lg-4">
