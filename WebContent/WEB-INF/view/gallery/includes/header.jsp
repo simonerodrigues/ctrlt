@@ -1,4 +1,4 @@
-﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -59,9 +59,12 @@
 								</c:if> 
 								<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="${baseURL}/alterar_senha"><i
-										class="fa fa-key"></i> Alterar Senha</a></li>
+								<li><a href="${baseURL}/alterar_senha"><i class="fa fa-key"></i> Alterar Senha</a></li>
 								<li class="divider"></li>
+								<c:if test="${not empty sessionScope.administradorLogado}">
+									<li><a href="${baseURL}/alterar_senha"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+									<li class="divider"></li>
+								</c:if>
 								<li><a onclick="logout()" href="#"><i
 										class="fa fa-power-off"></i> Log Out</a></li>
 							</ul>
