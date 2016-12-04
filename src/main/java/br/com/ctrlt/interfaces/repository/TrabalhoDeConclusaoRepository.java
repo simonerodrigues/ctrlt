@@ -19,7 +19,7 @@ public interface TrabalhoDeConclusaoRepository extends JpaRepository<TrabalhoDeC
 			+ "WHERE t.ativo = true "
 			+ "AND (t.titulo LIKE :pesquisa || '%' "
 			+ "OR p.nome LIKE :pesquisa || '%' "
-			+ "OR a.nome LIKE :pesquisa || '%'")
+			+ "OR a.nome LIKE :pesquisa || '%')")
 	Page<TrabalhoDeConclusao> pesquisarTcc(@Param("pesquisa") String pesquisa, Pageable pageRequest);
 	
 	@Query("SELECT t FROM TrabalhoDeConclusao t "
