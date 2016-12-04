@@ -132,7 +132,7 @@ $(document).ready(function() {
 				maxlength: "A descrição deve conter no máximo 2 dígitos"
 			},
 			cursoPeriodo : {
-				required: "Por favor, digite escolha o Curso/Período"
+				required: "Por favor, escolha o Curso/Período"
 			}
 		},
 		highlight : function(element) {
