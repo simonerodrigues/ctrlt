@@ -7,6 +7,11 @@
 	<name>Ctrl+T</name>
 	<packaging>war</packaging>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
@@ -131,9 +136,9 @@
 
 		<!-- Postgre Dependency -->
 		<dependency>
-		    <groupId>postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
-		    <version>9.1-901.jdbc4</version>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901.jdbc4</version>
 		</dependency>
 
 		<!-- Java Mail -->
