@@ -93,8 +93,13 @@ public class AdministradorDeConteudo {
 		return senha;
 	}
 
+	//Recebe a senha já codificada em Base64
 	public void setSenha(String senha) {
 		this.senha = new String(Base64.encodeBase64(senha.getBytes()));
+	}
+	
+	public void setSenhaCoded(String senha) {
+		this.senha = senha;
 	}
 	
 	public String getNome() {

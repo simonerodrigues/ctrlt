@@ -196,7 +196,8 @@ public class ProfessorController implements Control<Professor> {
 			
 			Professor professorBanco = professorDAO.pesquisarPorId(entidade.getId());
 			
-			entidade.setSenha(professorBanco.getSenha());
+			//Seta a senha já codificada
+			entidade.setSenhaCoded(professorBanco.getSenha());
 			entidade.setAtivo(professorBanco.isAtivo());
 			
 			//Preenche as linhas de Pesquisa

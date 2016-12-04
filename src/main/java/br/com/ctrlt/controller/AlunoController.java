@@ -198,7 +198,8 @@ public class AlunoController implements Control<Aluno> {
 			
 			Aluno alunoBanco = alunoDAO.pesquisarPorId(entidade.getId());
 			
-			entidade.setSenha(alunoBanco.getSenha());
+			//Seta a senha já codificada
+			entidade.setSenhaCoded(alunoBanco.getSenha());
 			entidade.setAtivo(alunoBanco.isAtivo());
 			entidade.setTrabalhoDeConclusao(alunoBanco.getTrabalhoDeConclusao());
 			

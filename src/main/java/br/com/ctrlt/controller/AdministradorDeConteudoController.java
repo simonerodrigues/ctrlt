@@ -169,7 +169,8 @@ public class AdministradorDeConteudoController implements Control<AdministradorD
 			
 			AdministradorDeConteudo administradorDeConteudoBanco = administradorDeConteudoDAO.pesquisarPorId(entidade.getId());
 			
-			entidade.setSenha(administradorDeConteudoBanco.getSenha());
+			//Seta a senha já codificada
+			entidade.setSenhaCoded(administradorDeConteudoBanco.getSenha());
 			entidade.setAtivo(administradorDeConteudoBanco.isAtivo());
 			
 			if (administradorDeConteudoDAO.alterar(entidade)) {
