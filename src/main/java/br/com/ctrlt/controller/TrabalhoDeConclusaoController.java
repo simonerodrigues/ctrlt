@@ -3,6 +3,7 @@ package br.com.ctrlt.controller;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -95,6 +96,8 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	@Transactional
 	@RequestMapping(value = "trabalho_de_conclusao/{id}", method = RequestMethod.GET)
 	public String carregarTrabalhoDeConclusao(@PathVariable("id") Long idTcc, Model model) {
+		model.addAttribute("ano", new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime()));
+		
 		TrabalhoDeConclusao trabalhoDeConclusao = trabalhoDeConclusaoDAO.pesquisarPorId(idTcc);
 		model.addAttribute("trabalhoDeConclusao", trabalhoDeConclusao);
 		
