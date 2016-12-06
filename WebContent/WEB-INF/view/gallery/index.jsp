@@ -1,4 +1,5 @@
-ï»¿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
@@ -6,7 +7,7 @@
 <html lang="pt-br">
 
 <head>
-	<!-- InformaÃ§Ãµes de Autor do projeto --> 
+	<!-- Informações de Autor do projeto --> 
 	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
 	<c:import url="${metainformations}"></c:import>
 	
@@ -39,10 +40,10 @@
 
 			<br />
 
-			<h2 class="row text-center">RecÃ©m adicionados</h2>
+			<h2 class="row text-center">Recém adicionados</h2>
 			<hr />
 
-			<!-- Demais trabalhos acadÃªmicos -->
+			<!-- Demais trabalhos acadêmicos -->
 			<div class="row">
 				<div class="col-lg-12 line">		
 					<c:forEach items="${trabalhosRecemAdicionados}" var="trabalhoDeConclusao">
@@ -61,7 +62,7 @@
 								</div>
 								
 								<div class="book-footer">
-									SÃ£o Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
+									São Caetano do Sul - <fmt:formatDate pattern="yyyy" value="${trabalhoDeConclusao.monografia.dataUpload.time}" />
 								</div>
 							</div>
 						</a>
