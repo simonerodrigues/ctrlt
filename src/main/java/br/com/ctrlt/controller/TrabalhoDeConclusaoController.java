@@ -88,8 +88,8 @@ public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusa
 	@Transactional
 	@RequestMapping(value = "adm/cadastro/trabalho_de_conclusao", method = RequestMethod.GET)
 	public String carregarPagina(Model model) {
-		model.addAttribute("alunos", alunoDAO.listar(" WHERE a.ativo = true"));
-		model.addAttribute("professores", professorDAO.listar(" WHERE p.ativo = true"));
+		model.addAttribute("alunos", alunoDAO.listar(" WHERE a.ativo = true ORDER BY a.nome"));
+		model.addAttribute("professores", professorDAO.listar(" WHERE p.ativo = true ORDER BY p.nome"));
 		
 		return "adm/cadastros/cadastro_trabalho_de_conclusao";
 	}
