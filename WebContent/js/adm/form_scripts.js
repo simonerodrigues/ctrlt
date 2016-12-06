@@ -270,6 +270,8 @@ function cancelar() {
 		$($campos[i]).closest('.form-group').removeClass('has-error');
 		$($campos[i]).closest('.form-group').removeClass('has-success');
 		$($campos[i]).attr('disabled', false);
+		
+		$campos[i].selectedIndex = 0;
 	}
 	
 	var $helps = $("span.help-block");
