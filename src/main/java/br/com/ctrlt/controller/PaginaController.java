@@ -55,7 +55,7 @@ public class PaginaController {
 		List<TrabalhoDeConclusao> trabalhosMaisBaixados = trabalhoDeConclusaoDAO.listarOsMaisBaixados(11);
 		model.addAttribute("trabalhosMaisBaixados", trabalhosMaisBaixados);
 		
-		List<TrabalhoDeConclusao> trabalhosRecemAdicionados = trabalhoDeConclusaoDAO.listarOsMaisBaixados(8);
+		List<TrabalhoDeConclusao> trabalhosRecemAdicionados = trabalhoDeConclusaoDAO.listarOsRecemAdicionados(8);
 		model.addAttribute("trabalhosRecemAdicionados", trabalhosRecemAdicionados);
 		
 		return "gallery/index";
