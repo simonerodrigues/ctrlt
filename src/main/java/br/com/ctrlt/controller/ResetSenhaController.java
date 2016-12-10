@@ -24,7 +24,7 @@ import br.com.ctrlt.model.Aluno;
 import br.com.ctrlt.model.Professor;
 
 @Controller
-public class PasswordController {
+public class ResetSenhaController {
 	
 	@Autowired
 	AdministradorDeConteudoDAO administradorDeConteudoDAO;
