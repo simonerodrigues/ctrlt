@@ -13,7 +13,7 @@ import br.com.ctrlt.model.TrabalhoDeConclusao;
 @Service
 @Transactional
 public interface TrabalhoDeConclusaoRepository extends JpaRepository<TrabalhoDeConclusao, Long> {
-	@Query("SELECT t FROM TrabalhoDeConclusao t "
+	@Query("SELECT DISTINCT t FROM TrabalhoDeConclusao t "
 			+ "JOIN t.listaProfessores p "
 			+ "JOIN t.listaAlunos a "
 			+ "WHERE t.ativo = true "
@@ -24,7 +24,7 @@ public interface TrabalhoDeConclusaoRepository extends JpaRepository<TrabalhoDeC
 			+ "OR STR(YEAR(t.dataPublicacao)) = :pesquisa)")
 	Page<TrabalhoDeConclusao> pesquisarTcc(@Param("pesquisa") String pesquisa, Pageable pageRequest);
 	
-	@Query("SELECT t FROM TrabalhoDeConclusao t "
+	@Query("SELECT DISTINCT t FROM TrabalhoDeConclusao t "
 			+ "JOIN t.listaProfessores p "
 			+ "JOIN t.listaAlunos a "
 			+ "JOIN a.curso c "
