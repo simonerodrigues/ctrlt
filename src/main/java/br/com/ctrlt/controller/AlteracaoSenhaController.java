@@ -20,7 +20,7 @@ import br.com.ctrlt.model.Aluno;
 import br.com.ctrlt.model.Professor;
 
 @Controller
-public class SenhaController {
+public class AlteracaoSenhaController {
 	
 	@Autowired
 	private AdministradorDeConteudoDAO administradorDeConteudoDAO;
