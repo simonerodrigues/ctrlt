@@ -21,6 +21,17 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Classe de modelo do Aluno
+ * 
+ * @author Simone Santos Rodrigues
+ * @version 1.0
+ * 
+ * Este sistema foi desenvolvido sob a licença GPL/GNU versão 3, onde qualquer pessoa poderá copiar e distribuir cópias sem alterações deste documento de licença.
+ * Consulte mais informações sobre essa licença no arquivo gpl.txt que contêm na raiz do projeto.
+ * 
+ */
+
 @Entity
 @Table(name = "aluno")
 public class Aluno implements Serializable {

@@ -1,10 +1,15 @@
-﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="baseURL" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
+<!--
+Este sistema foi desenvolvido sob a licença GPL/GNU versão 3.
+Consulte mais informações sobre essa licença no arquivo gpl.txt que se encontra na raiz do projeto.
+-->
 
 <head>
 	<!-- Informações de Autor do projeto --> 

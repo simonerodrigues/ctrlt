@@ -21,6 +21,17 @@ import br.com.ctrlt.json.ResponseJson;
 import br.com.ctrlt.json.TableResponseJson;
 import br.com.ctrlt.model.Permissao;
 
+/**
+ * Controller de Permissão
+ * 
+ * @author Simone Santos Rodrigues
+ * @version 1.0
+ * 
+ * Este sistema foi desenvolvido sob a licença GPL/GNU versão 3, onde qualquer pessoa poderá copiar e distribuir cópias sem alterações deste documento de licença.
+ * Consulte mais informações sobre essa licença no arquivo gpl.txt que contêm na raiz do projeto.
+ * 
+ */
+
 @Controller
 public class PermissaoController implements Control<Permissao> {
 

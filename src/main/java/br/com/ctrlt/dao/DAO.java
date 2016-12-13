@@ -2,6 +2,17 @@ package br.com.ctrlt.dao;
 
 import java.util.List;
 
+/**
+ * Interface DAO - Implementada nas demais DAO
+ * 
+ * @author Simone Santos Rodrigues
+ * @version 1.0
+ * 
+ * Este sistema foi desenvolvido sob a licença GPL/GNU versão 3, onde qualquer pessoa poderá copiar e distribuir cópias sem alterações deste documento de licença.
+ * Consulte mais informações sobre essa licença no arquivo gpl.txt que contêm na raiz do projeto.
+ * 
+ */
+
 public interface DAO<Entidade> {
 	
 	//Método para listar as entidades

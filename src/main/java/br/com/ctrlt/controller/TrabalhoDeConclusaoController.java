@@ -53,6 +53,17 @@ import br.com.ctrlt.model.TrabalhoDeConclusao;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+/**
+ * Controller de Trabalho de Conclusão de Curso
+ * 
+ * @author Simone Santos Rodrigues
+ * @version 1.0
+ * 
+ * Este sistema foi desenvolvido sob a licença GPL/GNU versão 3, onde qualquer pessoa poderá copiar e distribuir cópias sem alterações deste documento de licença.
+ * Consulte mais informações sobre essa licença no arquivo gpl.txt que contêm na raiz do projeto.
+ * 
+ */
+
 @Controller
 public class TrabalhoDeConclusaoController implements Control<TrabalhoDeConclusao>, TrabalhoDeConclusaoService {
 	

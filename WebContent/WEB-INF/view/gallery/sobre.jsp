@@ -5,8 +5,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
+<!--
+Este sistema foi desenvolvido sob a licen√ßa GPL/GNU vers√£o 3.
+Consulte mais informa√ß√µes sobre essa licen√ßa no arquivo gpl.txt que se encontra na raiz do projeto.
+-->
+
 <head>
-	<!-- InformaÁıes de Autor do projeto --> 
+	<!-- Informa√ß√µes de Autor do projeto --> 
 	<c:url value="includes/meta_informations.jsp" var="metainformations"></c:url>
 	<c:import url="${metainformations}"></c:import>
 	
@@ -35,8 +40,8 @@
 				</div>
 				
 				<div class="col-lg-12 text-center">
-					<p>Ctrl+T È um software com a licenÁa GPL/GNU desenvolvido como trabalho de conclus„o de curso para a Fatec S„o Caetano do Sul - Antonio Russo com o 
-						intuito de auxiliar a faculdade a dar maior publicidade aos trabalhos realizados, assim como garantir maior seguranÁa em relaÁ„o ao armazenamento destes.</p>
+					<p>Ctrl+T √© um software com a licen√ßa GPL/GNU desenvolvido como trabalho de conclus√£o de curso para a Fatec S√£o Caetano do Sul - Antonio Russo com o 
+						intuito de auxiliar a faculdade a dar maior publicidade aos trabalhos realizados, assim como garantir maior seguran√ßa em rela√ß√£o ao armazenamento destes.</p>
 					
 					<br />
 					

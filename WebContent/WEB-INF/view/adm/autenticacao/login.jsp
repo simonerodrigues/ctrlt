@@ -5,11 +5,16 @@
 <!DOCTYPE html>
 <html lang="pt-br" class="login-html">
 
+<!--
+Este sistema foi desenvolvido sob a licença GPL/GNU versão 3.
+Consulte mais informações sobre essa licença no arquivo gpl.txt que se encontra na raiz do projeto.
+-->
+
 <head>
 	<c:url value="../includes/meta_informations.jsp"
 		var="metainformations"></c:url>
 	
-	<!-- Informa��es de Autor do projeto -->
+	<!-- Informações de Autor do projeto -->
 	<c:import url="${metainformations}"></c:import>
 	
 	<!-- CSS Include -->
@@ -62,7 +67,7 @@
 										<div class="form-group">
 											<label><i class="fa fa-tag"></i>&nbsp;Tipo de acesso: </label>
 											<select class="form-control" name="tipo" id="tipo" >
-												<option value="1">Administrador de Conte�do</option>
+												<option value="1">Administrador de Conteúdo</option>
 												<option value="2">Professor</option>
 												<option value="3">Aluno</option>
 											</select>
@@ -115,7 +120,7 @@
 		
 		$.validator.setDefaults({
 			submitHandler :
-				//Fun��o para cadastrar a entidade
+				//Função para cadastrar a entidade
 				function realizarLogin(acao,entidade, data) {	
 					$(".se-pre-con-dark").fadeIn("slow");
 				
